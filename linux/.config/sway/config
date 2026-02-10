@@ -1,1 +1,188 @@
-/home/amarnath/.dotfiles/linux/.config/sway/config
+# Sway configuration
+# Place this file at ~/.config/sway/config
+
+include ~/.config/sway/coat-theme
+
+# Modifier key (Mod4 = Super/Windows key)
+set $mod Mod4
+
+# Default programs
+set $menu rofi -show drun
+set $term kitty
+
+# Xwayland
+xwayland enable
+
+# Window appearance
+default_border pixel 2
+# titlebar_padding 0
+titlebar_border_thickness 0
+
+# Gaps
+gaps inner 20
+gaps outer 20
+smart_gaps on
+smart_borders on
+
+# Input configuration
+input type:touchpad {
+    natural_scroll disabled
+}
+
+input type:keyboard {
+    repeat_delay 200
+    repeat_rate 50
+}
+
+# Seat configuration
+seat * hide_cursor 3000
+
+# Focus behavior
+focus_follows_mouse yes
+
+# Floating modifier
+floating_modifier $mod
+
+# Output configuration
+output * {
+    render_bit_depth 10
+    color_profile srgb
+}
+
+output eDP-1 {
+    mode 2560x1600@240Hz
+    position 0,0
+}
+
+output HDMI-A-1 {
+    mode 1920x1080@60Hz
+    position 2560,0
+}
+
+# Key bindings
+bindsym $mod+q exec kitty
+bindsym $mod+d exec rofi -show drun
+bindsym $mod+c kill
+bindsym $mod+Shift+c reload
+bindsym $mod+l exec swaylock -C ~/.config/swaylock/config
+bindsym $mod+g exec new-wallpaper
+bindsym $mod+b exec ~/dotfiles/bruh.sh --dunst
+bindsym $mod+Delete exec cliphist list | bemenu | cliphist decode | wl-copy
+bindsym $mod+Shift+b bar mode toggle
+# Focus bindings
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move bindings
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Workspace bindings
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+# Move to workspace bindings
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+# Layout bindings
+bindsym $mod+Shift+v floating toggle
+bindsym $mod+f fullscreen
+
+# Media keys
+bindsym XF86AudioRaiseVolume exec volumectl up
+bindsym XF86AudioLowerVolume exec volumectl down
+bindsym XF86AudioMute exec volumectl toggle-mute
+bindsym XF86AudioMicMute exec volumectl -m toggle-mute
+bindsym XF86Launch3 exec playerctl play-pause
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86MonBrightnessUp exec lightctl up
+bindsym XF86MonBrightnessDown exec lightctl down
+bindsym XF86TouchpadToggle input type:touchpad events toggle enabled disabled
+
+# Screenshot
+bindsym $mod+Shift+s exec ~/dotfiles/swayscreenshot.sh
+
+# Resize mode
+mode "resize" {
+    bindsym Left resize shrink width 20px
+    bindsym Up resize shrink height 20px
+    bindsym Right resize grow width 20px
+    bindsym Down resize grow height 20px
+    
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Bar configuration
+# bar {
+    # swaybar_command swaybar
+    # status_command env RUST_BACKTRACE=1 RUST_LOG=swayr=debug swayrbar 2> /tmp/swayrbar.log
+    # position bottom
+# }
+
+# Startup programs
+exec numlockwl
+exec fnott
+exec udiskie
+exec nm-applet
+exec autotiling-rs
+exec wl-paste --type text --watch cliphist store
+exec wl-paste --type image --watch cliphist store
+exec swaybg
+exec dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec gamemoded
+exec avizo-service
+exec swayidle
+exec swaync
+exec swww-daemon
+exec sway-alttab
+
+# SwayFX-specific configuration (commented out)
+# Window blur effects
+blur enable
+blur_xray disable
+blur_passes 2
+blur_radius 5
+blur_noise 0.02
+blur_brightness 1.0
+blur_contrast 1.0
+blur_saturation 1.0
+
+# Corner radius for windows
+corner_radius 10
+
+# Window shadows
+shadows enable
+shadows_on_csd enable
+shadow_blur_radius 20
+shadow_offset 0 0
+
+# Dim unfocused windows
+#default_dim_inactive 0.1
+
+# Titlebar separator
+#titlebar_separator enable
+
+# Scratchpad minimize
+#scratchpad_minimize disable

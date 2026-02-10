@@ -1,30 +1,45 @@
 # dotfiles
 
-My personal dotfiles repository for Linux, macOS, and Windows.
+My personal dotfiles repository for Linux and Windows.
 
 ## Quick Start
 
 ### Linux
-```sh
-./install.sh           # Install all dotfiles
-./install.sh list      # Preview what will be installed
-./install.sh uninstall # Remove symlinks
-./install.sh help      # Show help
-```
 
-The script works like GNU Stow - it creates symlinks from your home directory to the files in this repo.
+**Requirements:** GNU Stow
+```sh
+# Install stow first
+sudo pacman -S stow        # Arch/Manjaro
+sudo apt install stow      # Debian/Ubuntu
+
+# Install dotfiles
+./install.sh               # Symlinks linux/ to $HOME using stow
+
+# Uninstall dotfiles
+stow -D linux              # Remove symlinks
+```
 
 ### Structure
 ```
-linux/
-  .config/         # XDG config files (i3, rofi, etc.)
-  .bashrc          # Bash config
-  .zshrc           # Zsh config
+linux/.config/      # All XDG config files
+  bat/
+  btop/
+  dunst/
+  fish/
+  helix/
+  i3/
+  kitty/
+  labwc/
+  mango/
+  rofi/
+  sway/
+  swaylock/
+  starship.toml
+
 windows/
-  starship.toml    # Starship prompt config
+  starship.toml
   Microsoft.PowerShell_profile.ps1
-mac/
-  (TBD)
+  windowspkgs.txt
 ```
 
 ---

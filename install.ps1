@@ -1,4 +1,4 @@
-# Windows Dotfiles Installer
+q# Windows Dotfiles Installer
 
 Write-Host "[INFO] Installing Windows dotfiles..." -ForegroundColor Blue
 
