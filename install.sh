@@ -39,9 +39,12 @@ backup_existing() {
     target="$1"
     backup="${target}.backup.$(date +%Y%m%d_%H%M%S)"
     
-    if [ -e "$target" ] || [ -L "$target" ]; then
+    if [ -e "$target" ] && [ ! -L "$target" ]; then
         print_warning "Backing up existing $target to $backup"
         mv "$target" "$backup"
+    elif [ -L "$target" ]; then
+        # If it's already a symlink, just remove it
+        rm "$target"
     fi
 }
 
@@ -66,7 +69,7 @@ create_symlink() {
     print_success "Created symlink: $target"
 }
 
-# Install .config directories
+# Recursively symlink files in .config
 install_config() {
     if [ ! -d "$LINUX_DIR/.config" ]; then
         print_warning "No .config directory found in $LINUX_DIR"
@@ -75,16 +78,13 @@ install_config() {
     
     print_info "Installing .config files..."
     
-    # Iterate through each directory in linux/.config
-    for config_item in "$LINUX_DIR/.config"/*; do
-        if [ ! -e "$config_item" ]; then
-            continue
-        fi
+    # Use find to recursively get all files (not directories)
+    find "$LINUX_DIR/.config" -type f -o -type l | while read -r source_file; do
+        # Get the relative path from linux/.config/
+        rel_path="${source_file#"$LINUX_DIR"/.config/}"
+        target="$CONFIG_DIR/$rel_path"
         
-        item_name="$(basename "$config_item")"
-        target="$CONFIG_DIR/$item_name"
-        
-        create_symlink "$config_item" "$target"
+        create_symlink "$source_file" "$target"
     done
 }
 
@@ -97,7 +97,7 @@ install_dotfiles() {
     
     print_info "Installing standalone dotfiles..."
     
-    # Find all files and directories in linux/ that start with a dot, excluding .config
+    # Find all files in linux/ that start with a dot, excluding .config
     for dotfile in "$LINUX_DIR"/.*; do
         # Skip . and .. and .config directory
         case "$(basename "$dotfile")" in
@@ -107,6 +107,11 @@ install_dotfiles() {
         esac
         
         if [ ! -e "$dotfile" ]; then
+            continue
+        fi
+        
+        # Skip if it's a directory (we only want files at the root level)
+        if [ -d "$dotfile" ]; then
             continue
         fi
         
@@ -124,9 +129,9 @@ install_dotfiles() {
         
         file_name="$(basename "$file")"
         
-        # Skip if it's .config or starts with a dot
+        # Skip README and other special files
         case "$file_name" in
-            .config|.*)
+            README.md|.*)
                 continue
                 ;;
         esac
@@ -140,20 +145,19 @@ install_dotfiles() {
 uninstall() {
     print_info "Uninstalling dotfiles..."
     
-    # Remove .config symlinks
+    # Remove .config symlinks (recursively find all symlinks pointing to our repo)
     if [ -d "$LINUX_DIR/.config" ]; then
-        for config_item in "$LINUX_DIR/.config"/*; do
-            if [ ! -e "$config_item" ]; then
-                continue
-            fi
+        find "$LINUX_DIR/.config" -type f -o -type l | while read -r source_file; do
+            rel_path="${source_file#"$LINUX_DIR"/.config/}"
+            target="$CONFIG_DIR/$rel_path"
             
-            item_name="$(basename "$config_item")"
-            target="$CONFIG_DIR/$item_name"
-            
-            if [ -L "$target" ] && [ "$(readlink "$target")" = "$config_item" ]; then
-                print_info "Removing symlink: $target"
-                rm "$target"
-                print_success "Removed: $target"
+            if [ -L "$target" ]; then
+                link_target="$(readlink "$target")"
+                if [ "$link_target" = "$source_file" ]; then
+                    print_info "Removing symlink: $target"
+                    rm "$target"
+                    print_success "Removed: $target"
+                fi
             fi
         done
     fi
@@ -167,17 +171,20 @@ uninstall() {
                     ;;
             esac
             
-            if [ ! -e "$dotfile" ]; then
+            if [ ! -e "$dotfile" ] || [ -d "$dotfile" ]; then
                 continue
             fi
             
             dotfile_name="$(basename "$dotfile")"
             target="$HOME/$dotfile_name"
             
-            if [ -L "$target" ] && [ "$(readlink "$target")" = "$dotfile" ]; then
-                print_info "Removing symlink: $target"
-                rm "$target"
-                print_success "Removed: $target"
+            if [ -L "$target" ]; then
+                link_target="$(readlink "$target")"
+                if [ "$link_target" = "$dotfile" ]; then
+                    print_info "Removing symlink: $target"
+                    rm "$target"
+                    print_success "Removed: $target"
+                fi
             fi
         done
         
@@ -190,17 +197,20 @@ uninstall() {
             file_name="$(basename "$file")"
             
             case "$file_name" in
-                .config|.*)
+                README.md|.*)
                     continue
                     ;;
             esac
             
             target="$HOME/$file_name"
             
-            if [ -L "$target" ] && [ "$(readlink "$target")" = "$file" ]; then
-                print_info "Removing symlink: $target"
-                rm "$target"
-                print_success "Removed: $target"
+            if [ -L "$target" ]; then
+                link_target="$(readlink "$target")"
+                if [ "$link_target" = "$file" ]; then
+                    print_info "Removing symlink: $target"
+                    rm "$target"
+                    print_success "Removed: $target"
+                fi
             fi
         done
     fi
@@ -214,14 +224,10 @@ list_links() {
     echo ""
     
     if [ -d "$LINUX_DIR/.config" ]; then
-        printf '%b\n' "${YELLOW}.config directories:${NC}"
-        for config_item in "$LINUX_DIR/.config"/*; do
-            if [ ! -e "$config_item" ]; then
-                continue
-            fi
-            
-            item_name="$(basename "$config_item")"
-            printf "  %s -> %s\n" "$config_item" "$CONFIG_DIR/$item_name"
+        printf '%b\n' "${YELLOW}.config files:${NC}"
+        find "$LINUX_DIR/.config" -type f -o -type l | while read -r source_file; do
+            rel_path="${source_file#"$LINUX_DIR"/.config/}"
+            printf "  %s -> %s\n" "$source_file" "$CONFIG_DIR/$rel_path"
         done
         echo ""
     fi
@@ -235,7 +241,7 @@ list_links() {
                     ;;
             esac
             
-            if [ ! -e "$dotfile" ]; then
+            if [ ! -e "$dotfile" ] || [ -d "$dotfile" ]; then
                 continue
             fi
             
@@ -251,7 +257,7 @@ list_links() {
             file_name="$(basename "$file")"
             
             case "$file_name" in
-                .config|.*)
+                README.md|.*)
                     continue
                     ;;
             esac
@@ -295,14 +301,13 @@ Commands:
 
 Structure:
     linux/
-        .config/          -> \$HOME/.config/
-            i3/           -> \$HOME/.config/i3/
-            rofi/         -> \$HOME/.config/rofi/
+        .config/
+            kitty/kitty.conf     -> \$HOME/.config/kitty/kitty.conf
+            fish/config.fish     -> \$HOME/.config/fish/config.fish
+            starship.toml        -> \$HOME/.config/starship.toml
             ...
-        .bashrc           -> \$HOME/.bashrc
-        .zshrc            -> \$HOME/.zshrc
-        script.sh         -> \$HOME/script.sh
-        ...
+        .bashrc                  -> \$HOME/.bashrc
+        script.sh                -> \$HOME/script.sh
 
 Examples:
     $0                    # Install dotfiles
