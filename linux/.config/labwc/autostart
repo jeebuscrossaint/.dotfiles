@@ -1,0 +1,23 @@
+#!/bin/sh
+
+numlockwl &
+fnott &
+udiskie &
+nm-applet &
+
+wl-paste --type text --watch cliphist store &
+wl-paste --type image --watch cliphist store &
+
+swaybg &
+swww-daemon &
+
+dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &
+
+gamemoded &
+avizo-service &
+swayidle &
+swaync &
+
+waybar &
+woled --lock &
+

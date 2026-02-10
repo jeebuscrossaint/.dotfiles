@@ -1,0 +1,37 @@
+# LABWC THEME (standalone)
+
+border.width: 2
+border.color: #444444
+
+# Active window
+window.active.title.bg.color: #1e1e1e
+window.active.label.text.color: #ffffff
+window.active.button.unpressed.image.color: #ffffff
+window.active.button.hover.image.color: #5e81ac
+window.active.border.color: #5e81ac
+
+# Inactive window
+window.inactive.title.bg.color: #2a2a2a
+window.inactive.label.text.color: #cccccc
+window.inactive.button.unpressed.image.color: #cccccc
+window.inactive.button.hover.image.color: #5e81ac
+window.inactive.border.color: #444444
+
+# Padding
+padding.height: 3
+padding.width: 3
+
+# Menu
+menu.items.bg.color: #1e1e1e
+menu.items.text.color: #cccccc
+menu.items.active.bg.color: #5e81ac
+menu.items.active.text.color: #ffffff
+menu.border.width: 1
+menu.border.color: #5e81ac
+
+# OSD
+osd.bg.color: #1e1e1e
+osd.border.color: #5e81ac
+osd.border.width: 1
+osd.label.text.color: #cccccc
+

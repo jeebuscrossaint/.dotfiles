@@ -1,25 +1,47 @@
 # dotfiles
 
+My personal dotfiles repository for Linux, macOS, and Windows.
 
-yo my librewolf extensions are ublock sponsorblock bettercanvas return-dislike-youtube docsafterdark proton-pass dark-reader
-how to use:
+## Quick Start
 
-have nix
-install home manager standalone
-build both nixos and home-manager configs
+### Linux
+```sh
+./install.sh           # Install all dotfiles
+./install.sh list      # Preview what will be installed
+./install.sh uninstall # Remove symlinks
+./install.sh help      # Show help
+```
 
-how to use windows:
+The script works like GNU Stow - it creates symlinks from your home directory to the files in this repo.
+
+### Structure
+```
+linux/
+  .config/         # XDG config files (i3, rofi, etc.)
+  .bashrc          # Bash config
+  .zshrc           # Zsh config
+windows/
+  starship.toml    # Starship prompt config
+  Microsoft.PowerShell_profile.ps1
+mac/
+  (TBD)
+```
+
+---
+
+## Browser Extensions
+LibreWolf extensions: ublock, sponsorblock, bettercanvas, return-dislike-youtube, docsafterdark, proton-pass, dark-reader
+
+### Windows Setup
 put starship.toml in .config
 put the freaky powershell config in Documents/Powershell
 install scoop
 install packages listed in the txt
 
-thats a bout it
+---
 
-make sure you have nix installed along with home-manager
-
-
-minecraft mod list on prism launcher
+## Minecraft Mods
+Prism Launcher modlist:
 3d-Skin-Layers 
 AppleSkin 
 Armor Hud 
