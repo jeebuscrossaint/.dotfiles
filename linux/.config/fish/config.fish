@@ -13,8 +13,9 @@ starship init fish | source
 fish_config theme choose coat
 # fastfetch
 pfetch
-set -x NVCCFLAGS "--ccbin=/usr/x86_64-pc-linux-gnu/gcc-bin/14"
-set -x NVCC_CCBIN /usr/x86_64-pc-linux-gnu/gcc-bin/14
+# set -x NVCCFLAGS "--ccbin=/usr/x86_64-pc-linux-gnu/gcc-bin/14"
+# set -x NVCC_CCBIN /usr/x86_64-pc-linux-gnu/gcc-bin/14
+set -x EDITOR helix
 ########################################
 # Environment variables
 ########################################
@@ -51,6 +52,7 @@ alias 11="ping 1.1.1.1"
 alias xcopy="xclip -sel clip"
 alias ls="lsd"
 alias doas="sudo"
+alias hx="helix"
 
 alias display-update="xrandr \
   --output eDP-1 --mode 2560x1600 --rate 240.00 --primary \

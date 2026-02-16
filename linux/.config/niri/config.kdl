@@ -6,7 +6,7 @@
 // This config is in the KDL format: https://kdl.dev
 // Check the wiki for full documentation:
 // https://yalter.github.io/niri/Configuration:-Introduction
-
+include "coat-theme.kdl"
 // ============================================
 // ENVIRONMENT VARIABLES
 // ============================================
@@ -122,9 +122,9 @@ layout {
     
     // Focus ring configuration (matching border settings)
     focus-ring {
-        width 2
-        active-color "#ffffff"
-        inactive-color "#505050"
+        // width 2
+        // active-color "#ffffff"
+        // inactive-color "#505050"
     }
     
     // Border disabled (matching no_border_when_single=1)
@@ -134,11 +134,11 @@ layout {
     
     // Shadows enabled (matching shadows=1)
     shadow {
-        on
-        softness 15
-        spread 5
-        offset x=0 y=0
-        color "#000000ff"
+        // on
+        // softness 15
+        // spread 5
+        // offset x=0 y=0
+        // color "#000000ff"
     }
 }
 
@@ -187,6 +187,7 @@ animations {
 // STARTUP APPLICATIONS
 // ============================================
 spawn-at-startup "udiskie"
+spawn-at-startup "gnome-keyring-daemon --start --components=secrets"
 spawn-at-startup "nm-applet"
 spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
 spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
@@ -195,7 +196,8 @@ spawn-at-startup "gamemoded"
 spawn-at-startup "avizo-service"
 spawn-at-startup "woled" "--lock"
 spawn-sh-at-startup "gentoo-pipewire-launcher &"
-spawn-at-startup "awww-daemon"
+spawn-at-startup "swww-daemon"
+spawn-at-startup "dunst"
 
 // ============================================
 // MISCELLANEOUS SETTINGS

@@ -24,6 +24,7 @@ enabled:
   - sway
   - firefox
   - qt
+  - niri
   
 # The 'scheme' key is a top-level scalar
 scheme: grayscale-dark
