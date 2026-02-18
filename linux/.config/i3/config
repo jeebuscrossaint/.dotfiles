@@ -83,7 +83,7 @@ bindsym $mod+c kill
 bindsym $mod+Shift+c reload
 bindsym $mod+l exec xsecurelock
 bindsym $mod+g exec new-wallpaper
-bindsym $mod+b exec ~/dotfiles/bruh.sh --dunst
+bindsym $mod+b exec ~/.dotfiles/info.sh --dunst
 
 bindsym $mod+Shift+s exec flameshot gui
 bindsym $mod+Shift+b bar mode toggle

@@ -27,7 +27,7 @@ enabled:
   - niri
   
 # The 'scheme' key is a top-level scalar
-scheme: grayscale-dark
+scheme: jellybeans
 prefer_base24: true
 
 opacity:
@@ -39,9 +39,12 @@ opacity:
 # The 'font' key triggers in_font_section and expects a mapping (dictionary)
 font:
   emoji: "Noto Color Emoji"
-  monospace: "JetBrainsMono Nerd Font Mono"
-  sansserif: "JetBrainsMono Nerd Font Mono"
-  serif: "JetBrainsMono Nerd Font Mono"
+  # monospace: "JetBrainsMono Nerd Font Mono"
+  # sansserif: "JetBrainsMono Nerd Font Mono"
+  # serif: "JetBrainsMono Nerd Font Mono"
+  monospace: "Spleen 8x16"
+  sansserif: "Spleen 8x16"
+  serif: "Spleen 8x16"
   sizes:
     terminal: 12
     desktop: 12

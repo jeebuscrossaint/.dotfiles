@@ -38,7 +38,7 @@ set -x NIXPKGS_ALLOW_UNFREE 1
 
 # Keyboard backlight (ignore errors)
 # brightnessctl -d asus::kbd_backlight s 3 >/dev/null 2>&1 &
-setfont -d >/dev/null 2>&1
+setfont -r >/dev/null 2>&1
 # Direnv
 # direnv hook fish | source
 
