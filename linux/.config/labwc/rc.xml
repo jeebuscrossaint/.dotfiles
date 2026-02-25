@@ -53,7 +53,7 @@
     </keybind>
 
     <keybind key="W-b">
-      <action name="Execute" command="/home/amarnath/dotfiles/bruh.sh --dunst"/>
+      <action name="Execute" command="/home/amarnath/.dotfiles/info.sh --dunst"/>
     </keybind>
 
     <keybind key="W-Insert">
@@ -113,7 +113,7 @@
 
     <!-- Screenshot -->
     <keybind key="W-S-s">
-      <action name="Execute" command="/home/amarnath/dotfiles/swayscreenshot.sh"/>
+      <action name="Execute" command="/home/amarnath/.dotfiles/swayscreenshot.sh"/>
     </keybind>
   </keyboard>
 
