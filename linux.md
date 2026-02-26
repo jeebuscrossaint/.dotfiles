@@ -1,3 +1,41 @@
+# Linux
+
+**Requirements:** GNU Stow
+```sh
+# Install stow first
+sudo pacman -S stow        # Arch/Manjaro
+sudo apt install stow      # Debian/Ubuntu
+
+# Install dotfiles
+./install.sh               # Symlinks linux/ to $HOME using stow
+
+# Uninstall dotfiles
+stow -D linux              # Remove symlinks
+```
+
+### Structure
+```
+linux/.config/      # All XDG config files
+  bat/
+  bto
+  dunst/
+  fish/
+  helix/
+  i3/
+  kitty/
+  labwc/
+  mango/
+  rofi/
+  sway/
+  swaylock/
+  starship.toml
+
+windows/
+  starship.toml
+  Microsoft.PowerShell_profile.ps1
+  windowspkgs.txt
+```
+
 # Linux Dotfiles
 
 Place your Linux configuration files here.

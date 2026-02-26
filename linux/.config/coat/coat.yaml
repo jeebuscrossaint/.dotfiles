@@ -27,7 +27,7 @@ enabled:
   - niri
   
 # The 'scheme' key is a top-level scalar
-scheme: chinoiserie-midnight
+scheme: elementary
 prefer_base24: true
 
 opacity:

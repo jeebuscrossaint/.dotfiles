@@ -1,27 +1,27 @@
 #!/bin/sh
-# coat TTY theme: Chinoiserie Midnight
-# Di Wang (https://cs.cmu.edu/~diw3)
+# coat TTY theme: Elementary
+# FredHappyface (https://github.com/fredHappyface)
 # variant: dark
 
 # Apply Base16 colors to Linux TTY/console
 # This script should be run with root privileges or from /etc/profile.d/
 
 if [ "$TERM" = "linux" ]; then
-    printf '\033]P01D1D1D'
-    printf '\033]P1ED5A56'
-    printf '\033]P2AEB831'
-    printf '\033]P3FBB957'
-    printf '\033]P481A2A2'
-    printf '\033]P5CF8997'
-    printf '\033]P688B68D'
-    printf '\033]P7C4CBCF'
-    printf '\033]P8918072'
-    printf '\033]P9ED5A56'
-    printf '\033]PAAEB831'
-    printf '\033]PBFBB957'
-    printf '\033]PC81A2A2'
-    printf '\033]PDCF8997'
-    printf '\033]PE88B68D'
-    printf '\033]PFFFFEF9'
+    printf '\033]P0181818'
+    printf '\033]P1D61B15'
+    printf '\033]P259A413'
+    printf '\033]P30855FE'
+    printf '\033]P4053A8C'
+    printf '\033]P5E40038'
+    printf '\033]P62594E0'
+    printf '\033]P7C5C5C5'
+    printf '\033]P8737373'
+    printf '\033]P9D61B15'
+    printf '\033]PA59A413'
+    printf '\033]PB0855FE'
+    printf '\033]PC053A8C'
+    printf '\033]PDE40038'
+    printf '\033]PE2594E0'
+    printf '\033]PF8C00EB'
     clear
 fi
