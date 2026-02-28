@@ -27,7 +27,7 @@ enabled:
   - niri
   
 # The 'scheme' key is a top-level scalar
-scheme: firefox-dev
+scheme: kanagawa-dragon
 prefer_base24: true
 material_you: true
 
