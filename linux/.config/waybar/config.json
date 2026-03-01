@@ -4,8 +4,8 @@
     "height": 30,
     "spacing": 4,
     "margin-top": 15,
-    "margin-left": 20,
-    "margin-right": 20,
+    "margin-left": 22,
+    "margin-right": 22,
     "margin-bottom": 10,
     
     "modules-left": ["dwl/tags", "tray", "custom/weather", "cava", "custom/mpris", "custom/updates"],
