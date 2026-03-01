@@ -10,7 +10,7 @@
 
 window#waybar {
     background-color: transparent;
-    color: @base0B;
+    color: @base07;
     transition-property: background-color;
     transition-duration: .5s;
     margin-top: 20px;
@@ -63,7 +63,7 @@ window#waybar.hidden {
 
 #window {
     margin-left: 10px;
-    color: @base0B;
+    color: @base07;
 }
 
 #clock,
@@ -88,16 +88,16 @@ window#waybar.hidden {
 }
 
 #clock {
-    color: @base0B;
+    color: @base07;
     font-weight: bold;
 }
 
 #custom-weather {
-    color: @base0B;
+    color: @base07;
 }
 
 #network {
-    color: @base0B;
+    color: @base07;
 }
 
 #network.disconnected {
@@ -105,7 +105,7 @@ window#waybar.hidden {
 }
 
 #bluetooth {
-    color: @base0B;
+    color: @base07;
 }
 
 #bluetooth.off {
@@ -113,11 +113,11 @@ window#waybar.hidden {
 }
 
 #cpu {
-    color: @base0B;
+    color: @base07;
 }
 
 #temperature {
-    color: @base0B;
+    color: @base07;
 }
 
 #temperature.critical {
@@ -126,19 +126,19 @@ window#waybar.hidden {
 }
 
 #memory {
-    color: @base0B;
+    color: @base07;
 }
 
 #disk {
-    color: @base0B;
+    color: @base07;
 }
 
 #battery {
-    color: @base0B;
+    color: @base07;
 }
 
 #battery.charging {
-    color: @base0B;
+    color: @base07;
 }
 
 #battery.warning:not(.charging) {
@@ -158,7 +158,7 @@ window#waybar.hidden {
 }
 
 #wireplumber {
-    color: @base0B;
+    color: @base07;
 }
 
 #wireplumber.muted {
@@ -184,11 +184,11 @@ tooltip {
 }
 
 tooltip label {
-    color: @base0B;
+    color: @base07;
 }
 
 #cava {
-    color: @base0B;
+    color: @base07;
 }
 
 #cava.silent {
@@ -196,13 +196,13 @@ tooltip label {
 }
 
 #custom-mpris {
-    color: @base0B;
+    color: @base07;
 }
 
 #custom-gpu {
-    color: @base0B;
+    color: @base07;
 }
 
 #custom-updates {
-    color: @base0B;
+    color: @base07;
 }

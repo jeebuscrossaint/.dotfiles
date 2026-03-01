@@ -5,7 +5,7 @@
 # Variant: dark
 
 # Background
-color=333230FF
+color=0c0c0cFF
 
 # General settings
 show-failed-attempts
@@ -13,44 +13,44 @@ indicator-radius=100
 indicator-thickness=7
 
 # Ring colors
-ring-color=7f7a77
-ring-clear-color=f3cfaf
-ring-caps-lock-color=e16832
-ring-ver-color=f3cfaf
-ring-wrong-color=f3cfaf
+ring-color=423939
+ring-clear-color=2c0608
+ring-caps-lock-color=a8182c
+ring-ver-color=211c11
+ring-wrong-color=620e1b
 
 # Inside colors
-inside-color=333230
-inside-clear-color=333230
-inside-caps-lock-color=333230
-inside-ver-color=333230
-inside-wrong-color=333230
+inside-color=0c0c0c
+inside-clear-color=0c0c0c
+inside-caps-lock-color=0c0c0c
+inside-ver-color=0c0c0c
+inside-wrong-color=0c0c0c
 
 # Line colors (separator)
-line-color=4c4a48
-line-clear-color=4c4a48
-line-caps-lock-color=4c4a48
-line-ver-color=4c4a48
-line-wrong-color=4c4a48
+line-color=131010
+line-clear-color=131010
+line-caps-lock-color=131010
+line-ver-color=131010
+line-wrong-color=131010
 
 # Text colors
-text-color=aea9a9
-text-clear-color=f3cfaf
-text-caps-lock-color=e16832
-text-ver-color=f3cfaf
-text-wrong-color=f3cfaf
+text-color=736263
+text-clear-color=2c0608
+text-caps-lock-color=a8182c
+text-ver-color=211c11
+text-wrong-color=620e1b
 
 # Key highlight colors
-key-hl-color=c7ae9f
-bs-hl-color=f3cfaf
-caps-lock-key-hl-color=e16832
-caps-lock-bs-hl-color=f3cfaf
+key-hl-color=35070d
+bs-hl-color=620e1b
+caps-lock-key-hl-color=a8182c
+caps-lock-bs-hl-color=620e1b
 
 # Separator color
-separator-color=666260
+separator-color=2b2425
 
 # Layout indicator colors
-layout-bg-color=4c4a48
-layout-border-color=7f7a77
-layout-text-color=aea9a9
+layout-bg-color=131010
+layout-border-color=423939
+layout-text-color=736263
 
