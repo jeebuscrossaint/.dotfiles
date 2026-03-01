@@ -1,0 +1,170 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "spacing": 4,
+    "margin-top": 15,
+    "margin-left": 20,
+    "margin-right": 20,
+    "margin-bottom": 10,
+    
+    "modules-left": ["dwl/tags", "tray", "custom/weather", "cava", "custom/mpris", "custom/updates"],
+    "modules-center": ["clock"],
+    "modules-right": ["network", "bluetooth", "cpu", "custom/gpu", "temperature", "memory", "disk", "battery", "wireplumber"],
+    
+    "dwl/tags": {
+        "num-tags": 9
+    },
+    
+    "clock": {
+        "interval": 1,
+        "format": "{:%B %e, %Y %H:%M:%S}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "on-click-right": "mode",
+            "format": {
+                "months": "<b>{}</b>",
+                "days": "<b>{}</b>",
+                "weeks": "<b>W{}</b>",
+                "weekdays": "<b>{}</b>",
+                "today": "<b><u>{}</u></b>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+    
+    "custom/weather": {
+        "format": "{}",
+        "tooltip": true,
+        "interval": 300,
+        "exec": "wttrbar --fahrenheit --mph --nerd",
+        "return-type": "json"
+    },
+    
+    "network": {
+        "format-wifi": "NET: {essid} {signalStrength}%",
+        "format-ethernet": "NET: {ipaddr}/{cidr}",
+        "format-disconnected": "NET: Disconnected",
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+        "tooltip-format-ethernet": "{ifname}",
+        "format-alt": "NET: {ifname} {ipaddr}/{cidr}",
+        "on-click": "nm-connection-editor"
+    },
+    
+    "bluetooth": {
+        "format": "BT: {status}",
+        "format-connected": "{device_alias}",
+        "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+        "on-click": "blueman-manager"
+    },
+    
+    "cpu": {
+        "interval": 10,
+        "format": "CPU: {usage}%",
+        "tooltip": false
+    },
+    
+    "temperature": {
+        "interval": 10,
+        "critical-threshold": 80,
+        "format": "TEMP: {temperatureC}°C",
+        "format-critical": "TEMP: {temperatureC}°C (CRITICAL)"
+    },
+    
+    "memory": {
+        "interval": 30,
+        "format": "RAM: {}%",
+        "tooltip-format": "RAM: {used:0.1f}G / {total:0.1f}G"
+    },
+    
+    "disk": {
+        "interval": 30,
+        "format": "DISK: {percentage_used}%",
+        "path": "/",
+        "tooltip-format": "Used: {used} / {total}"
+    },
+    
+    "battery": {
+        "interval": 60,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "BAT: {capacity}%",
+        "format-full": "BAT: {capacity}% (FULL)",
+        "format-charging": "BAT: {capacity}% (CHARGING)",
+        "format-plugged": "BAT: {capacity}% (PLUGGED)",
+        "format-alt": "BAT: {time}"
+    },
+    
+    "wireplumber": {
+        "format": "VOL: {volume}%",
+        "format-muted": "VOL: MUTED",
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-click-right": "pavucontrol"
+    },
+    
+    "tray": {
+        "icon-size": 16,
+        "spacing": 10
+    },
+    
+    "cava": {
+        "framerate": 30,
+        "autosens": 0,
+        "sensitivity": 2,
+        "bars": 12,
+        "lower_cutoff_freq": 50,
+        "higher_cutoff_freq": 10000,
+        "method": "pipewire",
+        "source": "auto",
+        "stereo": true,
+        "reverse": false,
+        "bar_delimiter": 0,
+        "monstercat": false,
+        "waves": false,
+        "noise_reduction": 0.77,
+        "input_delay": 2,
+        "hide_on_silence": true,
+        "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+    },
+    
+    "custom/mpris": {
+        "format": "MEDIA: {}",
+        "return-type": "json",
+        "exec": "ScrollMPRIS",
+        "escape": true,
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous",
+        "max-length": 50
+    },
+    
+    "custom/gpu": {
+        "format": "GPU: {}",
+        "return-type": "json",
+        "exec": "gpu-usage-waybar",
+        "interval": 5
+    },
+    
+    "custom/updates": {
+        "format": "UPD: {}",
+        "return-type": "json",
+        "exec": "waybar-updates",
+        "interval": 3600,
+        "on-click": "kitty -e paru"
+    }
+}

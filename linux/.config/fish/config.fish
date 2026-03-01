@@ -24,7 +24,7 @@ set -x EDITOR helix
 set -x XDG_DATA_DIRS $XDG_DATA_DIRS \
     /var/lib/flatpak/exports/share \
     $HOME/.local/share/flatpak/exports/share
-
+fish_add_path /opt/cuda/bin/
 # Qt / graphics
 set -x QT_QPA_PLATFORMTHEME qt5ct
 set -x GSK_RENDERER ngl

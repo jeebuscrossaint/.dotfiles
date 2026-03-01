@@ -2,6 +2,7 @@
 
 # The 'enabled' key triggers STATE_ENABLED and expects a sequence (list)
 enabled:
+  - hyprland
   - fish
   - kitty
   - i3
@@ -25,9 +26,10 @@ enabled:
   - firefox
   - qt
   - niri
+  - waybar
   
 # The 'scheme' key is a top-level scalar
-scheme: kanagawa-dragon
+scheme: wallpaper
 prefer_base24: true
 material_you: true
 

@@ -1,0 +1,208 @@
+@import "coat-theme.css";
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: transparent;
+    color: @base0B;
+    transition-property: background-color;
+    transition-duration: .5s;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 20px;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+    background-color: transparent;
+    padding: 0;
+    margin: 0 5px;
+}
+
+#tags,
+#workspaces {
+    background-color: @base01;
+    border-radius: 8px;
+    padding: 0 8px;
+    margin: 0 4px;
+}
+
+#workspaces button,
+#tags button {
+    padding: 0 5px;
+    color: @base04;
+    background-color: transparent;
+}
+
+#workspaces button.active,
+#tags button.active {
+    color: @base0D;
+}
+
+#workspaces button.urgent,
+#tags button.urgent {
+    color: @base08;
+}
+
+#workspaces button:hover,
+#tags button:hover {
+    color: @base0D;
+}
+
+#window {
+    margin-left: 10px;
+    color: @base0B;
+}
+
+#clock,
+#custom-weather,
+#network,
+#bluetooth,
+#cpu,
+#custom-gpu,
+#temperature,
+#memory,
+#disk,
+#battery,
+#wireplumber,
+#tray,
+#cava,
+#custom-mpris,
+#custom-updates {
+    padding: 4px 12px;
+    margin: 0 4px;
+    background-color: @base01;
+    border-radius: 8px;
+}
+
+#clock {
+    color: @base0B;
+    font-weight: bold;
+}
+
+#custom-weather {
+    color: @base0B;
+}
+
+#network {
+    color: @base0B;
+}
+
+#network.disconnected {
+    color: @base08;
+}
+
+#bluetooth {
+    color: @base0B;
+}
+
+#bluetooth.off {
+    color: @base03;
+}
+
+#cpu {
+    color: @base0B;
+}
+
+#temperature {
+    color: @base0B;
+}
+
+#temperature.critical {
+    color: @base08;
+    font-weight: bold;
+}
+
+#memory {
+    color: @base0B;
+}
+
+#disk {
+    color: @base0B;
+}
+
+#battery {
+    color: @base0B;
+}
+
+#battery.charging {
+    color: @base0B;
+}
+
+#battery.warning:not(.charging) {
+    color: @base0A;
+}
+
+#battery.critical:not(.charging) {
+    color: @base08;
+    animation: blink 0.5s linear infinite alternate;
+}
+
+@keyframes blink {
+    to {
+        background-color: @base08;
+        color: @base00;
+    }
+}
+
+#wireplumber {
+    color: @base0B;
+}
+
+#wireplumber.muted {
+    color: @base08;
+}
+
+#tray {
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: @base08;
+}
+
+tooltip {
+    background: @base00;
+    border: 1px solid @base03;
+    border-radius: 8px;
+}
+
+tooltip label {
+    color: @base0B;
+}
+
+#cava {
+    color: @base0B;
+}
+
+#cava.silent {
+    opacity: 0.5;
+}
+
+#custom-mpris {
+    color: @base0B;
+}
+
+#custom-gpu {
+    color: @base0B;
+}
+
+#custom-updates {
+    color: @base0B;
+}
