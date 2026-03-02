@@ -29,7 +29,7 @@ enabled:
   - waybar
   
 # The 'scheme' key is a top-level scalar
-scheme: wallpaper
+scheme: material-dark
 prefer_base24: true
 material_you: true
 
