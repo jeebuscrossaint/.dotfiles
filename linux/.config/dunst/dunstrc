@@ -62,7 +62,7 @@
 
     # Frame
     frame_width = 2
-    frame_color = "#101a2d"
+    frame_color = "#2a1f18"
     separator_color = frame
     separator_height = 2
     padding = 8
@@ -71,20 +71,20 @@
     gap_size = 4
 
 [urgency_low]
-    background = "#373b3f"
-    foreground = "#96999c"
-    frame_color = "#101a2d"
+    background = "#43403e"
+    foreground = "#aca9a7"
+    frame_color = "#2a1f18"
     timeout = 5
 
 [urgency_normal]
-    background = "#373b3f"
-    foreground = "#96999c"
-    frame_color = "#101a2d"
+    background = "#43403e"
+    foreground = "#aca9a7"
+    frame_color = "#2a1f18"
     timeout = 10
 
 [urgency_critical]
-    background = "#101a2d"
-    foreground = "#222428"
-    frame_color = "#101a2d"
+    background = "#2a1f18"
+    foreground = "#2a2624"
+    frame_color = "#2a1f18"
     timeout = 0
 
