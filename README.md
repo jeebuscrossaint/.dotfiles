@@ -12,3 +12,4 @@ https://github.com/wallace-aph/tiles-and-such
 https://github.com/tile-anon/tiles
 https://github.com/peteroupc/classic-wallpaper
 https://github.com/makccr/wallpapers
+https://github.com/whoisYoges/lwalpapers
