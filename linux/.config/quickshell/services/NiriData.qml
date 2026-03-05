@@ -4,7 +4,6 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import Quickshell
 import Quickshell.Io
-import Quickshell.Wayland
 
 /**
  * niri compositor data service.
@@ -31,8 +30,18 @@ Singleton {
     property string focusedAppId: ""
     property int focusedWindowId: -1
 
-    readonly property string socketPath: Qt.environment("NIRI_SOCKET") ?? ""
+    property string socketPath: ""
     readonly property bool available: root.socketPath !== ""
+
+    // Probe NIRI_SOCKET asynchronously at startup
+    Process {
+        id: niriSocketProbe
+        command: ["sh", "-c", "echo \"$NIRI_SOCKET\""]
+        running: true
+        stdout: SplitParser {
+            onRead: data => { root.socketPath = data.trim(); }
+        }
+    }
 
     // -------------------------------------------------------------------------
     // Public API
@@ -60,23 +69,24 @@ Singleton {
     }
 
     // -------------------------------------------------------------------------
-    // Socket connection to niri event stream
+    // Event stream via socat: printf the request into the niri unix socket
+    // and read the continuous newline-delimited JSON response.
     // -------------------------------------------------------------------------
 
-    Socket {
-        id: niriSocket
-        path: root.socketPath
-        connected: root.available
+    Process {
+        id: niriProc
+        running: root.available
+        command: ["sh", "-c", 'printf \'"EventStream"\\n\' | socat - "$NIRI_SOCKET" 2>/dev/null']
 
-        onConnected: {
-            // Request event stream
-            niriSocket.write('["EventStream"]\n');
-            niriSocket.flush();
-        }
-
-        parser: SplitParser {
+        stdout: SplitParser {
             splitMarker: "\n"
             onRead: line => root._handleEvent(line)
+        }
+
+        onExited: {
+            // auto-restart on unexpected exit (niri restarted etc)
+            if (root.available)
+                Qt.callLater(() => { niriProc.running = false; niriProc.running = true; });
         }
     }
 

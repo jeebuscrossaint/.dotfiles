@@ -97,7 +97,11 @@ Scope { // Scope
 
             exclusionMode: ExclusionMode.Normal
             exclusiveZone: root.pin ? sidebarWidth : 0
-            implicitWidth: Appearance.sizes.sidebarWidthExtended + Appearance.sizes.elevationMargin
+            // On Hyprland: gaps+elevation give room for the QML drop shadow and gap styling.
+            // On MangoWM/Niri: compositor draws its own shadow flush to the window, so zero these out.
+            property real effectiveGapsOut: Compositor.isHyprland ? Appearance.sizes.hyprlandGapsOut : 0
+            property real effectiveElevationMargin: Compositor.isHyprland ? Appearance.sizes.elevationMargin : 0
+            implicitWidth: panelWindow.sidebarWidth + panelWindow.effectiveElevationMargin
             WlrLayershell.namespace: "quickshell:sidebarLeft"
             // Hyprland 0.49: OnDemand is Exclusive, Exclusive just breaks click-outside-to-close
             WlrLayershell.keyboardFocus: WlrKeyboardFocus.OnDemand
@@ -129,6 +133,7 @@ Scope { // Scope
 
             // Content
             StyledRectangularShadow {
+                visible: Compositor.isHyprland
                 target: sidebarLeftBackground
                 radius: sidebarLeftBackground.radius
             }
@@ -136,14 +141,14 @@ Scope { // Scope
                 id: sidebarLeftBackground
                 anchors.top: parent.top
                 anchors.left: parent.left
-                anchors.topMargin: Appearance.sizes.hyprlandGapsOut
-                anchors.leftMargin: Appearance.sizes.hyprlandGapsOut
-                width: panelWindow.sidebarWidth - Appearance.sizes.hyprlandGapsOut - Appearance.sizes.elevationMargin
-                height: parent.height - Appearance.sizes.hyprlandGapsOut * 2
+                anchors.topMargin: panelWindow.effectiveGapsOut
+                anchors.leftMargin: panelWindow.effectiveGapsOut
+                width: panelWindow.sidebarWidth - panelWindow.effectiveGapsOut - panelWindow.effectiveElevationMargin
+                height: parent.height - panelWindow.effectiveGapsOut * 2
                 color: Appearance.colors.colLayer0
                 border.width: 1
                 border.color: Appearance.colors.colLayer0Border
-                radius: Appearance.rounding.screenRounding - Appearance.sizes.hyprlandGapsOut + 1
+                radius: Appearance.rounding.screenRounding - panelWindow.effectiveGapsOut + 1
 
                 Behavior on width {
                     animation: Appearance.animation.elementMove.numberAnimation.createObject(this)

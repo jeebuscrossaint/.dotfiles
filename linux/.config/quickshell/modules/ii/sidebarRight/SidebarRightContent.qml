@@ -14,6 +14,7 @@ import qs.modules.ii.sidebarRight.quickToggles.classicStyle
 
 import qs.modules.ii.sidebarRight.bluetoothDevices
 import qs.modules.ii.sidebarRight.nightLight
+import qs.modules.ii.sidebarRight.tuned
 import qs.modules.ii.sidebarRight.volumeMixer
 import qs.modules.ii.sidebarRight.wifiNetworks
 
@@ -27,6 +28,7 @@ Item {
     property bool showBluetoothDialog: false
     property bool showNightLightDialog: false
     property bool showWifiDialog: false
+    property bool showTunedDialog: false
     property bool editMode: false
 
     Connections {
@@ -37,6 +39,7 @@ Item {
                 root.showBluetoothDialog = false;
                 root.showAudioOutputDialog = false;
                 root.showAudioInputDialog = false;
+                root.showTunedDialog = false;
             }
         }
     }
@@ -153,6 +156,11 @@ Item {
         }
     }
 
+    ToggleDialog {
+        shownPropertyString: "showTunedDialog"
+        dialog: TunedDialog {}
+    }
+
     component ToggleDialog: Loader {
         id: toggleDialogLoader
         required property string shownPropertyString
@@ -203,6 +211,9 @@ Item {
             }
             function onOpenWifiDialog() {
                 root.showWifiDialog = true;
+            }
+            function onOpenTunedDialog() {
+                root.showTunedDialog = true;
             }
         }
     }
@@ -269,10 +280,14 @@ Item {
                 buttonIcon: "restart_alt"
                 onClicked: {
                     if (Compositor.isHyprland) Hyprland.dispatch("reload");
+                    else if (Compositor.isNiri) Quickshell.execDetached(["niri", "msg", "action", "reconfigure"]);
+                    // MangoWM: no compositor config reload command
                     Quickshell.reload(true);
                 }
                 StyledToolTip {
-                    text: Translation.tr("Reload Hyprland & Quickshell")
+                    text: Compositor.isHyprland ? Translation.tr("Reload Hyprland & Quickshell")
+                        : Compositor.isNiri     ? Translation.tr("Reload Niri & Quickshell")
+                        :                         Translation.tr("Reload Quickshell")
                 }
             }
             QuickToggleButton {

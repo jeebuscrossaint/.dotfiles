@@ -151,7 +151,8 @@ RippleButton {
         Component {
             id: iconImageComponent
             IconImage {
-                source: Quickshell.iconPath(root.iconName, "image-missing")
+                visible: status === Image.Ready
+                source: Quickshell.iconPath(root.iconName, "")
                 width: 35
                 height: 35
             }
@@ -282,6 +283,7 @@ RippleButton {
                             anchors.centerIn: parent
                             active: actionButton.iconType === LauncherSearchResult.IconType.System && actionButton.iconName !== ""
                             sourceComponent: IconImage {
+                                visible: status === Image.Ready
                                 source: Quickshell.iconPath(actionButton.iconName)
                                 implicitSize: 20
                             }

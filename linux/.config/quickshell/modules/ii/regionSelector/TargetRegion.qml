@@ -67,8 +67,9 @@ Rectangle {
                     active: root.showIcon
                     visible: active
                     sourceComponent: IconImage {
+                        visible: status === Image.Ready
                         implicitSize: Appearance.font.pixelSize.larger
-                        source: Quickshell.iconPath(AppSearch.guessIcon(root.text), "image-missing")
+                        source: Quickshell.iconPath(AppSearch.guessIcon(root.text), "")
                     }
                 }
 

@@ -36,15 +36,4 @@ Singleton {
         }
     }
 
-    GlobalShortcut {
-        name: "workspaceNumber"
-        description: "Hold to show workspace numbers, release to show icons"
-
-        onPressed: {
-            root.superDown = true
-        }
-        onReleased: {
-            root.superDown = false
-        }
-    }
 }

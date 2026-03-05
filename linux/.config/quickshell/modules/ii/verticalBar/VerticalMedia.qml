@@ -67,8 +67,8 @@ MouseArea {
     }
 
     Bar.StyledPopup {
+        id: mediaPopup
         hoverTarget: root
-        active: GlobalStates.mediaControlsOpen ? false : root.containsMouse
 
         Column {
             anchors.centerIn: parent
@@ -85,5 +85,7 @@ MouseArea {
             }
         }
     }
+
+    onClicked: if (!GlobalStates.mediaControlsOpen) mediaPopup.open = !mediaPopup.open
 
 }

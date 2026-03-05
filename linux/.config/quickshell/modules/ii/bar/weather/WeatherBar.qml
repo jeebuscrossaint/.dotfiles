@@ -14,7 +14,7 @@ MouseArea {
     implicitHeight: Appearance.sizes.barHeight
 
     acceptedButtons: Qt.LeftButton | Qt.RightButton
-    hoverEnabled: !Config.options.bar.tooltips.clickToShow
+    hoverEnabled: false
 
     onPressed: {
         if (mouse.button === Qt.RightButton) {
@@ -52,5 +52,8 @@ MouseArea {
     WeatherPopup {
         id: weatherPopup
         hoverTarget: root
+    }
+    onClicked: {
+        if (mouse.button === Qt.LeftButton) weatherPopup.open = !weatherPopup.open
     }
 }

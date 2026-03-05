@@ -41,6 +41,11 @@ Scope {
     }
 
     function screenshot() {
+        if (Compositor.isMango || Compositor.isNiri) {
+            // On MangoWM/Niri the ScreencopyView overlay shows blank — use native tools instead
+            Quickshell.execDetached(["bash", "-c", "grim -g \"$(slurp)\" - | swappy -f -"])
+            return
+        }
         root.action = RegionSelection.SnipAction.Copy
         root.selectionMode = RegionSelection.SelectionMode.RectCorners
         GlobalStates.regionSelectorOpen = true

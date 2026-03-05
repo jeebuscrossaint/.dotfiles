@@ -8,5 +8,18 @@ import Quickshell
 import Quickshell.Services.UPower
 
 AndroidQuickToggleButton {
-    toggleModel: PowerProfilesToggle {}
+    id: root
+    toggleModel: TunedService.available ? tunedToggle : powerProfilesToggle
+
+    TunedToggle { id: tunedToggle }
+    PowerProfilesToggle { id: powerProfilesToggle }
+
+    // Always open the full profile list on click when tuned-adm is available
+    onClicked: {
+        if (TunedService.available) {
+            root.openMenu();
+        } else {
+            root.mainAction();
+        }
+    }
 }

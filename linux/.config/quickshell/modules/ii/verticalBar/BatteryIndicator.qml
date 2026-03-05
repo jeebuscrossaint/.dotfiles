@@ -61,4 +61,5 @@ MouseArea {
         id: batteryPopup
         hoverTarget: root
     }
+    onClicked: batteryPopup.open = !batteryPopup.open
 }

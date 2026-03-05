@@ -119,6 +119,16 @@ Item {
                 Ai.loadChat(joinedArgs);
             }
         },
+        {   
+            name: "screen",
+            description: Translation.tr("Capture the screen and attach it to your next message. Optionally add a question, e.g. /screen what's open?"),
+            execute: args => {
+                screenCaptureProc.pendingMessage = args.join(" ").trim();
+                screenCaptureProc.exec(["bash", "-c",
+                    `mkdir -p /tmp/quickshell/ai && grim /tmp/quickshell/ai/screen.png`]);
+                Ai.addMessage(Translation.tr("📸 Capturing screen..."), Ai.interfaceRole);
+            }
+        },
         {
             name: "clear",
             description: Translation.tr("Clear chat history"),
@@ -217,7 +227,24 @@ Inline w/ backslash and round brackets \\(e^{i\\pi} + 1 = 0\\)
     }
 
     Process {
-        id: decodeImageAndAttachProc
+        id: screenCaptureProc
+        property string pendingMessage: ""
+        onExited: (exitCode, exitStatus) => {
+            if (exitCode === 0) {
+                Ai.attachFile("/tmp/quickshell/ai/screen.png");
+                if (screenCaptureProc.pendingMessage.length > 0) {
+                    Ai.sendUserMessage(screenCaptureProc.pendingMessage);
+                    screenCaptureProc.pendingMessage = "";
+                } else {
+                    Ai.addMessage(Translation.tr("Screen attached. Ask your question."), Ai.interfaceRole);
+                }
+            } else {
+                Ai.addMessage(Translation.tr("Failed to capture screen. Is grim installed?"), Ai.interfaceRole);
+            }
+        }
+    }
+
+    Process {
         property string imageDecodePath: Directories.cliphistDecode
         property string imageDecodeFileName: "image"
         property string imageDecodeFilePath: `${imageDecodePath}/${imageDecodeFileName}`

@@ -85,7 +85,8 @@ Singleton {
             Quickshell.execDetached(["bash", "-c", `pidof hyprsunset || hyprsunset --temperature ${root.colorTemperature}`]);
         } else {
             // Use wlsunset for non-Hyprland compositors
-            Quickshell.execDetached(["bash", "-c", `pkill wlsunset; wlsunset -T ${root.colorTemperature} -t ${root.colorTemperature}`]);
+            // -T must be > -t; force always-night with -S 00:01 -s 00:00 so the low temp is always applied
+            Quickshell.execDetached(["bash", "-c", `pkill wlsunset; wlsunset -T 6500 -t ${root.colorTemperature} -S 00:01 -s 00:00`]);
         }
     }
 
@@ -119,6 +120,18 @@ Singleton {
         }
     }
 
+    Process {
+        id: fetchProcNonHyprland
+        running: !Compositor.isHyprland
+        command: ["bash", "-c", "pidof wlsunset > /dev/null 2>&1 && echo running || echo stopped"]
+        stdout: StdioCollector {
+            id: stateCollectorNonHyprland
+            onStreamFinished: {
+                root.active = stateCollectorNonHyprland.text.trim() === "running";
+            }
+        }
+    }
+
     function toggle(active = undefined) {
         if (root.manualActive === undefined) {
             root.manualActive = root.active;
@@ -143,7 +156,7 @@ Singleton {
             if (Compositor.isHyprland) {
                 Quickshell.execDetached(["hyprctl", "hyprsunset", "temperature", `${Config.options.light.night.colorTemperature}`]);
             } else {
-                Quickshell.execDetached(["bash", "-c", `pkill wlsunset; wlsunset -T ${Config.options.light.night.colorTemperature} -t ${Config.options.light.night.colorTemperature}`]);
+                Quickshell.execDetached(["bash", "-c", `pkill wlsunset; wlsunset -T 6500 -t ${Config.options.light.night.colorTemperature} -S 00:01 -s 00:00`]);
             }
         }
     }

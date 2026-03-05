@@ -306,10 +306,31 @@ switch() {
         [[ "$term_fg_boost" != "null" && -n "$term_fg_boost" ]] && generate_colors_material_args+=(--term_fg_boost "$term_fg_boost")
     fi
 
-    matugen "${matugen_args[@]}"
+    # Run coat to apply to all configured apps (kitty, hyprland, niri, dunst, etc.)
+    coat apply 2>/dev/null || true
+
     source "$(eval echo $ILLOGICAL_IMPULSE_VIRTUAL_ENV)/bin/activate"
     python3 "$SCRIPT_DIR/generate_colors_material.py" "${generate_colors_material_args[@]}" \
         > "$STATE_DIR"/user/generated/material_colors.scss
+
+    # Convert SCSS → colors.json (MaterialThemeLoader.qml watches this file)
+    python3 - "$STATE_DIR/user/generated/material_colors.scss" \
+               "$STATE_DIR/user/generated/colors.json" << 'PYEOF'
+import json, re, sys
+scss_path, json_path = sys.argv[1], sys.argv[2]
+with open(scss_path) as f:
+    scss = f.read()
+colors = {}
+for line in scss.splitlines():
+    m = re.match(r'^\$([a-zA-Z_]\w*):\s*(#[0-9A-Fa-f]{6});', line)
+    if m:
+        key, val = m.group(1), m.group(2)
+        if key not in ('darkmode', 'transparent') and not key.startswith('term'):
+            colors[key] = val
+with open(json_path, 'w') as f:
+    json.dump(colors, f, indent=2)
+PYEOF
+
     "$SCRIPT_DIR"/applycolor.sh
     deactivate
 

@@ -18,14 +18,34 @@ import Quickshell.Hyprland
 Singleton {
     id: root
 
-    readonly property string hyprlandSig:  Qt.environment("HYPRLAND_INSTANCE_SIGNATURE") ?? ""
-    readonly property string niriSocket:   Qt.environment("NIRI_SOCKET") ?? ""
-    // MangoWM sets MANGO_SOCKET or we detect it by checking mmsg in PATH
-    readonly property string mangoSocket:  Qt.environment("MANGO_SOCKET") ?? ""
+    // Environment variable values — populated asynchronously at startup via shell.
+    // Defaults to empty, so isMango defaults to true (correct for MangoWM).
+    property string _hyprlandSig: ""
+    property string _niriSocket: ""
 
-    readonly property bool isHyprland: root.hyprlandSig !== ""
-    readonly property bool isNiri:     !root.isHyprland && root.niriSocket !== ""
-    // If neither Hyprland nor niri, assume MangoWM (mango binary present)
+    // Probe HYPRLAND_INSTANCE_SIGNATURE
+    Process {
+        id: hyprProbe
+        command: ["sh", "-c", "echo \"$HYPRLAND_INSTANCE_SIGNATURE\""]
+        running: true
+        stdout: SplitParser {
+            onRead: data => { root._hyprlandSig = data.trim(); }
+        }
+    }
+
+    // Probe NIRI_SOCKET
+    Process {
+        id: niriProbe
+        command: ["sh", "-c", "echo \"$NIRI_SOCKET\""]
+        running: true
+        stdout: SplitParser {
+            onRead: data => { root._niriSocket = data.trim(); }
+        }
+    }
+
+    readonly property bool isHyprland: root._hyprlandSig !== ""
+    readonly property bool isNiri:     !root.isHyprland && root._niriSocket !== ""
+    // If neither Hyprland nor niri, assume MangoWM
     readonly property bool isMango:    !root.isHyprland && !root.isNiri
 
     readonly property string name: root.isHyprland ? "hyprland"

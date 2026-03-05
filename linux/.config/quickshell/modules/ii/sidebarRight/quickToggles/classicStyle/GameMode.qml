@@ -11,6 +11,7 @@ QuickToggleButton {
 
     onClicked: {
         root.toggled = !root.toggled
+        if (!Compositor.isHyprland) return; // game mode keywords only apply to Hyprland
         if (root.toggled) {
             Quickshell.execDetached(["bash", "-c", `hyprctl --batch "keyword animations:enabled 0; keyword decoration:shadow:enabled 0; keyword decoration:blur:enabled 0; keyword general:gaps_in 0; keyword general:gaps_out 0; keyword general:border_size 1; keyword decoration:rounding 0; keyword general:allow_tearing 1"`])
         } else {
@@ -19,7 +20,7 @@ QuickToggleButton {
     }
     Process {
         id: fetchActiveState
-        running: true
+        running: Compositor.isHyprland
         command: ["bash", "-c", `test "$(hyprctl getoption animations:enabled -j | jq ".int")" -ne 0`]
         onExited: (exitCode, exitStatus) => {
             root.toggled = exitCode !== 0 // Inverted because enabled = nonzero exit

@@ -9,7 +9,8 @@ MouseArea {
     property bool alwaysShowAllResources: false
     implicitWidth: rowLayout.implicitWidth + rowLayout.anchors.leftMargin + rowLayout.anchors.rightMargin
     implicitHeight: Appearance.sizes.barHeight
-    hoverEnabled: !Config.options.bar.tooltips.clickToShow
+    hoverEnabled: false
+    onClicked: resourcesPopup.open = !resourcesPopup.open
 
     RowLayout {
         id: rowLayout
@@ -48,6 +49,7 @@ MouseArea {
     }
 
     ResourcesPopup {
+        id: resourcesPopup
         hoverTarget: root
     }
 }

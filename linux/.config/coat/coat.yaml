@@ -29,9 +29,9 @@ enabled:
   - waybar
   
 # The 'scheme' key is a top-level scalar
-scheme: wallpaper
+scheme: bright
 prefer_base24: true
-material_you: true
+# material_you: true
 
 opacity:
   terminal: 1.0

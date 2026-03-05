@@ -50,15 +50,15 @@ PanelWindow {
         // Sort floating=true windows before others
         if (a.floating === b.floating) return 0;
         return a.floating ? -1 : 1;
-    })
+    }) : []
     readonly property var layers: Compositor.isHyprland ? HyprlandData.layers : ({})
     readonly property real falsePositivePreventionRatio: 0.5
 
     readonly property HyprlandMonitor hyprlandMonitor: Compositor.isHyprland ? Hyprland.monitorFor(screen) : null
-    readonly property real monitorScale: hyprlandMonitor.scale
-    readonly property real monitorOffsetX: hyprlandMonitor.x
-    readonly property real monitorOffsetY: hyprlandMonitor.y
-    property int activeWorkspaceId: hyprlandMonitor.activeWorkspace?.id ?? 0
+    readonly property real monitorScale: hyprlandMonitor?.scale ?? 1.0
+    readonly property real monitorOffsetX: hyprlandMonitor?.x ?? 0
+    readonly property real monitorOffsetY: hyprlandMonitor?.y ?? 0
+    property int activeWorkspaceId: hyprlandMonitor?.activeWorkspace?.id ?? 0
     property string screenshotPath: `${root.screenshotDir}/image-${screen.name}`
     property real dragStartX: 0
     property real dragStartY: 0
@@ -83,7 +83,7 @@ PanelWindow {
         }
     })
     readonly property list<var> layerRegions: {
-        const layersOfThisMonitor = root.layers[root.hyprlandMonitor.name]
+        const layersOfThisMonitor = root.layers[root.hyprlandMonitor?.name ?? ""]
         const topLayers = layersOfThisMonitor?.levels["2"]
         if (!topLayers) return [];
         const nonBarTopLayers = topLayers
@@ -260,9 +260,9 @@ PanelWindow {
         root.regionWidth = Math.max(0, Math.min(root.regionWidth, root.screen.width - root.regionX));
         root.regionHeight = Math.max(0, Math.min(root.regionHeight, root.screen.height - root.regionY));
 
-        // Adjust action
+        // Adjust action — always open in swappy for annotations
         if (root.action === RegionSelection.SnipAction.Copy || root.action === RegionSelection.SnipAction.Edit) {
-            root.action = root.mouseButton === Qt.RightButton ? RegionSelection.SnipAction.Edit : RegionSelection.SnipAction.Copy;
+            root.action = RegionSelection.SnipAction.Edit;
         }
         
         const screenshotDir = Config.options.screenSnip.savePath !== "" ? //

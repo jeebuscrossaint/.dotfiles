@@ -78,4 +78,6 @@ Item {
             font.pixelSize: Appearance.font.pixelSize.small
             color: Appearance.colors.colOnLayer0
             elide: Text.ElideRight
-            text: root.displayTitle || Translation.tr("Desktop")
+            text: root.displayTitle || Translation.tr("Desktop")        }
+    }
+}

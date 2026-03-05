@@ -8,6 +8,7 @@ import qs.modules.common
 import qs.modules.common.widgets
 import qs.modules.common.functions
 import qs.modules.common.panels.lock
+import qs.modules.ii.background.widgets.clock
 import qs.modules.ii.bar as Bar
 import Quickshell
 import Quickshell.Services.SystemTray
@@ -78,23 +79,37 @@ MouseArea {
         forceFieldFocus();
     }
 
-    // RippleButton {
-    //     anchors {
-    //         top: parent.top
-    //         left: parent.left
-    //         leftMargin: 10
-    //         topMargin: 10
-    //     }
-    //     implicitHeight: 40
-    //     colBackground: Appearance.colors.colLayer2
-    //     onClicked: {
-    //         context.unlocked(LockContext.ActionEnum.Unlock);
-    //         GlobalStates.screenLocked = false;
-    //     }
-    //     contentItem: StyledText {
-    //         text: "[[ DEBUG BYPASS ]]"
-    //     }
-    // }
+    // Background: blurred wallpaper + dark tint
+    Rectangle {
+        anchors.fill: parent
+        color: "black"
+    }
+    Image {
+        id: lockBgImage
+        anchors.fill: parent
+        source: Config.options.background.wallpaperPath
+        fillMode: Image.PreserveAspectCrop
+    }
+    GaussianBlur {
+        anchors.fill: parent
+        source: lockBgImage
+        radius: Config.options.lock.blur.radius
+        samples: radius * 2 + 1
+    }
+    Rectangle {
+        anchors.fill: parent
+        color: Qt.rgba(0, 0, 0, 0.45)
+    }
+
+    // Clock widget centered on lock screen
+    ClockWidget {
+        screenWidth: Math.round(root.width)
+        screenHeight: Math.round(root.height)
+        scaledScreenWidth: Math.round(root.width)
+        scaledScreenHeight: Math.round(root.height)
+        wallpaperScale: 1.0
+        wallpaperSafetyTriggered: false
+    }
 
     // Main toolbar: password box
     Toolbar {

@@ -40,9 +40,11 @@ Item {
     MouseArea {
         id: mouseArea
         anchors.fill: parent
-        hoverEnabled: !Config.options.bar.tooltips.clickToShow
+        hoverEnabled: false
+        onClicked: clockPopup.open = !clockPopup.open
 
         ClockWidgetPopup {
+            id: clockPopup
             hoverTarget: mouseArea
         }
     }

@@ -19,6 +19,9 @@ Scope {
             GlobalStates.sidebarRightOpen = false;
         }
 
+        property real effectiveGapsOut: Compositor.isHyprland ? Appearance.sizes.hyprlandGapsOut : 0
+        property real effectiveElevationMargin: Compositor.isHyprland ? Appearance.sizes.elevationMargin : 0
+
         exclusiveZone: 0
         implicitWidth: sidebarWidth
         WlrLayershell.namespace: "quickshell:sidebarRight"
@@ -50,11 +53,11 @@ Scope {
             active: GlobalStates.sidebarRightOpen || Config?.options.sidebar.keepRightSidebarLoaded
             anchors {
                 fill: parent
-                margins: Appearance.sizes.hyprlandGapsOut
-                leftMargin: Appearance.sizes.elevationMargin
+                margins: panelWindow.effectiveGapsOut
+                leftMargin: panelWindow.effectiveElevationMargin
             }
-            width: sidebarWidth - Appearance.sizes.hyprlandGapsOut - Appearance.sizes.elevationMargin
-            height: parent.height - Appearance.sizes.hyprlandGapsOut * 2
+            width: sidebarWidth - panelWindow.effectiveGapsOut - panelWindow.effectiveElevationMargin
+            height: parent.height - panelWindow.effectiveGapsOut * 2
 
             focus: GlobalStates.sidebarRightOpen
             Keys.onPressed: event => {

@@ -19,6 +19,7 @@ DelegateChooser {
     signal openBluetoothDialog()
     signal openNightLightDialog()
     signal openWifiDialog()
+    signal openTunedDialog()
 
     role: "type"
 
@@ -246,6 +247,9 @@ DelegateChooser {
         baseCellHeight: root.baseCellHeight
         cellSpacing: root.spacing
         cellSize: modelData.size
+        onOpenMenu: {
+            root.openTunedDialog()
+        }
     } }
 
     DelegateChoice { roleValue: "screenSnip"; AndroidScreenSnipToggle {

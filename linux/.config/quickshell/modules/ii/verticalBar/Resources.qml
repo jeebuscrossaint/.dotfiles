@@ -40,6 +40,8 @@ MouseArea {
     }
 
     Bar.ResourcesPopup {
+        id: resourcesPopup
         hoverTarget: root
     }
+    onClicked: resourcesPopup.open = !resourcesPopup.open
 }

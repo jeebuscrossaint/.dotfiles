@@ -65,7 +65,7 @@ PanelWindow {
         if (a.floating === b.floating)
             return 0;
         return a.floating ? -1 : 1;
-    })
+    }) : []
 
     property string screenshotDir: Directories.screenshotTemp
     property string screenshotPath: `${root.screenshotDir}/image-${screen.name}`

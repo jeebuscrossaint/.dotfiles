@@ -16,18 +16,17 @@ Item {
     IconImage {
         id: iconImage
         anchors.fill: parent
-        source: {
-            const fullPathWhenSourceIsIconName = iconFolder + "/" + root.source;
-            if (iconFolder && fullPathWhenSourceIsIconName) {
-                return fullPathWhenSourceIsIconName
-            }
-            return root.source
-        }
+        visible: status === Image.Ready
+        // Always load from local assets folder with .svg extension.
+        // Falls back to the raw name (Qt icon theme) only when no iconFolder is set.
+        source: root.source
+            ? (iconFolder ? iconFolder + "/" + root.source + ".svg" : root.source)
+            : ""
         implicitSize: root.height
     }
 
     Loader {
-        active: root.colorize
+        active: root.colorize && iconImage.status === Image.Ready
         anchors.fill: iconImage
         sourceComponent: ColorOverlay {
             source: iconImage
