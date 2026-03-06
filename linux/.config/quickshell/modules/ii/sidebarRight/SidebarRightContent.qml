@@ -17,7 +17,6 @@ import qs.modules.ii.sidebarRight.nightLight
 import qs.modules.ii.sidebarRight.tuned
 import qs.modules.ii.sidebarRight.volumeMixer
 import qs.modules.ii.sidebarRight.wifiNetworks
-import qs.modules.ii.bar
 
 Item {
     id: root
@@ -98,13 +97,6 @@ Item {
                 sourceComponent: AndroidQuickPanel {
                     editMode: root.editMode
                 }
-            }
-
-            SysTray {
-                Layout.fillWidth: true
-                Layout.fillHeight: false
-                showSeparator: false
-                showOverflowMenu: true
             }
 
             CenterWidgetGroup {

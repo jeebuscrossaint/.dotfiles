@@ -317,6 +317,13 @@ Item { // Bar content region
                 }
             }
 
+            SysTray {
+                visible: root.useShortenedForm === 0
+                Layout.fillWidth: false
+                Layout.fillHeight: true
+                invertSide: Config?.options.bar.bottom
+            }
+
             Item {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
