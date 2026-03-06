@@ -26,7 +26,7 @@ enabled:
   - waybar
   
 # The 'scheme' key is a top-level scalar
-scheme: atelier-estuary
+scheme: oxocarbon-dark
 prefer_base24: true
 # material_you: true
 
