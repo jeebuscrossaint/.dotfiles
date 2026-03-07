@@ -119,15 +119,9 @@ Scope { // Scope
 
             onVisibleChanged: {
                 if (visible) {
-                    GlobalFocusGrab.addDismissable(panelWindow);
+                    GlobalFocusGrab.addPersistent(panelWindow);
                 } else {
-                    GlobalFocusGrab.removeDismissable(panelWindow);
-                }
-            }
-            Connections {
-                target: GlobalFocusGrab
-                function onDismissed() {
-                    panelWindow.hide();
+                    GlobalFocusGrab.removePersistent(panelWindow);
                 }
             }
 
@@ -159,7 +153,7 @@ Scope { // Scope
                         panelWindow.hide();
                     }
                     if (event.modifiers === Qt.ControlModifier) {
-                        if (event.key === Qt.Key_O) {
+                        if (event.key === Qt.Key_E) {
                             panelWindow.extend = !panelWindow.extend;
                         } else if (event.key === Qt.Key_D) {
                             root.toggleDetach();

@@ -121,12 +121,13 @@ Item {
         },
         {   
             name: "screen",
-            description: Translation.tr("Capture the screen and attach it to your next message. Optionally add a question, e.g. /screen what's open?"),
+            description: Translation.tr("Select a region to capture and attach to your next message. Optionally add a question, e.g. /screen what's open?"),
             execute: args => {
-                screenCaptureProc.pendingMessage = args.join(" ").trim();
-                screenCaptureProc.exec(["bash", "-c",
-                    `mkdir -p /tmp/quickshell/ai && grim /tmp/quickshell/ai/screen.png`]);
-                Ai.addMessage(Translation.tr("📸 Capturing screen..."), Ai.interfaceRole);
+                root.screenCapturePendingMsg = args.join(" ").trim();
+                GlobalStates.sidebarLeftOpen = false;
+                const sp = StringUtils.shellSingleQuoteEscape(Quickshell.shellPath(""));
+                Quickshell.execDetached(["bash", "-c",
+                    `sleep 0.4 && mkdir -p /tmp/quickshell/ai && region=$(slurp) && grim -g "$region" /tmp/quickshell/ai/screen.png && qs -p '${sp}' ipc call aiCapture captured || qs -p '${sp}' ipc call aiCapture cancelled`]);
             }
         },
         {
@@ -218,7 +219,7 @@ Inline w/ backslash and round brackets \\(e^{i\\pi} + 1 = 0\\)
             } else {
                 Ai.addMessage(Translation.tr("Unknown command: ") + command, Ai.interfaceRole);
             }
-        } else {
+        } else if (inputText.length > 0 || Ai.pendingFilePath.length > 0) {
             Ai.sendUserMessage(inputText);
         }
 
@@ -226,21 +227,25 @@ Inline w/ backslash and round brackets \\(e^{i\\pi} + 1 = 0\\)
         messageListView.positionViewAtEnd();
     }
 
-    Process {
-        id: screenCaptureProc
-        property string pendingMessage: ""
-        onExited: (exitCode, exitStatus) => {
-            if (exitCode === 0) {
-                Ai.attachFile("/tmp/quickshell/ai/screen.png");
-                if (screenCaptureProc.pendingMessage.length > 0) {
-                    Ai.sendUserMessage(screenCaptureProc.pendingMessage);
-                    screenCaptureProc.pendingMessage = "";
-                } else {
-                    Ai.addMessage(Translation.tr("Screen attached. Ask your question."), Ai.interfaceRole);
-                }
+    property string screenCapturePendingMsg: ""
+
+    IpcHandler {
+        target: "aiCapture"
+
+        function captured(): void {
+            GlobalStates.sidebarLeftOpen = true;
+            Ai.attachFile("/tmp/quickshell/ai/screen.png");
+            if (root.screenCapturePendingMsg.length > 0) {
+                Ai.sendUserMessage(root.screenCapturePendingMsg);
+                root.screenCapturePendingMsg = "";
             } else {
-                Ai.addMessage(Translation.tr("Failed to capture screen. Is grim installed?"), Ai.interfaceRole);
+                Ai.addMessage(Translation.tr("Screenshot attached. Ask your question."), Ai.interfaceRole);
             }
+        }
+
+        function cancelled(): void {
+            GlobalStates.sidebarLeftOpen = true;
+            Ai.addMessage(Translation.tr("Screenshot cancelled."), Ai.interfaceRole);
         }
     }
 
@@ -671,7 +676,7 @@ Inline w/ backslash and round brackets \\(e^{i\\pi} + 1 = 0\\)
                                 // Insert newline
                                 messageInputField.insert(messageInputField.cursorPosition, "\n");
                                 event.accepted = true;
-                            } else {
+                            } else if (messageInputField.text.length > 0 || Ai.pendingFilePath.length > 0) {
                                 // Accept text
                                 const inputText = messageInputField.text;
                                 messageInputField.clear();
@@ -721,7 +726,7 @@ Inline w/ backslash and round brackets \\(e^{i\\pi} + 1 = 0\\)
                     implicitWidth: 40
                     implicitHeight: 40
                     buttonRadius: Appearance.rounding.small
-                    enabled: messageInputField.text.length > 0
+                    enabled: messageInputField.text.length > 0 || Ai.pendingFilePath.length > 0
                     toggled: enabled
 
                     MouseArea {

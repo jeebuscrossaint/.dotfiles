@@ -70,8 +70,10 @@ Singleton {
                 // }
                 onExited: (exitCode, exitStatus) => {
                     // console.log("[LatexRenderer] MicroTeX process exited with code: " + exitCode + ", status: " + exitStatus)
-                    renderedImagePaths["${hash}"] = "${imagePath}"
-                    root.renderFinished("${hash}", "${imagePath}")
+                    if (exitCode === 0) {
+                        renderedImagePaths["${hash}"] = "${imagePath}"
+                        root.renderFinished("${hash}", "${imagePath}")
+                    }
                     microtexProcess${hash}.destroy()
                 }
             }

@@ -53,7 +53,7 @@ MouseArea {
         id: weatherPopup
         hoverTarget: root
     }
-    onClicked: {
-        if (mouse.button === Qt.LeftButton) weatherPopup.open = !weatherPopup.open
+    onClicked: (mouse) => {
+        if (mouse.button === Qt.LeftButton) weatherPopup.open = !weatherPopup.open;
     }
 }

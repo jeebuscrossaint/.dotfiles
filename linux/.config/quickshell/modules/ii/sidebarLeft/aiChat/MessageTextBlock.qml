@@ -62,6 +62,7 @@ ColumnLayout {
     function handleRenderedLatex(hash, force = false) {
         if (renderedLatexHashes.includes(hash) || force) {
             const imagePath = LatexRenderer.renderedImagePaths[hash];
+            if (!imagePath) return; // Not rendered yet (or failed) — leave raw LaTeX as-is
             const markdownImage = `![latex](${imagePath})`;
 
             const expression = LatexRenderer.processedExpressions[hash];
