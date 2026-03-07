@@ -10,6 +10,8 @@ import Quickshell
 Item {
     id: root
 
+    property int customFocusMinutes: Math.floor(Config.options.time.pomodoro.focus / 60)
+
     implicitHeight: contentColumn.implicitHeight
     implicitWidth: contentColumn.implicitWidth
 
@@ -32,16 +34,66 @@ Item {
                 anchors.centerIn: parent
                 spacing: 0
 
-                StyledText {
+                RowLayout {
                     Layout.alignment: Qt.AlignHCenter
-                    text: {
-                        let minutes = Math.floor(TimerService.pomodoroSecondsLeft / 60).toString().padStart(2, '0');
-                        let seconds = Math.floor(TimerService.pomodoroSecondsLeft % 60).toString().padStart(2, '0');
-                        return `${minutes}:${seconds}`;
+                    spacing: 2
+
+                    RippleButton {
+                        visible: !TimerService.pomodoroRunning && !TimerService.pomodoroBreak
+                        implicitWidth: 28
+                        implicitHeight: 28
+                        buttonRadius: Appearance.rounding.full
+                        colBackground: "transparent"
+                        colBackgroundHover: Appearance.colors.colLayer2Hover
+                        colRipple: Appearance.colors.colLayer2Active
+                        enabled: root.customFocusMinutes > 1
+                        onClicked: {
+                            root.customFocusMinutes = Math.max(1, root.customFocusMinutes - 1);
+                            TimerService.focusTime = root.customFocusMinutes * 60;
+                            TimerService.resetPomodoro();
+                        }
+                        contentItem: MaterialSymbol {
+                            anchors.centerIn: parent
+                            text: "remove"
+                            iconSize: Appearance.font.pixelSize.large
+                            color: Appearance.colors.colOnLayer1
+                        }
                     }
-                    font.pixelSize: 40
-                    color: Appearance.m3colors.m3onSurface
+
+                    StyledText {
+                        Layout.alignment: Qt.AlignHCenter
+                        text: {
+                            let minutes = Math.floor(TimerService.pomodoroSecondsLeft / 60).toString().padStart(2, '0');
+                            let seconds = Math.floor(TimerService.pomodoroSecondsLeft % 60).toString().padStart(2, '0');
+                            return `${minutes}:${seconds}`;
+                        }
+                        font.pixelSize: 40
+                        color: Appearance.m3colors.m3onSurface
+                    }
+
+                    RippleButton {
+                        visible: !TimerService.pomodoroRunning && !TimerService.pomodoroBreak
+                        implicitWidth: 28
+                        implicitHeight: 28
+                        buttonRadius: Appearance.rounding.full
+                        colBackground: "transparent"
+                        colBackgroundHover: Appearance.colors.colLayer2Hover
+                        colRipple: Appearance.colors.colLayer2Active
+                        enabled: root.customFocusMinutes < 120
+                        onClicked: {
+                            root.customFocusMinutes = Math.min(120, root.customFocusMinutes + 1);
+                            TimerService.focusTime = root.customFocusMinutes * 60;
+                            TimerService.resetPomodoro();
+                        }
+                        contentItem: MaterialSymbol {
+                            anchors.centerIn: parent
+                            text: "add"
+                            iconSize: Appearance.font.pixelSize.large
+                            color: Appearance.colors.colOnLayer1
+                        }
+                    }
                 }
+
                 StyledText {
                     Layout.alignment: Qt.AlignHCenter
                     text: TimerService.pomodoroLongBreak ? Translation.tr("Long break") : TimerService.pomodoroBreak ? Translation.tr("Break") : Translation.tr("Focus")
