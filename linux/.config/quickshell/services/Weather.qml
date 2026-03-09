@@ -15,6 +15,7 @@ Singleton {
     readonly property string city: Config.options.bar.weather.city
     readonly property bool useUSCS: Config.options.bar.weather.useUSCS
     property bool gpsActive: Config.options.bar.weather.enableGPS
+    property bool fetching: false
 
     onUseUSCSChanged: {
         root.getData();
@@ -150,6 +151,7 @@ Singleton {
     }
 
     function getData() {
+        root.fetching = true;
         let command = "curl -s wttr.in";
 
         if (root.gpsActive && root.location.valid) {
@@ -184,15 +186,18 @@ Singleton {
             onStreamFinished: {
                 if (text.length === 0) {
                     console.warn("[WeatherService] Empty response, retrying in 30s");
+                    root.fetching = false;
                     retryTimer.restart();
                     return;
                 }
                 try {
                     const parsedData = JSON.parse(text);
                     root.refineData(parsedData);
+                    root.fetching = false;
                     retryTimer.stop();
                 } catch (e) {
                     console.error(`[WeatherService] ${e.message}`);
+                    root.fetching = false;
                     retryTimer.restart();
                 }
             }

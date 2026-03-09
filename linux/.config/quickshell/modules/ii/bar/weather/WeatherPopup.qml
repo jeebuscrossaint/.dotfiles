@@ -215,11 +215,43 @@ StyledPopup {
         }
 
         // Footer
-        StyledText {
+        RowLayout {
             Layout.alignment: Qt.AlignHCenter
-            text: Translation.tr("Last refresh: %1").arg(Weather.data.lastRefresh)
-            font { weight: Font.Medium; pixelSize: Appearance.font.pixelSize.smaller }
-            color: Appearance.colors.colOnSurfaceVariant
+            spacing: 6
+
+            StyledText {
+                text: Translation.tr("Last refresh: %1").arg(Weather.data.lastRefresh)
+                font { weight: Font.Medium; pixelSize: Appearance.font.pixelSize.smaller }
+                color: Appearance.colors.colOnSurfaceVariant
+            }
+
+            RippleButton {
+                implicitWidth: 24
+                implicitHeight: 24
+                buttonRadius: Appearance.rounding.full
+                colBackground: "transparent"
+                colBackgroundHover: Appearance.colors.colLayer2Hover
+                colRipple: Appearance.colors.colLayer2Active
+                enabled: !Weather.fetching
+                onClicked: {
+                    Weather.getData();
+                }
+                contentItem: MaterialSymbol {
+                    anchors.centerIn: parent
+                    text: "refresh"
+                    iconSize: Appearance.font.pixelSize.normal
+                    color: Weather.fetching
+                        ? Appearance.colors.colSubtext
+                        : Appearance.colors.colOnSurfaceVariant
+
+                    RotationAnimator on rotation {
+                        running: Weather.fetching
+                        from: 0; to: 360
+                        duration: 1000
+                        loops: Animation.Infinite
+                    }
+                }
+            }
         }
     }
 }
