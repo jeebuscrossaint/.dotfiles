@@ -763,8 +763,8 @@ Singleton {
     }
 
     function sendUserMessage(message) {
-        if (message.length === 0) return;
-        root.addMessage(message, "user");
+        if (message.length === 0 && root.pendingFilePath.length === 0) return;
+        if (message.length > 0) root.addMessage(message, "user");
         requester.makeRequest();
     }
 

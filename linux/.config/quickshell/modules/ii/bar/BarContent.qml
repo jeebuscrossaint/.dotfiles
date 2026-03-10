@@ -32,6 +32,10 @@ Item { // Bar content region
         sourceComponent: StyledRectangularShadow {
             anchors.fill: undefined // The loader's anchors act on this, and this should not have any anchor
             target: barBackground
+            blur: 22
+            spread: 2
+            offset: Qt.vector2d(0.0, 7.0)
+            color: "#55000000"
         }
     }
     // Background

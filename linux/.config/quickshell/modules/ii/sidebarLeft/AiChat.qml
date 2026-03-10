@@ -131,6 +131,17 @@ Item {
             }
         },
         {
+            name: "fullscreen",
+            description: Translation.tr("Capture the entire screen and attach it to your next message. Optionally add a question, e.g. /fullscreen what's on screen?"),
+            execute: args => {
+                root.screenCapturePendingMsg = args.join(" ").trim();
+                GlobalStates.sidebarLeftOpen = false;
+                const sp = StringUtils.shellSingleQuoteEscape(Quickshell.shellPath(""));
+                Quickshell.execDetached(["bash", "-c",
+                    `sleep 0.4 && mkdir -p /tmp/quickshell/ai && grim /tmp/quickshell/ai/screen.png && qs -p '${sp}' ipc call aiCapture captured || qs -p '${sp}' ipc call aiCapture cancelled`]);
+            }
+        },
+        {
             name: "clear",
             description: Translation.tr("Clear chat history"),
             execute: () => {

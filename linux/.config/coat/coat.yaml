@@ -26,7 +26,7 @@ enabled:
   - waybar
   
 # The 'scheme' key is a top-level scalar
-scheme: black-metal
+scheme: selenized-black
 prefer_base24: true
 # material_you: true
 
