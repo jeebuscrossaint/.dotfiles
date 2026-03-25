@@ -1,0 +1,90 @@
+[global]
+    ### Display ###
+    monitor = 0
+    follow = mouse
+
+    ### Geometry ###
+    width = (0, 400)
+    height = (0, 300)
+    origin = top-right
+    offset = 16x16
+    scale = 0
+    notification_limit = 5
+
+    ### Progress bar ###
+    progress_bar = true
+    progress_bar_height = 4
+    progress_bar_frame_width = 0
+    progress_bar_min_width = 150
+    progress_bar_max_width = 300
+    progress_bar_corner_radius = 2
+
+    ### Appearance ###
+    transparency = 0
+    separator_height = 1
+    padding = 12
+    horizontal_padding = 14
+    text_icon_padding = 10
+    frame_width = 1
+    frame_color = "#383838"
+    gap_size = 6
+    separator_color = frame
+    sort = yes
+    corner_radius = 10
+    corners = all
+
+    ### Icons ###
+    icon_theme = "Papirus-Dark,Adwaita"
+    enable_recursive_icon_lookup = true
+    icon_position = left
+    min_icon_size = 32
+    max_icon_size = 48
+
+    ### Text ###
+    font = JetBrains Mono Nerd Font 11
+    line_height = 2
+    markup = full
+    format = "<b>%s</b>\n%b"
+    alignment = left
+    vertical_alignment = center
+    show_age_threshold = 60
+    ellipsize = middle
+    ignore_newline = no
+    stack_duplicates = true
+    hide_duplicate_count = false
+    show_indicators = yes
+    word_wrap = yes
+
+    ### Mouse ###
+    mouse_left_click = close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
+
+    ### Misc ###
+    dmenu = /usr/bin/rofi -dmenu -p dunst
+    browser = xdg-open
+    always_run_script = true
+    title = Dunst
+    class = Dunst
+    idle_threshold = 120
+    history_length = 20
+    sticky_history = yes
+
+[urgency_low]
+    background = "#000000"
+    foreground = "#c0c0c0"
+    frame_color = "#383838"
+    timeout = 4
+    #icon = /path/to/icon
+
+[urgency_normal]
+    background = "#000000"
+    foreground = "#fcfcfc"
+    frame_color = "#383838"
+    timeout = 6
+
+[urgency_critical]
+    background = "#000000"
+    foreground = "#fc5454"
+    frame_color = "#fc5454"
+    timeout = 0

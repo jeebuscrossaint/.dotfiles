@@ -8,10 +8,13 @@ enabled:
   - i3
   - helix
   - rofi
+  - anyrun
   - bat
   - avizo
   - btop
   - cava
+  - dunst
+  - mako
   - zathura
   - yazi
   - vscode
@@ -26,7 +29,7 @@ enabled:
   - waybar
   
 # The 'scheme' key is a top-level scalar
-scheme: selenized-black
+scheme: windows-highcontrast
 prefer_base24: true
 # material_you: true
 
@@ -39,9 +42,9 @@ opacity:
 # The 'font' key triggers in_font_section and expects a mapping (dictionary)
 font:
   emoji: "Noto Color Emoji"
-  monospace: "Google Sans Code"
-  sansserif: "Google Sans Flex 36pt"
-  serif: "Google Sans Flex 36pt"
+  monospace: "JetBrains Mono Nerd Font"
+  sansserif: "JetBrainsMono Nerd Font"
+  serif: "JetBrainsMono Nerd Fnt"
   sizes:
     terminal: 12
     desktop: 12

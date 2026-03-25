@@ -1,24 +1,31 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 30,
-    "spacing": 4,
-    "margin-top": 15,
-    "margin-left": 22,
-    "margin-right": 22,
-    "margin-bottom": 10,
-    
-    "modules-left": ["dwl/tags", "tray", "custom/weather", "cava", "custom/mpris", "custom/updates"],
+    "height": 36,
+    "spacing": 0,
+    "fixed-center": true,
+
+    "modules-left": ["hyprland/workspaces", "hyprland/window", "tray", "custom/weather", "custom/mpris"],
     "modules-center": ["clock"],
-    "modules-right": ["network", "bluetooth", "cpu", "custom/gpu", "temperature", "memory", "disk", "battery", "wireplumber"],
-    
-    "dwl/tags": {
-        "num-tags": 9
+    "modules-right": ["custom/updates", "network", "bluetooth", "cpu", "custom/gpu", "temperature", "memory", "battery", "custom/mic", "wireplumber"],
+
+    "hyprland/window": {
+        "max-length": 50,
+        "separate-outputs": true
     },
-    
+
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "on-click": "activate",
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1",
+        "sort-by-number": true,
+        "persistent-workspaces": {}
+    },
+
     "clock": {
         "interval": 1,
-        "format": "{:%B %e, %Y %H:%M:%S}",
+        "format": "{:%A, %B %e  %H:%M:%S}",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "calendar": {
             "mode": "month",
@@ -40,7 +47,7 @@
             "on-scroll-down": "shift_down"
         }
     },
-    
+
     "custom/weather": {
         "format": "{}",
         "tooltip": true,
@@ -48,120 +55,103 @@
         "exec": "wttrbar --fahrenheit --mph --nerd",
         "return-type": "json"
     },
-    
+
     "network": {
-        "format-wifi": "NET: {essid} {signalStrength}%",
-        "format-ethernet": "NET: {ipaddr}/{cidr}",
-        "format-disconnected": "NET: Disconnected",
-        "tooltip-format": "{ifname} via {gwaddr}",
-        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
-        "tooltip-format-ethernet": "{ifname}",
-        "format-alt": "NET: {ifname} {ipaddr}/{cidr}",
+        "format-wifi": " {signalStrength}%",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰖪",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)\nvia {gwaddr}",
+        "tooltip-format-ethernet": "{ifname}\n{ipaddr}/{cidr}",
+        "tooltip-format-disconnected": "Disconnected",
         "on-click": "nm-connection-editor"
     },
-    
+
     "bluetooth": {
-        "format": "BT: {status}",
-        "format-connected": "{device_alias}",
-        "format-connected-battery": " {device_alias} {device_battery_percentage}%",
-        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
-        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+        "format": "󰂯",
+        "format-connected": "󰂱 {device_alias}",
+        "format-connected-battery": "󰂱 {device_alias} {device_battery_percentage}%",
+        "format-off": "󰂲",
+        "tooltip-format": "{controller_alias}\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\n\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+        "tooltip-format-enumerate-connected-battery": "{device_alias} {device_battery_percentage}%",
         "on-click": "blueman-manager"
     },
-    
+
     "cpu": {
-        "interval": 10,
-        "format": "CPU: {usage}%",
-        "tooltip": false
+        "interval": 5,
+        "format": "󰻠 {usage}%",
+        "tooltip-format": "CPU: {usage}%\nLoad: {load}"
     },
-    
+
     "temperature": {
-        "interval": 10,
+        "interval": 5,
         "critical-threshold": 80,
-        "format": "TEMP: {temperatureC}°C",
-        "format-critical": "TEMP: {temperatureC}°C (CRITICAL)"
+        "format": " {temperatureF}°F",
+        "format-critical": " {temperatureF}°F!"
     },
-    
+
     "memory": {
-        "interval": 30,
-        "format": "RAM: {}%",
-        "tooltip-format": "RAM: {used:0.1f}G / {total:0.1f}G"
+        "interval": 10,
+        "format": "󰍛 {percentage}%",
+        "tooltip-format": "RAM: {used:0.1f}G / {total:0.1f}G\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G"
     },
-    
-    "disk": {
-        "interval": 30,
-        "format": "DISK: {percentage_used}%",
-        "path": "/",
-        "tooltip-format": "Used: {used} / {total}"
-    },
-    
+
     "battery": {
-        "interval": 60,
+        "interval": 30,
         "states": {
             "warning": 30,
             "critical": 15
         },
-        "format": "BAT: {capacity}%",
-        "format-full": "BAT: {capacity}% (FULL)",
-        "format-charging": "BAT: {capacity}% (CHARGING)",
-        "format-plugged": "BAT: {capacity}% (PLUGGED)",
-        "format-alt": "BAT: {time}"
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰚥 {capacity}%",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "tooltip-format": "{capacity}% | {timeTo}"
     },
-    
+
     "wireplumber": {
-        "format": "VOL: {volume}%",
-        "format-muted": "VOL: MUTED",
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟",
+        "format-icons": ["󰕿", "󰖀", "󰕾"],
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-        "on-click-right": "pavucontrol"
+        "on-click-right": "pavucontrol",
+        "tooltip-format": "{node_name}: {volume}%"
     },
-    
+
     "tray": {
         "icon-size": 16,
-        "spacing": 10
+        "spacing": 6,
+        "icon-theme": "WhiteSur-dark"
     },
-    
-    "cava": {
-        "framerate": 30,
-        "autosens": 0,
-        "sensitivity": 2,
-        "bars": 12,
-        "lower_cutoff_freq": 50,
-        "higher_cutoff_freq": 10000,
-        "method": "pipewire",
-        "source": "auto",
-        "stereo": true,
-        "reverse": false,
-        "bar_delimiter": 0,
-        "monstercat": false,
-        "waves": false,
-        "noise_reduction": 0.77,
-        "input_delay": 2,
-        "hide_on_silence": true,
-        "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
-    },
-    
+
     "custom/mpris": {
-        "format": "MEDIA: {}",
+        "format": "󰝚 {}",
         "return-type": "json",
         "exec": "ScrollMPRIS",
         "escape": true,
         "on-click": "playerctl play-pause",
         "on-scroll-up": "playerctl next",
         "on-scroll-down": "playerctl previous",
-        "max-length": 50
+        "max-length": 35
     },
-    
+
     "custom/gpu": {
-        "format": "GPU: {}",
+        "format": "󰘚 {}",
         "return-type": "json",
         "exec": "gpu-usage-waybar",
         "interval": 5
     },
-    
+
+    "custom/mic": {
+        "exec": "wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk '{muted=($3==\"[MUTED]\"); printf \"{\\\"text\\\":\\\"%s\\\",\\\"class\\\":\\\"%s\\\"}\\n\", muted ? \"󰍭\" : sprintf(\"󰍬 %d%%\", $2*100), muted ? \"muted\" : \"\"}'",
+        "return-type": "json",
+        "interval": 2,
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+    },
+
     "custom/updates": {
-        "format": "UPD: {}",
+        "format": "󰚰 {}",
         "return-type": "json",
         "exec": "waybar-updates",
         "interval": 3600,
