@@ -1,0 +1,73 @@
+/* gtklock style — coat: Windows High Contrast */
+
+window {
+    background-color: #000000;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Main form container */
+box#body {
+    background-color: #1C1C1C;
+    border: 1px solid #383838;
+    border-radius: 12px;
+    padding: 40px 48px;
+    margin: 0;
+    min-width: 340px;
+}
+
+/* Time */
+label#time {
+    font-family: "JetBrains Mono Nerd Font";
+    font-size: 64px;
+    font-weight: bold;
+    color: #fcfcfc;
+    margin-bottom: 4px;
+}
+
+/* Date */
+label#date {
+    font-family: "JetBrains Mono Nerd Font";
+    font-size: 16px;
+    color: #a2a2a2;
+    margin-bottom: 32px;
+}
+
+/* Password input */
+entry {
+    font-family: "JetBrains Mono Nerd Font";
+    font-size: 14px;
+    background-color: #000000;
+    color: #fcfcfc;
+    caret-color: #5454fc;
+    border: 1px solid #383838;
+    border-radius: 6px;
+    padding: 10px 14px;
+    min-width: 260px;
+}
+
+entry:focus {
+    border-color: #5454fc;
+}
+
+/* Wrong password state */
+entry.error {
+    border-color: #fc5454;
+    color: #fc5454;
+}
+
+/* Error/status label */
+label#error-label {
+    font-family: "JetBrains Mono Nerd Font";
+    font-size: 12px;
+    color: #fc5454;
+    margin-top: 8px;
+}
+
+/* Input prompt label (if shown) */
+label#input-label {
+    font-family: "JetBrains Mono Nerd Font";
+    font-size: 12px;
+    color: #a2a2a2;
+    margin-bottom: 8px;
+}
