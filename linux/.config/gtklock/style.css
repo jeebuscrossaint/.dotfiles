@@ -64,10 +64,72 @@ label#error-label {
     margin-top: 8px;
 }
 
-/* Input prompt label (if shown) */
+/* Input prompt label */
 label#input-label {
     font-family: "JetBrains Mono Nerd Font";
     font-size: 12px;
     color: #a2a2a2;
     margin-bottom: 8px;
+}
+
+/* ── userinfo module ── */
+box#userinfo-box {
+    margin-bottom: 24px;
+}
+
+image#userinfo-image {
+    border-radius: 9999px;
+    border: 2px solid #383838;
+    margin-bottom: 12px;
+}
+
+label#userinfo-name {
+    font-family: "JetBrains Mono Nerd Font";
+    font-size: 18px;
+    font-weight: bold;
+    color: #fcfcfc;
+}
+
+/* ── playerctl module ── */
+box#playerctl-box {
+    background-color: #000000;
+    border: 1px solid #383838;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-top: 24px;
+    min-width: 260px;
+}
+
+label#playerctl-title {
+    font-family: "JetBrains Mono Nerd Font";
+    font-size: 13px;
+    font-weight: bold;
+    color: #fcfcfc;
+}
+
+label#playerctl-artist {
+    font-family: "JetBrains Mono Nerd Font";
+    font-size: 11px;
+    color: #a2a2a2;
+}
+
+button#playerctl-prev,
+button#playerctl-play,
+button#playerctl-next {
+    background-color: transparent;
+    border: none;
+    border-radius: 6px;
+    color: #fcfcfc;
+    padding: 6px 10px;
+    font-size: 16px;
+}
+
+button#playerctl-play {
+    color: #5454fc;
+}
+
+button#playerctl-prev:hover,
+button#playerctl-play:hover,
+button#playerctl-next:hover {
+    background-color: #383838;
 }
