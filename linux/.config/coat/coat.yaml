@@ -27,6 +27,7 @@ enabled:
   - qt
   - niri
   - waybar
+  - conky
   
 # The 'scheme' key is a top-level scalar
 scheme: summerfruit-dark
