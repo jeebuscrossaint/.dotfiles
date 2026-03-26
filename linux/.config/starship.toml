@@ -1,6 +1,6 @@
 add_newline = false
 
-format = "$directory$git_branch$git_status$cmd_duration$character"
+format = "$hostname $directory$git_branch$git_status$cmd_duration$character"
 
 [character]
 success_symbol = "[❯](bold green)"
@@ -30,3 +30,8 @@ format = "[$all_status$ahead_behind]($style) "
 min_time = 500
 style = "bold yellow"
 format = "took [$duration]($style) "
+
+[hostname]
+ssh_only = false
+style = "bold cyan"
+format = "[$hostname]($style)"
