@@ -29,7 +29,7 @@ enabled:
   - waybar
   
 # The 'scheme' key is a top-level scalar
-scheme: vesper
+scheme: summerfruit-dark
 prefer_base24: true
 # material_you: true
 
@@ -42,9 +42,9 @@ opacity:
 # The 'font' key triggers in_font_section and expects a mapping (dictionary)
 font:
   emoji: "Noto Color Emoji"
-  monospace: "JetBrains Mono Nerd Font"
-  sansserif: "JetBrainsMono Nerd Font"
-  serif: "JetBrainsMono Nerd Fnt"
+  monospace: "Terminess Nerd Font Mono"
+  sansserif: "Terminess Nerd Font"
+  serif: "Terminess Nerd Font"
   sizes:
     terminal: 12
     desktop: 12
