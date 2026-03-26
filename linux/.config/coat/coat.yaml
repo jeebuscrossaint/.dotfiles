@@ -29,7 +29,7 @@ enabled:
   - waybar
   
 # The 'scheme' key is a top-level scalar
-scheme: windows-highcontrast
+scheme: vesper
 prefer_base24: true
 # material_you: true
 

@@ -1,0 +1,44 @@
+# coat mako theme: Vesper
+# FormalSnake (https://github.com/formalsnake)
+
+background-color=#101010
+text-color=#d5d5d5
+border-color=#222222
+progress-color=over #8eaaaa
+font=JetBrains Mono Nerd Font 10
+
+width=400
+height=200
+margin=16
+padding=12,14
+border-size=1
+border-radius=10
+icons=1
+icon-path=/usr/share/icons/Papirus-Dark
+max-icon-size=48
+markup=1
+actions=1
+format=<b>%s</b>\n%b
+anchor=top-right
+max-visible=5
+layer=overlay
+sort=-time
+
+on-button-left=dismiss
+on-button-right=dismiss-all
+on-button-middle=invoke-default-action
+on-touch=dismiss
+
+[urgency=low]
+border-color=#333333
+text-color=#999999
+default-timeout=4000
+
+[urgency=normal]
+border-color=#222222
+default-timeout=6000
+
+[urgency=high]
+border-color=#de6e6e
+text-color=#de6e6e
+default-timeout=0
