@@ -1,10 +1,10 @@
-/* coat anyrun theme: Vesper */
-/* FormalSnake (https://github.com/formalsnake) */
+/* coat anyrun theme: Summerfruit Dark */
+/* Christopher Corley (http://christop.club/) */
 
-@define-color accent #8eaaaa;
-@define-color bg-color #101010;
-@define-color fg-color #d5d5d5;
-@define-color desc-color #999999;
+@define-color accent #3777E6;
+@define-color bg-color #151515;
+@define-color fg-color #FFFFFF;
+@define-color desc-color #B0B0B0;
 
 window {
   background: transparent;

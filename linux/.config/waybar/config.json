@@ -1,7 +1,7 @@
 {
     "layer": "top",
-    "position": "top",
-    "height": 36,
+    "position": "bottom",
+    "height": 27,
     "spacing": 0,
     "fixed-center": true,
 

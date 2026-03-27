@@ -1,11 +1,11 @@
-# coat mako theme: Vesper
-# FormalSnake (https://github.com/formalsnake)
+# coat mako theme: Summerfruit Dark
+# Christopher Corley (http://christop.club/)
 
-background-color=#101010
-text-color=#d5d5d5
-border-color=#222222
-progress-color=over #8eaaaa
-font=JetBrains Mono Nerd Font 10
+background-color=#151515
+text-color=#FFFFFF
+border-color=#303030
+progress-color=over #3777E6
+font=Terminess Nerd Font Mono 10
 
 width=400
 height=200
@@ -30,15 +30,15 @@ on-button-middle=invoke-default-action
 on-touch=dismiss
 
 [urgency=low]
-border-color=#333333
-text-color=#999999
+border-color=#505050
+text-color=#B0B0B0
 default-timeout=4000
 
 [urgency=normal]
-border-color=#222222
+border-color=#303030
 default-timeout=6000
 
 [urgency=high]
-border-color=#de6e6e
-text-color=#de6e6e
+border-color=#FF0086
+text-color=#FF0086
 default-timeout=0
