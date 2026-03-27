@@ -13,7 +13,7 @@
 
 window#waybar {
     background: @base00;
-    color: @base07;
+    color: @base05;
 }
 
 #workspaces button {
@@ -24,12 +24,12 @@ window#waybar {
 }
 
 #workspaces button:hover {
-    color: @base07;
+    color: @base05;
     background: @base02;
 }
 
 #workspaces button.active {
-    color: @base07;
+    color: @base00;
     background: @base0D;
     font-weight: bold;
 }
@@ -72,7 +72,7 @@ window#waybar {
 #tray,
 #custom-updates {
     padding: 0 12px;
-    color: @base07;
+    color: @base05;
     background: transparent;
     border-bottom: none;
 }
@@ -131,7 +131,7 @@ tooltip {
 }
 
 tooltip label {
-    color: @base07;
+    color: @base05;
 }
 
 @keyframes blink {

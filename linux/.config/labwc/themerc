@@ -1,36 +1,36 @@
-# coat labwc theme: Summerfruit Dark
-# Christopher Corley (http://christop.club/)
+# coat labwc theme: Mountain
+# Stefan Weigl-Bosker (https://github.com/sweiglbosker), based on Mountain Theme (https://github.com/mountain-theme/Mountain)
 
 border.width: 2
 
 # Active window
-window.active.title.bg.color: #202020
-window.active.label.text.color: #FFFFFF
-window.active.button.unpressed.image.color: #FFFFFF
-window.active.button.hover.image.color: #3777E6
-window.active.border.color: #3777E6
+window.active.title.bg.color: #191919
+window.active.label.text.color: #f0f0f0
+window.active.button.unpressed.image.color: #f0f0f0
+window.active.button.hover.image.color: #8f8aac
+window.active.border.color: #8f8aac
 
 # Inactive window
-window.inactive.title.bg.color: #151515
-window.inactive.label.text.color: #505050
-window.inactive.button.unpressed.image.color: #505050
-window.inactive.button.hover.image.color: #505050
-window.inactive.border.color: #303030
+window.inactive.title.bg.color: #0f0f0f
+window.inactive.label.text.color: #393939
+window.inactive.button.unpressed.image.color: #393939
+window.inactive.button.hover.image.color: #393939
+window.inactive.border.color: #262626
 
 # Padding
 padding.height: 2
 padding.width: 4
 
 # Menu
-menu.items.bg.color: #202020
-menu.items.text.color: #D0D0D0
-menu.items.active.bg.color: #3777E6
-menu.items.active.text.color: #151515
+menu.items.bg.color: #191919
+menu.items.text.color: #cacaca
+menu.items.active.bg.color: #8f8aac
+menu.items.active.text.color: #0f0f0f
 menu.border.width: 1
-menu.border.color: #303030
+menu.border.color: #262626
 
 # OSD
-osd.bg.color: #202020
-osd.border.color: #3777E6
+osd.bg.color: #191919
+osd.border.color: #8f8aac
 osd.border.width: 1
-osd.label.text.color: #D0D0D0
+osd.label.text.color: #cacaca

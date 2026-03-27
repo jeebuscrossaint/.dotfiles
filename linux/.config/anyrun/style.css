@@ -1,10 +1,10 @@
-/* coat anyrun theme: Summerfruit Dark */
-/* Christopher Corley (http://christop.club/) */
+/* coat anyrun theme: Mountain */
+/* Stefan Weigl-Bosker (https://github.com/sweiglbosker), based on Mountain Theme (https://github.com/mountain-theme/Mountain) */
 
-@define-color accent #3777E6;
-@define-color bg-color #151515;
-@define-color fg-color #FFFFFF;
-@define-color desc-color #B0B0B0;
+@define-color accent #8f8aac;
+@define-color bg-color #0f0f0f;
+@define-color fg-color #f0f0f0;
+@define-color desc-color #4c4c4c;
 
 window {
   background: transparent;
