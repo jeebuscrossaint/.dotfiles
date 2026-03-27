@@ -1,37 +1,36 @@
-# LABWC THEME (standalone)
+# labwc themerc — coat colors (summerfruit-dark)
+# regenerate with: coat apply (once labwc module exists)
 
 border.width: 2
-border.color: #444444
 
 # Active window
-window.active.title.bg.color: #1e1e1e
-window.active.label.text.color: #ffffff
-window.active.button.unpressed.image.color: #ffffff
-window.active.button.hover.image.color: #5e81ac
-window.active.border.color: #5e81ac
+window.active.title.bg.color: #1c1c1c
+window.active.label.text.color: #f0f0f0
+window.active.button.unpressed.image.color: #f0f0f0
+window.active.button.hover.image.color: #ff9200
+window.active.border.color: #ff9200
 
 # Inactive window
-window.inactive.title.bg.color: #2a2a2a
-window.inactive.label.text.color: #cccccc
-window.inactive.button.unpressed.image.color: #cccccc
-window.inactive.button.hover.image.color: #5e81ac
-window.inactive.border.color: #444444
+window.inactive.title.bg.color: #0e0e0e
+window.inactive.label.text.color: #686868
+window.inactive.button.unpressed.image.color: #686868
+window.inactive.button.hover.image.color: #686868
+window.inactive.border.color: #383838
 
 # Padding
-padding.height: 3
-padding.width: 3
+padding.height: 2
+padding.width: 4
 
 # Menu
-menu.items.bg.color: #1e1e1e
-menu.items.text.color: #cccccc
-menu.items.active.bg.color: #5e81ac
-menu.items.active.text.color: #ffffff
+menu.items.bg.color: #1c1c1c
+menu.items.text.color: #c0c0c0
+menu.items.active.bg.color: #ff9200
+menu.items.active.text.color: #000000
 menu.border.width: 1
-menu.border.color: #5e81ac
+menu.border.color: #383838
 
 # OSD
-osd.bg.color: #1e1e1e
-osd.border.color: #5e81ac
+osd.bg.color: #1c1c1c
+osd.border.color: #ff9200
 osd.border.width: 1
-osd.label.text.color: #cccccc
-
+osd.label.text.color: #c0c0c0

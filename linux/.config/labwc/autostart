@@ -1,23 +1,18 @@
 #!/bin/sh
 
+anyrun daemon &
+swayidle -w -C ~/.config/swayidle/config &
+waybar -c ~/.config/waybar/config.json -s ~/.config/waybar/style.css &
+conky &
+dunst &
+
 numlockwl &
-fnott &
 udiskie &
 nm-applet &
 
 wl-paste --type text --watch cliphist store &
 wl-paste --type image --watch cliphist store &
 
-swaybg &
-swww-daemon &
-
 dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &
-
 gamemoded &
-avizo-service &
-swayidle &
-swaync &
-
-waybar &
-woled --lock &
-
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
