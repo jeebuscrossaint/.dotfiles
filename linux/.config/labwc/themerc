@@ -1,36 +1,36 @@
-# labwc themerc — coat colors (summerfruit-dark)
-# regenerate with: coat apply (once labwc module exists)
+# coat labwc theme: Summerfruit Dark
+# Christopher Corley (http://christop.club/)
 
 border.width: 2
 
 # Active window
-window.active.title.bg.color: #1c1c1c
-window.active.label.text.color: #f0f0f0
-window.active.button.unpressed.image.color: #f0f0f0
-window.active.button.hover.image.color: #ff9200
-window.active.border.color: #ff9200
+window.active.title.bg.color: #202020
+window.active.label.text.color: #FFFFFF
+window.active.button.unpressed.image.color: #FFFFFF
+window.active.button.hover.image.color: #3777E6
+window.active.border.color: #3777E6
 
 # Inactive window
-window.inactive.title.bg.color: #0e0e0e
-window.inactive.label.text.color: #686868
-window.inactive.button.unpressed.image.color: #686868
-window.inactive.button.hover.image.color: #686868
-window.inactive.border.color: #383838
+window.inactive.title.bg.color: #151515
+window.inactive.label.text.color: #505050
+window.inactive.button.unpressed.image.color: #505050
+window.inactive.button.hover.image.color: #505050
+window.inactive.border.color: #303030
 
 # Padding
 padding.height: 2
 padding.width: 4
 
 # Menu
-menu.items.bg.color: #1c1c1c
-menu.items.text.color: #c0c0c0
-menu.items.active.bg.color: #ff9200
-menu.items.active.text.color: #000000
+menu.items.bg.color: #202020
+menu.items.text.color: #D0D0D0
+menu.items.active.bg.color: #3777E6
+menu.items.active.text.color: #151515
 menu.border.width: 1
-menu.border.color: #383838
+menu.border.color: #303030
 
 # OSD
-osd.bg.color: #1c1c1c
-osd.border.color: #ff9200
+osd.bg.color: #202020
+osd.border.color: #3777E6
 osd.border.width: 1
-osd.label.text.color: #c0c0c0
+osd.label.text.color: #D0D0D0
