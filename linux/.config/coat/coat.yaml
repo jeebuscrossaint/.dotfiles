@@ -44,9 +44,9 @@ opacity:
 # The 'font' key triggers in_font_section and expects a mapping (dictionary)
 font:
   emoji: "Noto Color Emoji"
-  monospace: "Terminess Nerd Font Mono"
-  sansserif: "Terminess Nerd Font"
-  serif: "Terminess Nerd Font"
+  monospace: "BigBlueTerm437 Nerd Font Mono"
+  sansserif: "BigBlueTerm437 Nerd Font"
+  serif: "BigBlueTerm437 Nerd Font"
   sizes:
     terminal: 12
     desktop: 12
