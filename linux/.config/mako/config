@@ -1,10 +1,10 @@
-# coat mako theme: Mountain
-# Stefan Weigl-Bosker (https://github.com/sweiglbosker), based on Mountain Theme (https://github.com/mountain-theme/Mountain)
+# coat mako theme: Dimmed Monokai
+# FredHappyface (https://github.com/fredHappyface)
 
-background-color=#0f0f0f
-text-color=#f0f0f0
-border-color=#262626
-progress-color=over #8f8aac
+background-color=#1e1e1e
+text-color=#fcffb8
+border-color=#888987
+progress-color=over #4e76a1
 font=Terminess Nerd Font Mono 10
 
 width=400
@@ -30,15 +30,15 @@ on-button-middle=invoke-default-action
 on-touch=dismiss
 
 [urgency=low]
-border-color=#393939
-text-color=#4c4c4c
+border-color=#949593
+text-color=#a0a2a0
 default-timeout=4000
 
 [urgency=normal]
-border-color=#262626
+border-color=#888987
 default-timeout=6000
 
 [urgency=high]
-border-color=#ac8a8c
-text-color=#ac8a8c
+border-color=#be3e48
+text-color=#be3e48
 default-timeout=0

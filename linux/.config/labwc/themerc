@@ -1,36 +1,36 @@
-# coat labwc theme: Mountain
-# Stefan Weigl-Bosker (https://github.com/sweiglbosker), based on Mountain Theme (https://github.com/mountain-theme/Mountain)
+# coat labwc theme: Dimmed Monokai
+# FredHappyface (https://github.com/fredHappyface)
 
 border.width: 2
 
 # Active window
-window.active.title.bg.color: #191919
-window.active.label.text.color: #f0f0f0
-window.active.button.unpressed.image.color: #f0f0f0
-window.active.button.hover.image.color: #8f8aac
-window.active.border.color: #8f8aac
+window.active.title.bg.color: #3a3c43
+window.active.label.text.color: #fcffb8
+window.active.button.unpressed.image.color: #fcffb8
+window.active.button.hover.image.color: #4e76a1
+window.active.border.color: #4e76a1
 
 # Inactive window
-window.inactive.title.bg.color: #0f0f0f
-window.inactive.label.text.color: #393939
-window.inactive.button.unpressed.image.color: #393939
-window.inactive.button.hover.image.color: #393939
-window.inactive.border.color: #262626
+window.inactive.title.bg.color: #1e1e1e
+window.inactive.label.text.color: #949593
+window.inactive.button.unpressed.image.color: #949593
+window.inactive.button.hover.image.color: #949593
+window.inactive.border.color: #888987
 
 # Padding
 padding.height: 2
 padding.width: 4
 
 # Menu
-menu.items.bg.color: #191919
-menu.items.text.color: #cacaca
-menu.items.active.bg.color: #8f8aac
-menu.items.active.text.color: #0f0f0f
+menu.items.bg.color: #3a3c43
+menu.items.text.color: #acafac
+menu.items.active.bg.color: #4e76a1
+menu.items.active.text.color: #1e1e1e
 menu.border.width: 1
-menu.border.color: #262626
+menu.border.color: #888987
 
 # OSD
-osd.bg.color: #191919
-osd.border.color: #8f8aac
+osd.bg.color: #3a3c43
+osd.border.color: #4e76a1
 osd.border.width: 1
-osd.label.text.color: #cacaca
+osd.label.text.color: #acafac

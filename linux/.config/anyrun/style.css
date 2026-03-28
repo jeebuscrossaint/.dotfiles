@@ -1,10 +1,10 @@
-/* coat anyrun theme: Mountain */
-/* Stefan Weigl-Bosker (https://github.com/sweiglbosker), based on Mountain Theme (https://github.com/mountain-theme/Mountain) */
+/* coat anyrun theme: Dimmed Monokai */
+/* FredHappyface (https://github.com/fredHappyface) */
 
-@define-color accent #8f8aac;
-@define-color bg-color #0f0f0f;
-@define-color fg-color #f0f0f0;
-@define-color desc-color #4c4c4c;
+@define-color accent #4e76a1;
+@define-color bg-color #1e1e1e;
+@define-color fg-color #fcffb8;
+@define-color desc-color #a0a2a0;
 
 window {
   background: transparent;

@@ -31,7 +31,7 @@ enabled:
   - labwc
   
 # The 'scheme' key is a top-level scalar
-scheme: mountain
+scheme: dimmed-monokai
 prefer_base24: true
 # material_you: true
 
