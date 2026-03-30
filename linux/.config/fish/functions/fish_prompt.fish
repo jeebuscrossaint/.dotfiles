@@ -5,7 +5,7 @@ function fish_prompt
     # ── top line ──────────────────────────────────────────────
     # hostname
     set_color --bold cyan
-    printf '%s' (hostname)
+    printf '%s' $hostname
     set_color normal
 
     printf ' '
