@@ -7,7 +7,7 @@
 
     "modules-left": ["sway/workspaces", "sway/window", "tray", "custom/weather", "custom/mpris"],
     "modules-center": ["clock"],
-    "modules-right": ["network", "bluetooth", "cpu", "temperature", "memory", "battery", "custom/mic", "wireplumber"],
+    "modules-right": ["network", "bluetooth", "cpu", "custom/temp", "memory", "battery", "custom/mic", "custom/volume"],
 
     "sway/window": {
         "max-length": 50,
@@ -82,11 +82,10 @@
         "tooltip-format": "CPU: {usage}%\nLoad: {load}"
     },
 
-    "temperature": {
+    "custom/temp": {
+        "exec": "waybar-temp",
         "interval": 5,
-        "critical-threshold": 80,
-        "format": " {temperatureC}°C",
-        "format-critical": " {temperatureC}°C!"
+        "format": " {}"
     },
 
     "memory": {
@@ -108,13 +107,13 @@
         "tooltip-format": "{capacity}% | {timeTo}"
     },
 
-    "wireplumber": {
-        "format": "{icon} {volume}%",
-        "format-muted": "󰝟",
-        "format-icons": ["󰕿", "󰖀", "󰕾"],
-        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-        "on-click-right": "pavucontrol",
-        "tooltip-format": "{node_name}: {volume}%"
+    "custom/volume": {
+        "exec": "waybar-volume",
+        "return-type": "json",
+        "interval": 2,
+        "on-click": "volumectl toggle-mute",
+        "on-scroll-up": "volumectl up",
+        "on-scroll-down": "volumectl down"
     },
 
     "tray": {
@@ -134,9 +133,9 @@
     },
 
     "custom/mic": {
-        "exec": "wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk '{muted=($3==\"[MUTED]\"); printf \"{\\\"text\\\":\\\"%s\\\",\\\"class\\\":\\\"%s\\\"}\\n\", muted ? \"󰍭\" : sprintf(\"󰍬 %d%%\", $2*100), muted ? \"muted\" : \"\"}'",
+        "exec": "waybar-mic",
         "return-type": "json",
         "interval": 2,
-        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        "on-click": "volumectl -m toggle-mute"
     }
 }
