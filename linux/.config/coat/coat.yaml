@@ -23,7 +23,6 @@ enabled:
   - mangowc
   - vesktop
   - sway
-  - firefox
   - qt
   - niri
   - waybar
