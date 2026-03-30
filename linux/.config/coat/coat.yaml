@@ -18,6 +18,7 @@ enabled:
   - qt
   - waybar
   - labwc
+  - swaylock
   
 # The 'scheme' key is a top-level scalar
 scheme: dimmed-monokai
