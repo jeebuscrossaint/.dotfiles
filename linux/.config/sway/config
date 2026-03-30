@@ -135,6 +135,7 @@ mode "resize" {
 
 # Startup
 exec wpaperd
+exec autotiling-rs
 exec swayidle -w -C ~/.config/swayidle/config
 exec start-waybar
 exec conky
