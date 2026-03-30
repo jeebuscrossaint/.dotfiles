@@ -22,8 +22,10 @@ set -x EDITOR helix
 # Environment variables
 ########################################
 
-# Flatpak paths
+# XDG data dirs — include /usr/local/share for OpenBSD, flatpak on Linux
 set -x XDG_DATA_DIRS $XDG_DATA_DIRS \
+    /usr/local/share \
+    /usr/share \
     /var/lib/flatpak/exports/share \
     $HOME/.local/share/flatpak/exports/share
 fish_add_path ~/.local/bin /opt/cuda/bin/
