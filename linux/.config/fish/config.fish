@@ -55,6 +55,8 @@ alias xcopy="xclip -sel clip"
 alias ls="lsd"
 alias doas="sudo"
 
+fish_add_path ~/.cargo/bin/
+
 alias display-update="xrandr \
   --output eDP-1 --mode 2560x1600 --rate 240.00 --primary \
   --output HDMI-1-0 --mode 1920x1080 --rate 60.00 --right-of eDP-1"
