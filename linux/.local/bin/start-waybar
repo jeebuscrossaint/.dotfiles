@@ -1,17 +1,2 @@
 #!/bin/sh
-# start-waybar — detect compositor and launch waybar with the right config
-
-STYLE="$HOME/.config/waybar/style.css"
-CFGDIR="$HOME/.config/waybar"
-
-if [ -n "$NIRI_SOCKET" ]; then
-    CFG="$CFGDIR/config-niri.json"
-elif [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
-    CFG="$CFGDIR/config-hyprland.json"
-    [ -f "$CFG" ] || CFG="$CFGDIR/config.json"
-else
-    # sway, labwc, river, anything else
-    CFG="$CFGDIR/config.json"
-fi
-
-exec waybar -c "$CFG" -s "$STYLE"
+exec waybar -c ~/.config/waybar/config.json -s ~/.config/waybar/style.css
