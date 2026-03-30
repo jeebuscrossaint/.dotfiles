@@ -1,8 +1,7 @@
 #!/bin/sh
 
-anyrun daemon &
 swayidle -w -C ~/.config/swayidle/config &
-waybar -c ~/.config/waybar/config.json -s ~/.config/waybar/style.css &
+start-waybar &
 conky &
 dunst &
 

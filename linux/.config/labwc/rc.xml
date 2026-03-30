@@ -25,7 +25,7 @@
     <default />
 
     <keybind key="W-q"><action name="Execute" command="kitty"/></keybind>
-    <keybind key="W-d"><action name="Execute" command="anyrun"/></keybind>
+    <keybind key="W-d"><action name="Execute" command="rofi -show drun"/></keybind>
     <keybind key="W-c"><action name="Close"/></keybind>
     <keybind key="W-S-c"><action name="Reconfigure"/></keybind>
     <keybind key="W-l"><action name="Execute" command="gtklock"/></keybind>

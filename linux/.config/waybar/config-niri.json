@@ -5,20 +5,17 @@
     "spacing": 0,
     "fixed-center": true,
 
-    "modules-left": ["sway/workspaces", "sway/window", "tray", "custom/weather", "custom/mpris"],
+    "modules-left": ["niri/workspaces", "niri/window", "tray", "custom/weather", "custom/mpris"],
     "modules-center": ["clock"],
     "modules-right": ["network", "bluetooth", "cpu", "temperature", "memory", "battery", "custom/mic", "wireplumber"],
 
-    "sway/window": {
-        "max-length": 50,
-        "separate-outputs": true
+    "niri/window": {
+        "icon": false,
+        "max-length": 50
     },
 
-    "sway/workspaces": {
-        "format": "{name}",
-        "on-click": "activate",
-        "sort-by-number": true,
-        "persistent-workspaces": {}
+    "niri/workspaces": {
+        "format": "{name}"
     },
 
     "clock": {

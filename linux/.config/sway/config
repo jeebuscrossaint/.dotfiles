@@ -3,7 +3,7 @@
 include ~/.config/sway/coat-theme
 
 set $mod Mod4
-set $menu anyrun
+set $menu rofi -show drun
 set $term kitty
 
 xwayland enable
@@ -134,9 +134,8 @@ mode "resize" {
 }
 
 # Startup
-exec anyrun daemon
 exec swayidle -w -C ~/.config/swayidle/config
-exec waybar -c ~/.config/waybar/config.json -s ~/.config/waybar/style.css
+exec start-waybar
 exec conky
 exec dunst
 exec numlockwl
