@@ -3,16 +3,14 @@
 wpaperd &
 swayidle -w -C ~/.config/swayidle/config &
 start-waybar &
-conky &
 dunst &
 
 numlockwl &
 udiskie &
-nm-applet &
+command -v nm-applet && nm-applet &
 
 wl-paste --type text --watch cliphist store &
 wl-paste --type image --watch cliphist store &
 
 dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &
-gamemoded &
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+start-polkit &
