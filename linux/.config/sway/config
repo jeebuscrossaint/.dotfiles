@@ -54,7 +54,7 @@ bindsym $mod+q exec $term
 bindsym $mod+d exec $menu
 bindsym $mod+c kill
 bindsym $mod+Shift+c reload
-bindsym $mod+l exec gtklock
+bindsym $mod+l exec swaylock
 bindsym $mod+Delete exec wlboard
 bindsym $mod+p exec toggle-waybar
 bindsym $mod+Shift+s exec swayscreenshot
@@ -138,7 +138,6 @@ exec wpaperd
 exec autotiling-rs
 exec swayidle -w -C ~/.config/swayidle/config
 exec start-waybar
-exec conky
 exec dunst
 exec numlockwl
 exec udiskie

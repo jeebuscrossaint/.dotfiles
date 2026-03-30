@@ -5,28 +5,18 @@ enabled:
   - hyprland
   - fish
   - kitty
-  - i3
   - helix
   - rofi
-  - anyrun
   - bat
-  - avizo
   - btop
-  - cava
   - dunst
-  - mako
   - zathura
   - yazi
-  - vscode
   - gtk
-  - xresources
-  - mangowc
   - vesktop
   - sway
   - qt
-  - niri
   - waybar
-  - conky
   - labwc
   
 # The 'scheme' key is a top-level scalar

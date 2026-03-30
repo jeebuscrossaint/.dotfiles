@@ -1,0 +1,15 @@
+ignore-empty-password
+show-failed-attempts
+daemonize
+
+color=000000
+inside-color=000000
+ring-color=444444
+key-hl-color=ffffff
+line-color=00000000
+separator-color=00000000
+
+inside-wrong-color=ff0000
+ring-wrong-color=ff0000
+inside-ver-color=0000ff
+ring-ver-color=0000ff
