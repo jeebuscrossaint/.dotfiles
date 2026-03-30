@@ -196,7 +196,7 @@ spawn-at-startup "gamemoded"
 spawn-at-startup "avizo-service"
 spawn-at-startup "woled" "--lock"
 spawn-sh-at-startup "gentoo-pipewire-launcher &"
-spawn-at-startup "swww-daemon"
+spawn-at-startup "wpaperd"
 spawn-at-startup "dunst"
 
 // ============================================

@@ -1,5 +1,6 @@
 #!/bin/sh
 
+wpaperd &
 swayidle -w -C ~/.config/swayidle/config &
 start-waybar &
 conky &
