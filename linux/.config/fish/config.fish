@@ -24,6 +24,10 @@ set -x XDG_DATA_DIRS $XDG_DATA_DIRS \
 
 fish_add_path ~/.local/bin ~/.cargo/bin
 
+# nnn colors (base16-style: context colors + file type colors)
+set -x NNN_COLORS '4231'
+set -x NNN_FCOLORS '030304020801060301060207'
+
 ########################################
 # Aliases
 ########################################
