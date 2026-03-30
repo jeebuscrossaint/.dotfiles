@@ -16,11 +16,11 @@ set -x EDITOR helix
 ########################################
 
 # XDG data dirs — /usr/local/share for OpenBSD, flatpak on Linux
-set -x XDG_DATA_DIRS $XDG_DATA_DIRS \
+set -x XDG_DATA_DIRS (string join : \
     /usr/local/share \
     /usr/share \
     /var/lib/flatpak/exports/share \
-    $HOME/.local/share/flatpak/exports/share
+    $HOME/.local/share/flatpak/exports/share)
 
 fish_add_path ~/.local/bin ~/.cargo/bin
 

@@ -20,12 +20,12 @@ enabled:
   - swaylock
   
 # The 'scheme' key is a top-level scalar
-scheme: dimmed-monokai
-prefer_base24: true
+scheme: grayscale-dark
+prefer_base24: false
 # material_you: true
 
 opacity:
-  terminal: 1.0
+  terminal: 0.7
   applications: 1.0
   desktop: 1.0
   popups: 1.0
@@ -37,6 +37,6 @@ font:
   sansserif: "BigBlueTerm437 Nerd Font"
   serif: "BigBlueTerm437 Nerd Font"
   sizes:
-    terminal: 12
+    terminal: 8
     desktop: 12
     popups: 12
