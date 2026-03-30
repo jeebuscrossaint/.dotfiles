@@ -8,10 +8,6 @@
 # Disable Fish greeting
 set -g fish_greeting
 # set -gx LS_COLORS "(vivid generate coat)"
-# Starship prompt (falls back to fish_prompt.fish on systems without starship)
-if command -q starship
-    starship init fish | source
-end
 fish_config theme choose coat
 # fastfetch
 pfetch
