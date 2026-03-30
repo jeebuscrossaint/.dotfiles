@@ -39,5 +39,5 @@ font:
   serif: "BigBlueTerm437 Nerd Font"
   sizes:
     terminal: 8
-    desktop: 12
-    popups: 12
+    desktop: 8
+    popups: 8
