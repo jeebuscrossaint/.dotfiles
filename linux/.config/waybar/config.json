@@ -5,7 +5,7 @@
     "spacing": 0,
     "fixed-center": true,
 
-    "modules-left": ["sway/workspaces", "sway/window", "tray", "custom/weather", "custom/mpris"],
+    "modules-left": ["sway/workspaces", "sway/window", "custom/weather", "custom/mpris"],
     "modules-center": ["clock"],
     "modules-right": ["network", "bluetooth", "cpu", "custom/temp", "memory", "battery", "custom/mic", "custom/volume"],
 
@@ -114,12 +114,6 @@
         "on-click": "volumectl toggle-mute",
         "on-scroll-up": "volumectl up",
         "on-scroll-down": "volumectl down"
-    },
-
-    "tray": {
-        "icon-size": 16,
-        "spacing": 6,
-        "icon-theme": "WhiteSur-dark"
     },
 
     "custom/mpris": {
