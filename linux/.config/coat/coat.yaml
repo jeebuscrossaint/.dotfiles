@@ -4,6 +4,7 @@
 enabled:
   - hyprland
   - fish
+  - foot
   - kitty
   - helix
   - rofi

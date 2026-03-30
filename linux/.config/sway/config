@@ -4,7 +4,7 @@ include ~/.config/sway/coat-theme
 
 set $mod Mod4
 set $menu rofi -show drun
-set $term kitty
+set $term foot
 
 xwayland enable
 
