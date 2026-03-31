@@ -131,9 +131,18 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 
-# Disable default swaybar (using waybar instead)
+# Swaybar (experimenting — comment out waybar exec below to use this instead)
 bar {
-    mode invisible
+    position bottom
+    status_command while echo "$(date +'%a %b %e  %H:%M:%S')"; do sleep 1; done
+    colors {
+        background #101010
+        statusline #b9b9b9
+        focused_workspace  #686868 #686868 #101010
+        active_workspace   #525252 #525252 #b9b9b9
+        inactive_workspace #101010 #101010 #525252
+        urgent_workspace   #7c7c7c #7c7c7c #101010
+    }
 }
 
 # Startup
