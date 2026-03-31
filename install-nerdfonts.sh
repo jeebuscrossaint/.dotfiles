@@ -2,7 +2,6 @@
 # install-nerdfonts.sh — download and install all Nerd Fonts
 # Works on Linux and OpenBSD (requires curl, xz, tar, fc-cache)
 
-set -e
 
 FONTS_DIR="${HOME}/.local/share/fonts/NerdFonts"
 TMPDIR="${TMPDIR:-/tmp}/nerdfonts-install"
@@ -33,7 +32,11 @@ for font in $FONTS; do
     COUNT=$(( COUNT + 1 ))
     printf '[%d/%d] %s\n' "$COUNT" "$TOTAL" "$font"
     tmp="$TMPDIR/$font"
-    curl -fsSL -o "$tmp" "${BASE_URL}/${font}"
+    if ! curl -fsSL --connect-timeout 10 --max-time 120 -o "$tmp" "${BASE_URL}/${font}"; then
+        echo "  skipped (download failed or timed out)"
+        rm -f "$tmp"
+        continue
+    fi
     xz -dc "$tmp" | tar xf - -C "$FONTS_DIR"
     rm -f "$tmp"
 done
