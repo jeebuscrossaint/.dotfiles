@@ -4,9 +4,12 @@
 
 set -g fish_greeting
 
-# Coat theme (if generated)
+# Coat theme — only re-apply when theme file has changed
 if test -f ~/.config/fish/themes/coat.theme
-    fish_config theme choose coat
+    if not test -f ~/.config/fish/themes/.coat.applied; or test ~/.config/fish/themes/coat.theme -nt ~/.config/fish/themes/.coat.applied
+        fish_config theme choose coat
+        touch ~/.config/fish/themes/.coat.applied
+    end
 end
 
 set -x EDITOR helix

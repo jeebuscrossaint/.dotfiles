@@ -19,43 +19,46 @@ function fish_prompt
     printf '%s' (prompt_pwd -D 3)
     set_color normal
 
-    # git
-    set -l branch (git branch --show-current 2>/dev/null)
-    if test -n "$branch"
-        printf ' '
-        set_color brblack
-        printf 'on'
-        set_color normal
-        printf ' '
-        set_color --bold magenta
-        printf ' %s' $branch
-        set_color normal
+    # git — single subprocess for branch + status + ahead/behind
+    set -l git_info (git status --porcelain --branch 2>/dev/null)
+    if test -n "$git_info"
+        set -l branch_line $git_info[1]
+        set -l branch (string match -rg '^## (\S+?)(?:\.\.\.|\s|$)' $branch_line)
 
-        set -l porcelain (git status --porcelain 2>/dev/null)
-        if test -n "$porcelain"
-            set -l indicators ''
-            string match -rq '^\?\?' $porcelain; and set indicators $indicators'?'
-            string match -rq '^.[MD]' $porcelain; and set indicators $indicators'!'
-            string match -rq '^[MADRCU]' $porcelain; and set indicators $indicators'+'
+        if test -n "$branch" -a "$branch" != HEAD
             printf ' '
-            set_color --bold red
-            printf '[%s]' $indicators
+            set_color brblack
+            printf 'on'
             set_color normal
-        end
+            printf ' '
+            set_color --bold magenta
+            printf ' %s' $branch
+            set_color normal
 
-        set -l upstream (git rev-parse --abbrev-ref --symbolic-full-name '@{u}' 2>/dev/null)
-        if test -n "$upstream"
-            set -l counts (git rev-list --left-right --count HEAD...$upstream 2>/dev/null)
-            if test -n "$counts"
-                set -l ahead (printf '%s' $counts | awk '{print $1}')
-                set -l behind (printf '%s' $counts | awk '{print $2}')
-                if test "$ahead" -gt 0 -o "$behind" -gt 0
+            # dirty indicators from remaining lines
+            if test (count $git_info) -gt 1
+                set -l rest $git_info[2..]
+                set -l indicators ''
+                string match -qr '^\?\?' $rest; and set indicators $indicators'?'
+                string match -qr '^.[MD]' $rest; and set indicators $indicators'!'
+                string match -qr '^[MADRCU]' $rest; and set indicators $indicators'+'
+                if test -n "$indicators"
                     printf ' '
                     set_color --bold red
-                    test "$ahead" -gt 0; and printf '⇡%s' $ahead
-                    test "$behind" -gt 0; and printf '⇣%s' $behind
+                    printf '[%s]' $indicators
                     set_color normal
                 end
+            end
+
+            # ahead/behind from branch line (e.g. "## main...origin/main [ahead 1, behind 2]")
+            set -l ahead (string match -rg 'ahead (\d+)' $branch_line)
+            set -l behind (string match -rg 'behind (\d+)' $branch_line)
+            if test -n "$ahead" -o -n "$behind"
+                printf ' '
+                set_color --bold red
+                test -n "$ahead"; and printf '⇡%s' $ahead
+                test -n "$behind"; and printf '⇣%s' $behind
+                set_color normal
             end
         end
     end
