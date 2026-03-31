@@ -131,6 +131,9 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 
+# Disable default swaybar (using waybar instead)
+bar {}
+
 # Startup
 exec foot --server
 exec wpaperd
