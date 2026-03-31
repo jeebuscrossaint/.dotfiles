@@ -3,7 +3,7 @@
 include ~/.config/sway/coat-theme
 
 set $mod Mod4
-set $menu rofi -show drun
+set $menu fuzzel
 set $term footclient
 
 xwayland enable

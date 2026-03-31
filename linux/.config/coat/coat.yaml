@@ -7,7 +7,7 @@ enabled:
   - foot
   - kitty
   - helix
-  - rofi
+  - fuzzel
   - bat
   - btop
   - dunst
