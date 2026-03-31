@@ -132,7 +132,9 @@ mode "resize" {
 }
 
 # Disable default swaybar (using waybar instead)
-bar {}
+bar {
+    mode invisible
+}
 
 # Startup
 exec foot --server
