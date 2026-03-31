@@ -7,7 +7,6 @@ start-waybar &
 dunst &
 
 numlockwl &
-devmon &
 command -v nm-applet && nm-applet &
 
 wl-paste --type text --watch cliphist store &
