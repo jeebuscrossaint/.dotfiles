@@ -1,36 +1,36 @@
-# coat labwc theme: Grayscale Dark
-# Alexandre Gavioli (https://github.com/Alexx2/)
+# coat labwc theme: Linux VT
+# j-c-m (https://github.com/j-c-m/)
 
 border.width: 2
 
 # Active window
-window.active.title.bg.color: #252525
-window.active.label.text.color: #f7f7f7
-window.active.button.unpressed.image.color: #f7f7f7
-window.active.button.hover.image.color: #686868
-window.active.border.color: #686868
+window.active.title.bg.color: #333333
+window.active.label.text.color: #FFFFFF
+window.active.button.unpressed.image.color: #FFFFFF
+window.active.button.hover.image.color: #5555FF
+window.active.border.color: #5555FF
 
 # Inactive window
-window.inactive.title.bg.color: #101010
-window.inactive.label.text.color: #525252
-window.inactive.button.unpressed.image.color: #525252
-window.inactive.button.hover.image.color: #525252
-window.inactive.border.color: #464646
+window.inactive.title.bg.color: #000000
+window.inactive.label.text.color: #555555
+window.inactive.button.unpressed.image.color: #555555
+window.inactive.button.hover.image.color: #555555
+window.inactive.border.color: #444444
 
 # Padding
 padding.height: 2
 padding.width: 4
 
 # Menu
-menu.items.bg.color: #252525
-menu.items.text.color: #b9b9b9
-menu.items.active.bg.color: #686868
-menu.items.active.text.color: #101010
+menu.items.bg.color: #333333
+menu.items.text.color: #AAAAAA
+menu.items.active.bg.color: #5555FF
+menu.items.active.text.color: #000000
 menu.border.width: 1
-menu.border.color: #464646
+menu.border.color: #444444
 
 # OSD
-osd.bg.color: #252525
-osd.border.color: #686868
+osd.bg.color: #333333
+osd.border.color: #5555FF
 osd.border.width: 1
-osd.label.text.color: #b9b9b9
+osd.label.text.color: #AAAAAA

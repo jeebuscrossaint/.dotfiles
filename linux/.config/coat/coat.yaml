@@ -20,7 +20,7 @@ enabled:
   - swaylock
   
 # The 'scheme' key is a top-level scalar
-scheme: grayscale-dark
+scheme: linux-vt
 prefer_base24: false
 # material_you: true
 
