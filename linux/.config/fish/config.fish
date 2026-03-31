@@ -70,6 +70,6 @@ end
 # Startup
 ########################################
 
-if command -q pfetch
-    pfetch
+if command -q fastfetch
+    fastfetch
 end

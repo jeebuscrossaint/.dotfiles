@@ -139,7 +139,7 @@ exec swayidle -w -C ~/.config/swayidle/config
 exec waybar -c ~/.config/waybar/config.json -s ~/.config/waybar/style.css
 exec dunst
 exec numlockwl
-exec udiskie
+exec devmon
 exec sh -c 'command -v nm-applet && nm-applet'
 exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
