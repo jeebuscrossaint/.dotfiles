@@ -34,7 +34,7 @@ for font in $FONTS; do
     printf '[%d/%d] %s\n' "$COUNT" "$TOTAL" "$font"
     tmp="$TMPDIR/$font"
     curl -fsSL -o "$tmp" "${BASE_URL}/${font}"
-    tar -xJf "$tmp" -C "$FONTS_DIR"
+    xz -dc "$tmp" | tar xf - -C "$FONTS_DIR"
     rm -f "$tmp"
 done
 
