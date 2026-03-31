@@ -1,5 +1,6 @@
 #!/bin/sh
 
+foot --server &
 wpaperd &
 swayidle -w -C ~/.config/swayidle/config &
 start-waybar &

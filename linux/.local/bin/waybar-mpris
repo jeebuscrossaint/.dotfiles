@@ -1,0 +1,5 @@
+#!/bin/sh
+# Persistent mpris widget for waybar — outputs a new JSON line on every track change
+playerctl metadata --format \
+    '{"text":"󰝚 {{title}} — {{artist}}","tooltip":"{{title}}\n{{artist}}\n{{album}}"}' \
+    --follow 2>/dev/null

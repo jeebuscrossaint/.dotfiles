@@ -4,7 +4,7 @@ include ~/.config/sway/coat-theme
 
 set $mod Mod4
 set $menu rofi -show drun
-set $term foot
+set $term footclient
 
 xwayland enable
 
@@ -132,6 +132,7 @@ mode "resize" {
 }
 
 # Startup
+exec foot --server
 exec wpaperd
 exec autotiling-rs
 exec swayidle -w -C ~/.config/swayidle/config
