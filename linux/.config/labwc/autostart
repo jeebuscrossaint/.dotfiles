@@ -1,16 +1,12 @@
 #!/bin/sh
 
 foot --server &
-wpaperd &
 swayidle -w -C ~/.config/swayidle/config &
 start-waybar &
 dunst &
 
 numlockwl &
 command -v nm-applet && nm-applet &
-
-wl-paste --type text --watch cliphist store &
-wl-paste --type image --watch cliphist store &
 
 dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &
 start-polkit &
