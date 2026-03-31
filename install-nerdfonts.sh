@@ -1,16 +1,19 @@
 #!/bin/sh
 # install-nerdfonts.sh — download and install all Nerd Fonts
-# Works on Linux and OpenBSD (requires curl, tar with xz support, fc-cache)
+# Works on Linux and OpenBSD (requires curl, xz, tar, fc-cache)
 
 set -e
 
 FONTS_DIR="${HOME}/.local/share/fonts/NerdFonts"
-mkdir -p "$FONTS_DIR"
+TMPDIR="${TMPDIR:-/tmp}/nerdfonts-install"
+mkdir -p "$FONTS_DIR" "$TMPDIR"
 
-if ! command -v curl > /dev/null 2>&1; then
-    echo "error: curl is required (pkg_add curl on OpenBSD, pacman -S curl on Arch)"
-    exit 1
-fi
+for cmd in curl xz tar fc-cache; do
+    if ! command -v "$cmd" > /dev/null 2>&1; then
+        echo "error: $cmd is required"
+        exit 1
+    fi
+done
 
 API="https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest"
 
@@ -29,8 +32,13 @@ COUNT=0
 for font in $FONTS; do
     COUNT=$(( COUNT + 1 ))
     printf '[%d/%d] %s\n' "$COUNT" "$TOTAL" "$font"
-    curl -fsSL "${BASE_URL}/${font}" | tar -xJf - -C "$FONTS_DIR" 2>/dev/null
+    tmp="$TMPDIR/$font"
+    curl -fsSL -o "$tmp" "${BASE_URL}/${font}"
+    tar -xJf "$tmp" -C "$FONTS_DIR"
+    rm -f "$tmp"
 done
+
+rmdir "$TMPDIR" 2>/dev/null || true
 
 echo "Updating font cache..."
 fc-cache -f "$FONTS_DIR"
