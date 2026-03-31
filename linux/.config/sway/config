@@ -131,19 +131,8 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 
-# Swayrbar (native sway bar with Rust status command)
 bar {
-    position bottom
-    status_command swayrbar
-    colors {
-        background #101010
-        statusline #b9b9b9
-        separator  #525252
-        focused_workspace  #686868 #686868 #101010
-        active_workspace   #525252 #525252 #b9b9b9
-        inactive_workspace #101010 #101010 #525252
-        urgent_workspace   #7c7c7c #7c7c7c #101010
-    }
+    mode invisible
 }
 
 # Startup
@@ -151,7 +140,7 @@ exec foot --server
 exec wpaperd
 exec autotiling-rs
 exec swayidle -w -C ~/.config/swayidle/config
-# exec waybar -c ~/.config/waybar/config.json -s ~/.config/waybar/style.css
+exec waybar -c ~/.config/waybar/config.json -s ~/.config/waybar/style.css
 exec dunst
 exec numlockwl
 exec sh -c 'command -v nm-applet && nm-applet'
