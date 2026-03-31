@@ -5,7 +5,6 @@ enabled:
   - hyprland
   - fish
   - foot
-  - kitty
   - helix
   - fuzzel
   - bat
@@ -34,10 +33,10 @@ opacity:
 # The 'font' key triggers in_font_section and expects a mapping (dictionary)
 font:
   emoji: "Noto Color Emoji"
-  monospace: "BigBlueTerm437 Nerd Font Mono"
-  sansserif: "BigBlueTerm437 Nerd Font"
-  serif: "BigBlueTerm437 Nerd Font"
+  monospace: "VictorMono Nerd Font Mono"
+  sansserif: "VictorMono Nerd Font"
+  serif: "VictorMono Nerd Font"
   sizes:
-    terminal: 12
-    desktop: 12
-    popups: 12
+    terminal: 8
+    desktop: 8
+    popups: 8
