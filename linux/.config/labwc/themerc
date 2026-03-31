@@ -1,36 +1,36 @@
-# coat labwc theme: Dimmed Monokai
-# FredHappyface (https://github.com/fredHappyface)
+# coat labwc theme: Grayscale Dark
+# Alexandre Gavioli (https://github.com/Alexx2/)
 
 border.width: 2
 
 # Active window
-window.active.title.bg.color: #3a3c43
-window.active.label.text.color: #fcffb8
-window.active.button.unpressed.image.color: #fcffb8
-window.active.button.hover.image.color: #4e76a1
-window.active.border.color: #4e76a1
+window.active.title.bg.color: #252525
+window.active.label.text.color: #f7f7f7
+window.active.button.unpressed.image.color: #f7f7f7
+window.active.button.hover.image.color: #686868
+window.active.border.color: #686868
 
 # Inactive window
-window.inactive.title.bg.color: #1e1e1e
-window.inactive.label.text.color: #949593
-window.inactive.button.unpressed.image.color: #949593
-window.inactive.button.hover.image.color: #949593
-window.inactive.border.color: #888987
+window.inactive.title.bg.color: #101010
+window.inactive.label.text.color: #525252
+window.inactive.button.unpressed.image.color: #525252
+window.inactive.button.hover.image.color: #525252
+window.inactive.border.color: #464646
 
 # Padding
 padding.height: 2
 padding.width: 4
 
 # Menu
-menu.items.bg.color: #3a3c43
-menu.items.text.color: #acafac
-menu.items.active.bg.color: #4e76a1
-menu.items.active.text.color: #1e1e1e
+menu.items.bg.color: #252525
+menu.items.text.color: #b9b9b9
+menu.items.active.bg.color: #686868
+menu.items.active.text.color: #101010
 menu.border.width: 1
-menu.border.color: #888987
+menu.border.color: #464646
 
 # OSD
-osd.bg.color: #3a3c43
-osd.border.color: #4e76a1
+osd.bg.color: #252525
+osd.border.color: #686868
 osd.border.width: 1
-osd.label.text.color: #acafac
+osd.label.text.color: #b9b9b9
