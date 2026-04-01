@@ -1,36 +1,36 @@
-# coat labwc theme: Default Dark
-# Chris Kempson (http://chriskempson.com)
+# coat labwc theme: Paul Millr
+# FredHappyface (https://github.com/fredHappyface)
 
 border.width: 2
 
 # Active window
-window.active.title.bg.color: #282828
-window.active.label.text.color: #f8f8f8
-window.active.button.unpressed.image.color: #f8f8f8
-window.active.button.hover.image.color: #7cafc2
-window.active.border.color: #7cafc2
+window.active.title.bg.color: #2a2a2a
+window.active.label.text.color: #ffffff
+window.active.button.unpressed.image.color: #ffffff
+window.active.button.hover.image.color: #386bd7
+window.active.border.color: #386bd7
 
 # Inactive window
-window.inactive.title.bg.color: #181818
-window.inactive.label.text.color: #585858
-window.inactive.button.unpressed.image.color: #585858
-window.inactive.button.hover.image.color: #585858
-window.inactive.border.color: #383838
+window.inactive.title.bg.color: #000000
+window.inactive.label.text.color: #7b7b7b
+window.inactive.button.unpressed.image.color: #7b7b7b
+window.inactive.button.hover.image.color: #7b7b7b
+window.inactive.border.color: #666666
 
 # Padding
 padding.height: 2
 padding.width: 4
 
 # Menu
-menu.items.bg.color: #282828
-menu.items.text.color: #d8d8d8
-menu.items.active.bg.color: #7cafc2
-menu.items.active.text.color: #181818
+menu.items.bg.color: #2a2a2a
+menu.items.text.color: #a5a5a5
+menu.items.active.bg.color: #386bd7
+menu.items.active.text.color: #000000
 menu.border.width: 1
-menu.border.color: #383838
+menu.border.color: #666666
 
 # OSD
-osd.bg.color: #282828
-osd.border.color: #7cafc2
+osd.bg.color: #2a2a2a
+osd.border.color: #386bd7
 osd.border.width: 1
-osd.label.text.color: #d8d8d8
+osd.label.text.color: #a5a5a5

@@ -20,7 +20,7 @@ enabled:
   - swaylock
   
 # The 'scheme' key is a top-level scalar
-scheme: default-dark
+scheme: paul-millr
 prefer_base24: false
 # material_you: true
 
