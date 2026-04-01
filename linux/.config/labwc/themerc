@@ -1,36 +1,36 @@
-# coat labwc theme: Linux VT
-# j-c-m (https://github.com/j-c-m/)
+# coat labwc theme: Default Dark
+# Chris Kempson (http://chriskempson.com)
 
 border.width: 2
 
 # Active window
-window.active.title.bg.color: #333333
-window.active.label.text.color: #FFFFFF
-window.active.button.unpressed.image.color: #FFFFFF
-window.active.button.hover.image.color: #5555FF
-window.active.border.color: #5555FF
+window.active.title.bg.color: #282828
+window.active.label.text.color: #f8f8f8
+window.active.button.unpressed.image.color: #f8f8f8
+window.active.button.hover.image.color: #7cafc2
+window.active.border.color: #7cafc2
 
 # Inactive window
-window.inactive.title.bg.color: #000000
-window.inactive.label.text.color: #555555
-window.inactive.button.unpressed.image.color: #555555
-window.inactive.button.hover.image.color: #555555
-window.inactive.border.color: #444444
+window.inactive.title.bg.color: #181818
+window.inactive.label.text.color: #585858
+window.inactive.button.unpressed.image.color: #585858
+window.inactive.button.hover.image.color: #585858
+window.inactive.border.color: #383838
 
 # Padding
 padding.height: 2
 padding.width: 4
 
 # Menu
-menu.items.bg.color: #333333
-menu.items.text.color: #AAAAAA
-menu.items.active.bg.color: #5555FF
-menu.items.active.text.color: #000000
+menu.items.bg.color: #282828
+menu.items.text.color: #d8d8d8
+menu.items.active.bg.color: #7cafc2
+menu.items.active.text.color: #181818
 menu.border.width: 1
-menu.border.color: #444444
+menu.border.color: #383838
 
 # OSD
-osd.bg.color: #333333
-osd.border.color: #5555FF
+osd.bg.color: #282828
+osd.border.color: #7cafc2
 osd.border.width: 1
-osd.label.text.color: #AAAAAA
+osd.label.text.color: #d8d8d8
