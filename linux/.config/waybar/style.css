@@ -125,6 +125,8 @@ window#waybar {
 tooltip {
     background: @base01;
     border: 1px solid @base03;
+    transition: none;
+    opacity: 1;
 }
 
 tooltip label {

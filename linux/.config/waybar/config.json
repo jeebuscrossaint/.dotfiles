@@ -7,7 +7,7 @@
 
     "modules-left": ["sway/workspaces", "sway/window", "custom/weather", "custom/mpris", "custom/canvas"],
     "modules-center": ["clock"],
-    "modules-right": ["network", "bluetooth", "cpu", "custom/temp", "memory", "battery", "custom/mic", "custom/volume"],
+    "modules-right": ["network", "bluetooth", "cpu", "custom/temp", "memory", "custom/battery", "custom/mic", "custom/volume"],
 
     "sway/window": {
         "max-length": 50,
@@ -94,17 +94,10 @@
         "tooltip-format": "RAM: {used:0.1f}G / {total:0.1f}G\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G"
     },
 
-    "battery": {
-        "interval": 30,
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": "󰂄 {capacity}%",
-        "format-plugged": "󰚥 {capacity}%",
-        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-        "tooltip-format": "{capacity}% | {timeTo}"
+    "custom/battery": {
+        "exec": "waybar-battery",
+        "return-type": "json",
+        "interval": 30
     },
 
     "custom/volume": {
