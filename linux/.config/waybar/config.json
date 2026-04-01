@@ -5,7 +5,7 @@
     "spacing": 0,
     "fixed-center": true,
 
-    "modules-left": ["sway/workspaces", "sway/window", "custom/weather", "custom/mpris"],
+    "modules-left": ["sway/workspaces", "sway/window", "custom/weather", "custom/mpris", "custom/canvas"],
     "modules-center": ["clock"],
     "modules-right": ["network", "bluetooth", "cpu", "custom/temp", "memory", "battery", "custom/mic", "custom/volume"],
 
@@ -126,6 +126,12 @@
         "on-scroll-up": "playerctl next",
         "on-scroll-down": "playerctl previous",
         "max-length": 35
+    },
+
+    "custom/canvas": {
+        "exec": "waybar-canvas",
+        "return-type": "json",
+        "interval": 300
     },
 
     "custom/mic": {

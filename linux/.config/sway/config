@@ -145,3 +145,4 @@ exec numlockwl
 exec sh -c 'command -v nm-applet && nm-applet'
 exec dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec start-polkit
+exec canvas-notify

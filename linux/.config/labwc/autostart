@@ -10,3 +10,4 @@ command -v nm-applet && nm-applet &
 
 dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &
 start-polkit &
+canvas-notify &
