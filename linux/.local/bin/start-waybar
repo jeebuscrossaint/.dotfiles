@@ -1,2 +1,2 @@
 #!/bin/sh
-exec waybar -c ~/.config/waybar/config.json -s ~/.config/waybar/style.css
+exec env GTK_USE_PORTAL=0 waybar -c ~/.config/waybar/config.json -s ~/.config/waybar/style.css
