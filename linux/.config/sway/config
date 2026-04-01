@@ -141,7 +141,6 @@ exec autotiling-rs
 exec swayidle -w -C ~/.config/swayidle/config
 exec env GTK_USE_PORTAL=0 waybar -c ~/.config/waybar/config.json -s ~/.config/waybar/style.css
 exec dunst
-exec numlockwl
 exec sh -c 'command -v nm-applet && nm-applet'
 exec dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec start-polkit

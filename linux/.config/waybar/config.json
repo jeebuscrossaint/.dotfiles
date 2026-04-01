@@ -7,7 +7,7 @@
 
     "modules-left": ["sway/workspaces", "sway/window", "custom/weather", "custom/mpris", "custom/canvas"],
     "modules-center": ["clock"],
-    "modules-right": ["network", "bluetooth", "cpu", "custom/temp", "memory", "custom/battery", "custom/mic", "custom/volume"],
+    "modules-right": ["custom/network", "custom/bluetooth", "cpu", "custom/temp", "memory", "custom/battery", "custom/mic", "custom/volume"],
 
     "sway/window": {
         "max-length": 50,
@@ -54,26 +54,18 @@
         "return-type": "json"
     },
 
-    "network": {
-        "format-wifi": " {signalStrength}%",
-        "format-ethernet": "󰈀",
-        "format-disconnected": "󰖪",
-        "tooltip-format-wifi": "{essid} ({signalStrength}%)\nvia {gwaddr}",
-        "tooltip-format-ethernet": "{ifname}\n{ipaddr}/{cidr}",
-        "tooltip-format-disconnected": "Disconnected",
-        "on-click": "nm-connection-editor"
+    "custom/network": {
+        "exec": "waybar-network",
+        "return-type": "json",
+        "interval": 10,
+        "on-click": "sh -c 'command -v nm-connection-editor && nm-connection-editor'"
     },
 
-    "bluetooth": {
-        "format": "󰂯",
-        "format-connected": "󰂱 {device_alias}",
-        "format-connected-battery": "󰂱 {device_alias} {device_battery_percentage}%",
-        "format-off": "󰂲",
-        "tooltip-format": "{controller_alias}\n{num_connections} connected",
-        "tooltip-format-connected": "{controller_alias}\n\n{device_enumerate}",
-        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-        "tooltip-format-enumerate-connected-battery": "{device_alias} {device_battery_percentage}%",
-        "on-click": "blueman-manager"
+    "custom/bluetooth": {
+        "exec": "waybar-bluetooth",
+        "return-type": "json",
+        "interval": 10,
+        "on-click": "sh -c 'command -v blueman-manager && blueman-manager'"
     },
 
     "cpu": {

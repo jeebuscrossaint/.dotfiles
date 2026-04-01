@@ -5,7 +5,6 @@ swayidle -w -C ~/.config/swayidle/config &
 start-waybar &
 dunst &
 
-numlockwl &
 command -v nm-applet && nm-applet &
 
 dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &
