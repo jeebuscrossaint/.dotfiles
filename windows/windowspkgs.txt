@@ -19,6 +19,7 @@ meld              3.22.2       extras 2026-01-10 18:30:08
 memreduct         3.5.2        extras 2026-01-10 18:30:09 
 nmap              7.99         main   2026-04-06 17:06:36 
 nodejs            25.9.0       main   2026-04-06 18:50:22 
+nvm               1.2.2        main   2026-04-06 19:00:57 
 prismlauncher     10.0.5       games  2026-02-25 16:56:37 
 python            3.14.3       main   2026-02-09 16:53:26 
 qalculate         5.10.0       extras 2026-04-06 17:10:27 
@@ -31,6 +32,7 @@ standardnotes     3.201.21     extras 2026-04-06 17:11:44
 starship          1.24.2       main   2026-01-10 18:38:47 
 typst             0.14.2       main   2026-01-10 18:38:53 
 uutils-coreutils  0.7.0        main   2026-03-11 15:54:13 
+uv                0.11.3       main   2026-04-06 19:00:55 
 vencord-installer 1.4.0        extras 2026-01-10 14:20:06 
 vlc               3.0.23       extras 2026-01-10 18:39:13 
 wget              1.21.4       main   2026-01-10 18:39:16 
