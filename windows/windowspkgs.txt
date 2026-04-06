@@ -4,7 +4,6 @@ Name              Version      Source Updated             Info
 7zip              26.00        main   2026-02-25 21:46:10 
 adb               37.0.0       main   2026-04-06 20:45:37 
 bat               0.26.1       main   2026-01-10 18:17:06 
-cacert            2026-03-19   main   2026-04-06 20:45:38 
 claude            1.569.0      extras 2026-04-06 20:47:06 
 claude-code       2.1.92       main   2026-04-06 20:47:41 
 curl              8.19.0_5     main   2026-04-06 20:49:05 
@@ -20,7 +19,6 @@ meld              3.22.2       extras 2026-01-10 18:30:08
 memreduct         3.5.2        extras 2026-01-10 18:30:09 
 nmap              7.99         main   2026-04-06 17:06:36 
 nodejs            25.9.0       main   2026-04-06 18:50:22 
-powertoys         0.98.1       extras 2026-04-06 17:09:47 
 prismlauncher     10.0.5       games  2026-02-25 16:56:37 
 python            3.14.3       main   2026-02-09 16:53:26 
 qalculate         5.10.0       extras 2026-04-06 17:10:27 
