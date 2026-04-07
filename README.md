@@ -1,12 +1,12 @@
 # dotfiles
 
-My personal dotfiles for Arch Linux and OpenBSD. Cross-platform where possible.
+Personal dotfiles for Arch Linux and OpenBSD.
 
 ## Stack
 
 | Role | App |
 |------|-----|
-| WM | Sway / Hyprland / labwc |
+| WM | Sway (primary) / labwc |
 | Bar | Waybar |
 | Launcher | Fuzzel |
 | Terminal | Foot |
@@ -15,7 +15,8 @@ My personal dotfiles for Arch Linux and OpenBSD. Cross-platform where possible.
 | Notifications | Dunst |
 | Lock screen | swaylock + swayidle |
 | Theming | [coat](https://github.com/jeebuscrossaint/coat) (Base16) |
-| File manager | yazi |
+| File manager | Ranger |
+| Browser | Firefox |
 | Font | VictorMono Nerd Font |
 
 ## Install
@@ -26,7 +27,7 @@ cd ~/.dotfiles
 stow linux
 ```
 
-Then apply the color theme:
+Apply the color theme:
 
 ```sh
 coat apply
@@ -39,7 +40,7 @@ mkdir -p ~/.config/canvas
 echo "YOUR_CANVAS_ICAL_URL" > ~/.config/canvas/ical-url
 ```
 
-For Nerd Fonts on systems without packages (e.g. OpenBSD):
+Install Nerd Fonts on systems without packages (e.g. OpenBSD):
 
 ```sh
 ./install-nerdfonts.sh
@@ -48,36 +49,36 @@ For Nerd Fonts on systems without packages (e.g. OpenBSD):
 ## Structure
 
 ```
-linux/           stowed to $HOME
-  .config/       app configs
-  .local/bin/    scripts (in PATH automatically)
-windows/         PowerShell profile, AHK scripts
-misc/            miscellaneous stuff
-install-nerdfonts.sh   download and install all Nerd Fonts
+linux/                  stowed to $HOME
+  .config/              app configs
+  .local/bin/           scripts (in PATH automatically)
+windows/                PowerShell profile, AHK scripts
+misc/                   miscellaneous stuff
+install-nerdfonts.sh    download all Nerd Fonts
 ```
 
-## Scripts (in PATH via ~/.local/bin)
+## Scripts
 
 | Script | What it does |
 |--------|--------------|
-| `volumectl` | Cross-platform volume control (wpctl / sndioctl) |
+| `volumectl` | Volume control (wpctl on Linux, sndioctl on OpenBSD) |
 | `waybar-volume` | Waybar volume widget |
 | `waybar-mic` | Waybar mic widget |
-| `waybar-temp` | Waybar CPU temp (Linux sysfs / OpenBSD sysctl) |
-| `waybar-battery` | Waybar battery (Linux sysfs / OpenBSD apm) |
-| `waybar-network` | Waybar network (ip/iw / OpenBSD ifconfig) |
-| `waybar-bluetooth` | Waybar bluetooth (hides on OpenBSD) |
-| `waybar-mpris` | Waybar media player via playerctl |
-| `waybar-canvas` | Waybar Canvas assignment tracker |
-| `canvas-ical-fetch` | Fetch/cache Canvas iCal feed |
+| `waybar-temp` | CPU temp (Linux sysfs / OpenBSD sysctl) |
+| `waybar-battery` | Battery (Linux sysfs / OpenBSD apm) |
+| `waybar-network` | Network status (ip/iw / OpenBSD ifconfig) |
+| `waybar-bluetooth` | Bluetooth status (hides on OpenBSD) |
+| `waybar-mpris` | Media player via playerctl |
+| `waybar-canvas` | Canvas assignment tracker |
+| `canvas-ical-fetch` | Fetch and cache Canvas iCal feed |
 | `canvas-ical-parse` | Parse iCal events to JSON |
-| `canvas-notify` | Dunst notifications for upcoming assignments |
-| `swayscreenshot` | Region screenshot → clipboard |
-| `toggle-waybar` | Toggle waybar on/off |
-| `start-polkit` | Start polkit agent (tries common paths) |
-| `start-waybar` | Launch waybar with correct env |
+| `canvas-notify` | Dunst alerts for upcoming assignments |
+| `swayscreenshot` | Region screenshot to clipboard |
+| `toggle-waybar` | Toggle waybar |
+| `start-polkit` | Start polkit agent |
+| `start-waybar` | Launch waybar |
 
-## Keybinds (Sway / Hyprland / labwc)
+## Keybinds
 
 | Bind | Action |
 |------|--------|
@@ -88,9 +89,8 @@ install-nerdfonts.sh   download and install all Nerd Fonts
 | Super+L | Lock screen |
 | Super+P | Toggle waybar |
 | Super+Shift+S | Screenshot |
-| Super+Delete | wlboard |
 
-## Wallpaper repos
+## Wallpapers
 
 - https://github.com/rann01/IRIX-tiles
 - https://github.com/dharmx/walls
@@ -101,6 +101,6 @@ install-nerdfonts.sh   download and install all Nerd Fonts
 - https://github.com/whoisYoges/lwalpapers
 - https://github.com/Axenide/Wallpapers
 
-## Browser Extensions
+## Firefox Extensions
 
 uBlock Origin, SponsorBlock, BetterCanvas, Return YouTube Dislike, DocsAfterDark, Proton Pass, Dark Reader
