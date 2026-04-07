@@ -1,6 +1,6 @@
 # dotfiles
 
-![preview](misc/preview.png)
+![arch](misc/preview_arch.png) ![openbsd](misc/preview_openbsd.png)
 
 sway · foot · fish · helix · fuzzel · waybar · coat
 
