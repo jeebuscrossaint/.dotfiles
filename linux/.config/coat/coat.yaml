@@ -7,6 +7,7 @@ enabled:
   - foot
   - helix
   - fuzzel
+  - ranger
   - bat
   - btop
   - dunst
