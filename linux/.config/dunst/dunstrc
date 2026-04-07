@@ -26,7 +26,7 @@
     progress_bar_corner_radius = 2
 
     # Text
-    font = VictorMono Nerd Font Mono 10
+    font = 0xProto Nerd Font Mono 10
     line_height = 2
     markup = full
     format = "<b>%s</b>\n%b"
