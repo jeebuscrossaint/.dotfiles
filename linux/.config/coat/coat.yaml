@@ -33,9 +33,9 @@ opacity:
 # The 'font' key triggers in_font_section and expects a mapping (dictionary)
 font:
   emoji: "Noto Color Emoji"
-  monospace: "VictorMono Nerd Font Mono"
-  sansserif: "VictorMono Nerd Font"
-  serif: "VictorMono Nerd Font"
+  monospace: "0xProto Nerd Font Mono"
+  sansserif: "0xProto Nerd Font"
+  serif: "0xProto Nerd Font"
   sizes:
     terminal: 8
     desktop: 8
