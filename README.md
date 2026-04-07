@@ -1,5 +1,7 @@
 # dotfiles
 
+![preview](misc/preview.png)
+
 sway · foot · fish · helix · fuzzel · waybar · coat
 
 arch linux & openbsd
