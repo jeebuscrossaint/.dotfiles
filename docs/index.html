@@ -3,188 +3,447 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>dotfiles</title>
+  <title>dotfiles — jeebuscrossaint</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+    :root {
+      --bg: #000;
+      --fg: #fff;
+      --dim: #444;
+      --mid: #888;
+      --border: #222;
+      --hover: #111;
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    html { scroll-behavior: smooth; }
+
     body {
-      background: #000;
-      color: #fff;
-      font-family: "0xProto Nerd Font Mono", "Courier New", monospace;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Share Tech Mono', 'Courier New', monospace;
       font-size: 14px;
       line-height: 1.7;
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 60px 24px;
+      overflow-x: hidden;
     }
 
-    h1 { font-size: 2rem; font-weight: bold; margin-bottom: 4px; }
-    h2 { font-size: 1.1rem; font-weight: bold; margin: 48px 0 16px; border-bottom: 1px solid #222; padding-bottom: 6px; }
-    h3 { font-size: 0.95rem; font-weight: bold; margin: 24px 0 8px; color: #aaa; }
+    /* scanlines */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(255,255,255,0.012) 2px,
+        rgba(255,255,255,0.012) 4px
+      );
+      pointer-events: none;
+      z-index: 9999;
+    }
 
-    p  { margin-bottom: 12px; color: #ccc; }
-    a  { color: #fff; text-underline-offset: 3px; }
-    a:hover { color: #aaa; }
+    /* ── hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 48px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
 
-    .tagline { color: #555; margin-bottom: 32px; font-size: 0.9rem; }
+    .hero-label {
+      font-size: 0.75rem;
+      color: var(--dim);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
 
-    .stack {
+    .hero h1 {
+      font-size: clamp(3rem, 10vw, 8rem);
+      font-weight: normal;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 32px;
+    }
+
+    .hero h1 span {
+      display: inline-block;
+      border-right: 3px solid #fff;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink { 50% { border-color: transparent; } }
+
+    .hero-sub {
+      color: var(--mid);
+      font-size: 0.9rem;
+      margin-bottom: 48px;
+      max-width: 500px;
+    }
+
+    .hero-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 16px;
+      gap: 6px;
     }
+
     .tag {
-      background: #111;
-      border: 1px solid #222;
-      padding: 2px 10px;
-      font-size: 0.8rem;
+      border: 1px solid var(--border);
+      padding: 3px 12px;
+      font-size: 0.75rem;
+      color: var(--mid);
+      letter-spacing: 0.05em;
+      transition: all 0.15s;
+    }
+    .tag:hover { border-color: #fff; color: #fff; }
+
+    .hero-corner {
+      position: absolute;
+      bottom: 32px;
+      right: 48px;
+      color: var(--dim);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── section ── */
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 48px;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 40px;
+    }
+
+    /* ── screenshots ── */
+    .screenshots {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 700px) { .screenshots { grid-template-columns: 1fr; } }
+
+    .shot {
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 16/9;
+      background: #0a0a0a;
+    }
+
+    .shot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(20%);
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    .shot:hover img { transform: scale(1.04); filter: grayscale(0%); }
+
+    .shot-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 14px 10px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.85));
+      font-size: 0.72rem;
+      color: var(--mid);
+      letter-spacing: 0.1em;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .shot:hover .shot-label { opacity: 1; }
+
+    /* ── two col ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+    }
+    @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; gap: 48px; } }
+
+    /* ── terminal block ── */
+    .term {
+      border: 1px solid var(--border);
+      margin: 20px 0;
+    }
+
+    .term-bar {
+      background: var(--border);
+      padding: 7px 14px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .term-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #333;
+    }
+
+    .term-bar span {
+      font-size: 0.7rem;
+      color: var(--dim);
+      margin-left: 6px;
+      letter-spacing: 0.05em;
+    }
+
+    .term pre {
+      padding: 18px;
+      overflow-x: auto;
+      font-size: 0.82rem;
+      line-height: 1.65;
       color: #ccc;
     }
 
-    .screenshots {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 12px;
-      margin: 24px 0;
-    }
-    .screenshots figure { margin: 0; }
-    .screenshots img {
-      width: 100%;
-      display: block;
-      border: 1px solid #222;
-    }
-    .screenshots figcaption {
-      font-size: 0.75rem;
-      color: #555;
-      margin-top: 4px;
-    }
+    .term pre .prompt { color: var(--dim); user-select: none; }
+    .term pre .cmd    { color: #fff; }
+    .term pre .comment{ color: #444; }
 
-    pre {
-      background: #0a0a0a;
-      border: 1px solid #1a1a1a;
-      padding: 16px;
-      overflow-x: auto;
-      margin: 12px 0;
+    /* ── table ── */
+    h2 {
       font-size: 0.85rem;
-      line-height: 1.6;
+      font-weight: normal;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 20px;
     }
-    code { font-family: inherit; color: #ddd; }
 
-    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.85rem; }
-    th { text-align: left; border-bottom: 1px solid #333; padding: 6px 12px 6px 0; color: #aaa; font-weight: normal; }
-    td { padding: 5px 12px 5px 0; color: #ccc; border-bottom: 1px solid #111; }
-    td:first-child { color: #fff; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
 
-    .platform-grid {
+    thead tr { border-bottom: 1px solid var(--border); }
+    th { text-align: left; padding: 8px 16px 8px 0; color: var(--dim); font-weight: normal; letter-spacing: 0.08em; font-size: 0.7rem; text-transform: uppercase; }
+    td { padding: 9px 16px 9px 0; border-bottom: 1px solid #0d0d0d; color: var(--mid); transition: color 0.1s; }
+    tr:hover td { color: var(--fg); }
+    td:first-child { color: var(--fg); }
+
+    /* ── divider ── */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    /* ── keybinds ── */
+    .kb-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 2px;
     }
-    @media (max-width: 600px) { .platform-grid { grid-template-columns: 1fr; } }
 
-    footer { margin-top: 80px; color: #333; font-size: 0.8rem; }
+    .kb {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      border: 1px solid transparent;
+      transition: border-color 0.15s;
+    }
+    .kb:hover { border-color: var(--border); }
+
+    .kb-key {
+      font-size: 0.75rem;
+      color: var(--fg);
+      background: #0d0d0d;
+      border: 1px solid #1a1a1a;
+      padding: 2px 8px;
+      white-space: nowrap;
+    }
+
+    .kb-action { font-size: 0.78rem; color: var(--dim); }
+
+    /* ── footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--dim);
+    }
+
+    footer a { color: var(--dim); text-decoration: none; }
+    footer a:hover { color: var(--fg); }
   </style>
 </head>
 <body>
 
-  <h1>dotfiles</h1>
-  <p class="tagline">arch linux · openbsd · windows 11</p>
-
-  <div class="screenshots">
-    <figure>
-      <img src="../misc/preview_arch.png" alt="Arch Linux preview" />
-      <figcaption>arch linux · sway</figcaption>
-    </figure>
-    <figure>
-      <img src="../misc/preview_openbsd.png" alt="OpenBSD preview" />
-      <figcaption>openbsd · labwc</figcaption>
-    </figure>
-    <figure>
-      <img src="../misc/preview_windows.png" alt="Windows preview" />
-      <figcaption>windows 11 · glazewm</figcaption>
-    </figure>
+  <!-- hero -->
+  <div class="hero">
+    <p class="hero-label">jeebuscrossaint / .dotfiles</p>
+    <h1>dot<span>files</span></h1>
+    <p class="hero-sub">personal system configs for arch linux, openbsd, and windows 11 — tiling wms, custom shells, unified tooling.</p>
+    <div class="hero-tags">
+      <span class="tag">sway</span>
+      <span class="tag">glazewm</span>
+      <span class="tag">fish</span>
+      <span class="tag">powershell</span>
+      <span class="tag">helix</span>
+      <span class="tag">waybar</span>
+      <span class="tag">coat</span>
+      <span class="tag">uutils</span>
+      <span class="tag">btop</span>
+    </div>
+    <p class="hero-corner">arch · openbsd · windows</p>
   </div>
 
-  <div class="platform-grid">
-    <div>
-      <h2>Linux</h2>
-      <div class="stack">
-        <span class="tag">sway</span>
-        <span class="tag">waybar</span>
-        <span class="tag">foot</span>
-        <span class="tag">fish</span>
-        <span class="tag">helix</span>
-        <span class="tag">fuzzel</span>
-        <span class="tag">ranger</span>
-        <span class="tag">btop</span>
-        <span class="tag">coat</span>
+  <!-- screenshots -->
+  <section>
+    <p class="section-label">previews</p>
+    <div class="screenshots">
+      <div class="shot">
+        <img src="https://raw.githubusercontent.com/jeebuscrossaint/.dotfiles/main/misc/preview_arch.png" alt="arch" />
+        <div class="shot-label">arch linux · sway · waybar</div>
       </div>
-      <pre><code>git clone https://github.com/jeebuscrossaint/.dotfiles ~/.dotfiles
-cd ~/.dotfiles
-stow linux
-coat apply</code></pre>
-      <p>Requires <a href="https://www.gnu.org/software/stow/">GNU Stow</a> and <a href="https://github.com/jeebuscrossaint/coat">coat</a> for theming.</p>
-    </div>
-
-    <div>
-      <h2>Windows</h2>
-      <div class="stack">
-        <span class="tag">glazewm</span>
-        <span class="tag">windows terminal</span>
-        <span class="tag">powershell 7</span>
-        <span class="tag">powertoys</span>
-        <span class="tag">lf</span>
-        <span class="tag">btop</span>
-        <span class="tag">uutils</span>
+      <div class="shot">
+        <img src="https://raw.githubusercontent.com/jeebuscrossaint/.dotfiles/main/misc/preview_openbsd.png" alt="openbsd" />
+        <div class="shot-label">openbsd · labwc</div>
       </div>
-      <pre><code>git clone https://github.com/jeebuscrossaint/.dotfiles
-cd .dotfiles
-.\install.ps1</code></pre>
-      <p>Requires <a href="https://scoop.sh">Scoop</a>. See the <a href="../windows.md">Windows setup guide</a> for package list.</p>
+      <div class="shot">
+        <img src="https://raw.githubusercontent.com/jeebuscrossaint/.dotfiles/main/misc/preview_windows.png" alt="windows" />
+        <div class="shot-label">windows 11 · glazewm</div>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <h2>Linux Stack</h2>
-  <table>
-    <tr><th>role</th><th>tool</th><th>notes</th></tr>
-    <tr><td>window manager</td><td>sway</td><td>wayland, i3-compatible</td></tr>
-    <tr><td>status bar</td><td>waybar</td><td>custom scripts for canvas, mpris, bt</td></tr>
-    <tr><td>terminal</td><td>foot</td><td>gpu-accelerated, server mode</td></tr>
-    <tr><td>shell</td><td>fish</td><td>custom functions, jit alias</td></tr>
-    <tr><td>editor</td><td>helix</td><td>modal, lsp support</td></tr>
-    <tr><td>launcher</td><td>fuzzel</td><td>wayland-native</td></tr>
-    <tr><td>file manager</td><td>ranger</td><td>coat colorscheme</td></tr>
-    <tr><td>compositor alt</td><td>labwc</td><td>openBSD / stacking fallback</td></tr>
-    <tr><td>theming</td><td>coat</td><td>base16, applies across all apps</td></tr>
-    <tr><td>notifications</td><td>dunst</td><td></td></tr>
-  </table>
+  <hr class="divider" />
 
-  <h2>Windows Stack</h2>
-  <table>
-    <tr><th>role</th><th>tool</th><th>notes</th></tr>
-    <tr><td>window manager</td><td>glazewm</td><td>tiling, sway-like keybinds</td></tr>
-    <tr><td>terminal</td><td>windows terminal</td><td>black bg, white text</td></tr>
-    <tr><td>shell</td><td>powershell 7</td><td>custom prompt, uutils coreutils</td></tr>
-    <tr><td>launcher</td><td>powertoys run</td><td>alt+space</td></tr>
-    <tr><td>file manager</td><td>lf</td><td>ranger-like</td></tr>
-    <tr><td>system monitor</td><td>btop</td><td></td></tr>
-    <tr><td>unix tools</td><td>uutils-coreutils</td><td>auto-aliased in profile</td></tr>
-    <tr><td>editor</td><td>helix</td><td>same as linux</td></tr>
-  </table>
+  <!-- install -->
+  <section>
+    <p class="section-label">install</p>
+    <div class="two-col">
+      <div>
+        <h2>Linux</h2>
+        <div class="term">
+          <div class="term-bar">
+            <div class="term-dot"></div><div class="term-dot"></div><div class="term-dot"></div>
+            <span>sh</span>
+          </div>
+          <pre><span class="comment"># clone and stow</span>
+<span class="prompt">$ </span><span class="cmd">git clone https://github.com/jeebuscrossaint/.dotfiles ~/.dotfiles</span>
+<span class="prompt">$ </span><span class="cmd">cd ~/.dotfiles && stow linux</span>
+<span class="prompt">$ </span><span class="cmd">coat apply</span>
 
-  <h2>Theming</h2>
-  <p>
-    Linux theming is handled by <a href="https://github.com/jeebuscrossaint/coat">coat</a>,
-    a base16 theme manager that applies a scheme across 17+ applications simultaneously
-    (terminal, editor, bar, GTK, Qt, etc). Current scheme: <code>paul-millr</code>.
-  </p>
-  <p>
-    Windows uses a static black/white theme — no coat dependency.
-  </p>
+<span class="comment"># canvas module (optional)</span>
+<span class="prompt">$ </span><span class="cmd">echo "YOUR_URL" > ~/.config/canvas/ical-url</span>
+
+<span class="comment"># nerd fonts on openbsd</span>
+<span class="prompt">$ </span><span class="cmd">./install-nerdfonts.sh</span></pre>
+        </div>
+        <p style="font-size:0.78rem;color:#444;">requires <a href="https://www.gnu.org/software/stow/" style="color:#666;">gnu stow</a> and <a href="https://github.com/jeebuscrossaint/coat" style="color:#666;">coat</a></p>
+      </div>
+      <div>
+        <h2>Windows</h2>
+        <div class="term">
+          <div class="term-bar">
+            <div class="term-dot"></div><div class="term-dot"></div><div class="term-dot"></div>
+            <span>powershell</span>
+          </div>
+          <pre><span class="comment"># install scoop</span>
+<span class="prompt">PS> </span><span class="cmd">irm get.scoop.sh | iex</span>
+<span class="prompt">PS> </span><span class="cmd">scoop bucket add extras</span>
+
+<span class="comment"># install packages</span>
+<span class="prompt">PS> </span><span class="cmd">scoop install glazewm pwsh lf btop `
+      uutils-coreutils helix fastfetch</span>
+
+<span class="comment"># install dotfiles</span>
+<span class="prompt">PS> </span><span class="cmd">git clone https://github.com/jeebuscrossaint/.dotfiles</span>
+<span class="prompt">PS> </span><span class="cmd">cd .dotfiles && .\install.ps1</span></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- stack -->
+  <section>
+    <p class="section-label">stack</p>
+    <div class="two-col">
+      <div>
+        <h2>Linux</h2>
+        <table>
+          <thead><tr><th>role</th><th>tool</th></tr></thead>
+          <tbody>
+            <tr><td>window manager</td><td>sway / labwc</td></tr>
+            <tr><td>status bar</td><td>waybar</td></tr>
+            <tr><td>terminal</td><td>foot</td></tr>
+            <tr><td>shell</td><td>fish</td></tr>
+            <tr><td>editor</td><td>helix</td></tr>
+            <tr><td>launcher</td><td>fuzzel</td></tr>
+            <tr><td>file manager</td><td>ranger</td></tr>
+            <tr><td>theming</td><td>coat</td></tr>
+            <tr><td>notifications</td><td>dunst</td></tr>
+            <tr><td>system monitor</td><td>btop</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h2>Windows</h2>
+        <table>
+          <thead><tr><th>role</th><th>tool</th></tr></thead>
+          <tbody>
+            <tr><td>window manager</td><td>glazewm</td></tr>
+            <tr><td>terminal</td><td>windows terminal</td></tr>
+            <tr><td>shell</td><td>powershell 7</td></tr>
+            <tr><td>launcher</td><td>powertoys run</td></tr>
+            <tr><td>file manager</td><td>lf</td></tr>
+            <tr><td>system monitor</td><td>btop</td></tr>
+            <tr><td>unix tools</td><td>uutils-coreutils</td></tr>
+            <tr><td>editor</td><td>helix</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- keybinds -->
+  <section>
+    <p class="section-label">keybindings — glazewm / sway</p>
+    <div class="kb-grid">
+      <div class="kb"><span class="kb-key">mod + q</span><span class="kb-action">open terminal</span></div>
+      <div class="kb"><span class="kb-key">mod + c</span><span class="kb-action">close window</span></div>
+      <div class="kb"><span class="kb-key">mod + f</span><span class="kb-action">fullscreen</span></div>
+      <div class="kb"><span class="kb-key">mod + d</span><span class="kb-action">launcher</span></div>
+      <div class="kb"><span class="kb-key">mod + shift + v</span><span class="kb-action">toggle float</span></div>
+      <div class="kb"><span class="kb-key">mod + arrows</span><span class="kb-action">focus direction</span></div>
+      <div class="kb"><span class="kb-key">mod + shift + arrows</span><span class="kb-action">move window</span></div>
+      <div class="kb"><span class="kb-key">mod + 1–9</span><span class="kb-action">switch workspace</span></div>
+      <div class="kb"><span class="kb-key">mod + shift + 1–9</span><span class="kb-action">move to workspace</span></div>
+      <div class="kb"><span class="kb-key">mod + r</span><span class="kb-action">resize mode</span></div>
+      <div class="kb"><span class="kb-key">mod + t</span><span class="kb-action">toggle tiling dir</span></div>
+      <div class="kb"><span class="kb-key">mod + shift + s</span><span class="kb-action">screenshot</span></div>
+    </div>
+  </section>
 
   <footer>
-    <a href="https://github.com/jeebuscrossaint/.dotfiles">github</a> · mit license
+    <span>jeebuscrossaint · mit</span>
+    <span>
+      <a href="https://github.com/jeebuscrossaint/.dotfiles">github</a>
+    </span>
   </footer>
 
 </body>
