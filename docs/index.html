@@ -9,11 +9,11 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root { --border: #111; --dim: #333; --mid: #666; }
+    :root { --border: #2a2a2a; --dim: #555; --mid: #888; }
 
     body {
-      background: #000;
-      color: #fff;
+      background: #111;
+      color: #f0f0f0;
       font-family: 'Share Tech Mono', 'Courier New', monospace;
       font-size: 13px;
       line-height: 1.6;
@@ -40,7 +40,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 28px;
-      background: rgba(0,0,0,0.92);
+      background: rgba(17,17,17,0.92);
       border-bottom: 1px solid var(--border);
       backdrop-filter: blur(8px);
       z-index: 100;
@@ -167,7 +167,7 @@
     /* ── terminal ── */
     .term {
       border: 1px solid var(--border);
-      background: #050505;
+      background: #0d0d0d;
     }
 
     .term-bar {
@@ -178,8 +178,8 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .dot { width: 8px; height: 8px; border-radius: 50%; background: #1c1c1c; }
-    .term-bar span { font-size: 0.6rem; color: #252525; margin-left: 4px; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #333; }
+    .term-bar span { font-size: 0.6rem; color: #444; margin-left: 4px; }
 
     .term pre {
       padding: 14px;
@@ -188,15 +188,15 @@
       overflow-x: auto;
     }
 
-    .p { color: #252525; user-select: none; }
-    .c { color: #bbb; }
-    .cm { color: #1e1e1e; }
+    .p { color: #444; user-select: none; }
+    .c { color: #ccc; }
+    .cm { color: #333; }
 
     /* ── table ── */
     table { width: 100%; border-collapse: collapse; font-size: 0.72rem; }
-    td { padding: 5px 0; border-bottom: 1px solid #080808; color: var(--mid); transition: color 0.1s; }
-    tr:hover td { color: #ccc; }
-    td:first-child { color: #555; width: 80px; }
+    td { padding: 5px 0; border-bottom: 1px solid #1a1a1a; color: var(--mid); transition: color 0.1s; }
+    tr:hover td { color: #eee; }
+    td:first-child { color: #777; width: 80px; }
 
     /* ── footer ── */
     footer {
@@ -204,10 +204,10 @@
       display: flex;
       justify-content: space-between;
       font-size: 0.65rem;
-      color: #222;
+      color: #444;
     }
 
-    footer a { color: #222; text-decoration: none; }
+    footer a { color: #444; text-decoration: none; }
     footer a:hover { color: #fff; }
 
     @media (max-width: 768px) {
