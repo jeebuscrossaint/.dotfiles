@@ -1,39 +1,42 @@
-q# Windows Dotfiles Installer
+# Windows Dotfiles Installer
 
 Write-Host "[INFO] Installing Windows dotfiles..." -ForegroundColor Blue
 
-# Directories
 $DOTFILES_DIR = Split-Path -Parent $MyInvocation.MyCommand.Path
-$WINDOWS_DIR = Join-Path $DOTFILES_DIR "windows"
+$WINDOWS_DIR  = Join-Path $DOTFILES_DIR "windows"
+
+function Link-Config {
+    param($Source, $Target)
+    if (-not (Test-Path $Source)) { return }
+    $dir = Split-Path -Parent $Target
+    if (-not (Test-Path $dir)) { New-Item -ItemType Directory -Path $dir -Force | Out-Null }
+    Copy-Item -Path $Source -Destination $Target -Force
+    Write-Host "[OK] $Target" -ForegroundColor Green
+}
 
 # PowerShell profile
-$PROFILE_SOURCE = Join-Path $WINDOWS_DIR "Microsoft.PowerShell_profile.ps1"
-$PROFILE_DIR = Join-Path $env:USERPROFILE "Documents\PowerShell"
-$PROFILE_TARGET = Join-Path $PROFILE_DIR "Microsoft.PowerShell_profile.ps1"
+Link-Config `
+    (Join-Path $WINDOWS_DIR "Microsoft.PowerShell_profile.ps1") `
+    (Join-Path $env:USERPROFILE "Documents\PowerShell\Microsoft.PowerShell_profile.ps1")
 
-# Starship config
-$STARSHIP_SOURCE = Join-Path $WINDOWS_DIR "starship.toml"
-$CONFIG_DIR = Join-Path $env:USERPROFILE ".config"
-$STARSHIP_TARGET = Join-Path $CONFIG_DIR "starship.toml"
+# GlazeWM
+Link-Config `
+    (Join-Path $WINDOWS_DIR "glazewm\config.yaml") `
+    (Join-Path $env:USERPROFILE ".glzr\glazewm\config.yaml")
 
-# Create directories if needed
-if (-not (Test-Path $PROFILE_DIR)) {
-    New-Item -ItemType Directory -Path $PROFILE_DIR -Force | Out-Null
-}
-if (-not (Test-Path $CONFIG_DIR)) {
-    New-Item -ItemType Directory -Path $CONFIG_DIR -Force | Out-Null
-}
+# lf
+Link-Config `
+    (Join-Path $WINDOWS_DIR "lf\lfrc") `
+    (Join-Path $env:LOCALAPPDATA "lf\lfrc")
 
-# Copy PowerShell profile
-if (Test-Path $PROFILE_SOURCE) {
-    Copy-Item -Path $PROFILE_SOURCE -Destination $PROFILE_TARGET -Force
-    Write-Host "[SUCCESS] Installed PowerShell profile" -ForegroundColor Green
-}
+# btop
+Link-Config `
+    (Join-Path $WINDOWS_DIR "btop\btop.conf") `
+    (Join-Path $env:APPDATA "btop\btop.conf")
 
-# Copy Starship config
-if (Test-Path $STARSHIP_SOURCE) {
-    Copy-Item -Path $STARSHIP_SOURCE -Destination $STARSHIP_TARGET -Force
-    Write-Host "[SUCCESS] Installed Starship config" -ForegroundColor Green
-}
+# Windows Terminal
+Link-Config `
+    (Join-Path $WINDOWS_DIR "windows-terminal\settings.json") `
+    (Join-Path $env:LOCALAPPDATA "Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json")
 
-Write-Host "[SUCCESS] Done!" -ForegroundColor Green
+Write-Host "[INFO] Done!" -ForegroundColor Blue

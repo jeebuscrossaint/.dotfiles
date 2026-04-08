@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dotfiles</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #000;
+      color: #fff;
+      font-family: "0xProto Nerd Font Mono", "Courier New", monospace;
+      font-size: 14px;
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    h1 { font-size: 2rem; font-weight: bold; margin-bottom: 4px; }
+    h2 { font-size: 1.1rem; font-weight: bold; margin: 48px 0 16px; border-bottom: 1px solid #222; padding-bottom: 6px; }
+    h3 { font-size: 0.95rem; font-weight: bold; margin: 24px 0 8px; color: #aaa; }
+
+    p  { margin-bottom: 12px; color: #ccc; }
+    a  { color: #fff; text-underline-offset: 3px; }
+    a:hover { color: #aaa; }
+
+    .tagline { color: #555; margin-bottom: 32px; font-size: 0.9rem; }
+
+    .stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .tag {
+      background: #111;
+      border: 1px solid #222;
+      padding: 2px 10px;
+      font-size: 0.8rem;
+      color: #ccc;
+    }
+
+    .screenshots {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+      margin: 24px 0;
+    }
+    .screenshots figure { margin: 0; }
+    .screenshots img {
+      width: 100%;
+      display: block;
+      border: 1px solid #222;
+    }
+    .screenshots figcaption {
+      font-size: 0.75rem;
+      color: #555;
+      margin-top: 4px;
+    }
+
+    pre {
+      background: #0a0a0a;
+      border: 1px solid #1a1a1a;
+      padding: 16px;
+      overflow-x: auto;
+      margin: 12px 0;
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+    code { font-family: inherit; color: #ddd; }
+
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.85rem; }
+    th { text-align: left; border-bottom: 1px solid #333; padding: 6px 12px 6px 0; color: #aaa; font-weight: normal; }
+    td { padding: 5px 12px 5px 0; color: #ccc; border-bottom: 1px solid #111; }
+    td:first-child { color: #fff; }
+
+    .platform-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    @media (max-width: 600px) { .platform-grid { grid-template-columns: 1fr; } }
+
+    footer { margin-top: 80px; color: #333; font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+
+  <h1>dotfiles</h1>
+  <p class="tagline">arch linux · openbsd · windows 11</p>
+
+  <div class="screenshots">
+    <figure>
+      <img src="../misc/preview_arch.png" alt="Arch Linux preview" />
+      <figcaption>arch linux · sway</figcaption>
+    </figure>
+    <figure>
+      <img src="../misc/preview_openbsd.png" alt="OpenBSD preview" />
+      <figcaption>openbsd · labwc</figcaption>
+    </figure>
+    <figure>
+      <img src="../misc/preview_windows.png" alt="Windows preview" />
+      <figcaption>windows 11 · glazewm</figcaption>
+    </figure>
+  </div>
+
+  <div class="platform-grid">
+    <div>
+      <h2>Linux</h2>
+      <div class="stack">
+        <span class="tag">sway</span>
+        <span class="tag">waybar</span>
+        <span class="tag">foot</span>
+        <span class="tag">fish</span>
+        <span class="tag">helix</span>
+        <span class="tag">fuzzel</span>
+        <span class="tag">ranger</span>
+        <span class="tag">btop</span>
+        <span class="tag">coat</span>
+      </div>
+      <pre><code>git clone https://github.com/jeebuscrossaint/.dotfiles ~/.dotfiles
+cd ~/.dotfiles
+stow linux
+coat apply</code></pre>
+      <p>Requires <a href="https://www.gnu.org/software/stow/">GNU Stow</a> and <a href="https://github.com/jeebuscrossaint/coat">coat</a> for theming.</p>
+    </div>
+
+    <div>
+      <h2>Windows</h2>
+      <div class="stack">
+        <span class="tag">glazewm</span>
+        <span class="tag">windows terminal</span>
+        <span class="tag">powershell 7</span>
+        <span class="tag">powertoys</span>
+        <span class="tag">lf</span>
+        <span class="tag">btop</span>
+        <span class="tag">uutils</span>
+      </div>
+      <pre><code>git clone https://github.com/jeebuscrossaint/.dotfiles
+cd .dotfiles
+.\install.ps1</code></pre>
+      <p>Requires <a href="https://scoop.sh">Scoop</a>. See the <a href="../windows.md">Windows setup guide</a> for package list.</p>
+    </div>
+  </div>
+
+  <h2>Linux Stack</h2>
+  <table>
+    <tr><th>role</th><th>tool</th><th>notes</th></tr>
+    <tr><td>window manager</td><td>sway</td><td>wayland, i3-compatible</td></tr>
+    <tr><td>status bar</td><td>waybar</td><td>custom scripts for canvas, mpris, bt</td></tr>
+    <tr><td>terminal</td><td>foot</td><td>gpu-accelerated, server mode</td></tr>
+    <tr><td>shell</td><td>fish</td><td>custom functions, jit alias</td></tr>
+    <tr><td>editor</td><td>helix</td><td>modal, lsp support</td></tr>
+    <tr><td>launcher</td><td>fuzzel</td><td>wayland-native</td></tr>
+    <tr><td>file manager</td><td>ranger</td><td>coat colorscheme</td></tr>
+    <tr><td>compositor alt</td><td>labwc</td><td>openBSD / stacking fallback</td></tr>
+    <tr><td>theming</td><td>coat</td><td>base16, applies across all apps</td></tr>
+    <tr><td>notifications</td><td>dunst</td><td></td></tr>
+  </table>
+
+  <h2>Windows Stack</h2>
+  <table>
+    <tr><th>role</th><th>tool</th><th>notes</th></tr>
+    <tr><td>window manager</td><td>glazewm</td><td>tiling, sway-like keybinds</td></tr>
+    <tr><td>terminal</td><td>windows terminal</td><td>black bg, white text</td></tr>
+    <tr><td>shell</td><td>powershell 7</td><td>custom prompt, uutils coreutils</td></tr>
+    <tr><td>launcher</td><td>powertoys run</td><td>alt+space</td></tr>
+    <tr><td>file manager</td><td>lf</td><td>ranger-like</td></tr>
+    <tr><td>system monitor</td><td>btop</td><td></td></tr>
+    <tr><td>unix tools</td><td>uutils-coreutils</td><td>auto-aliased in profile</td></tr>
+    <tr><td>editor</td><td>helix</td><td>same as linux</td></tr>
+  </table>
+
+  <h2>Theming</h2>
+  <p>
+    Linux theming is handled by <a href="https://github.com/jeebuscrossaint/coat">coat</a>,
+    a base16 theme manager that applies a scheme across 17+ applications simultaneously
+    (terminal, editor, bar, GTK, Qt, etc). Current scheme: <code>paul-millr</code>.
+  </p>
+  <p>
+    Windows uses a static black/white theme — no coat dependency.
+  </p>
+
+  <footer>
+    <a href="https://github.com/jeebuscrossaint/.dotfiles">github</a> · mit license
+  </footer>
+
+</body>
+</html>

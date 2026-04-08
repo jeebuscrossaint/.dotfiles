@@ -1,10 +1,10 @@
 # dotfiles
 
-![arch](misc/preview_arch.png) ![openbsd](misc/preview_openbsd.png)
+![arch](misc/preview_arch.png) ![openbsd](misc/preview_openbsd.png) ![windows](misc/preview_windows.png)
 
-sway · foot · fish · helix · fuzzel · waybar · coat
+sway · foot · fish · helix · fuzzel · waybar · coat · glazewm
 
-arch linux & openbsd
+arch linux · openbsd · windows 11
 
 ---
 
