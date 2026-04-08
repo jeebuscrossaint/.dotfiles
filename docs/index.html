@@ -7,141 +7,87 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
-    :root {
-      --bg: #000;
-      --fg: #fff;
-      --dim: #444;
-      --mid: #888;
-      --border: #222;
-      --hover: #111;
-    }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { scroll-behavior: smooth; }
-
     body {
-      background: var(--bg);
-      color: var(--fg);
+      background: #000;
+      color: #fff;
       font-family: 'Share Tech Mono', 'Courier New', monospace;
-      font-size: 14px;
-      line-height: 1.7;
-      overflow-x: hidden;
+      font-size: 13px;
+      height: 100vh;
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      padding: 20px 28px;
+      gap: 16px;
     }
 
-    /* scanlines */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
       background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(255,255,255,0.012) 2px,
-        rgba(255,255,255,0.012) 4px
+        0deg, transparent, transparent 2px,
+        rgba(255,255,255,0.013) 2px, rgba(255,255,255,0.013) 4px
       );
       pointer-events: none;
       z-index: 9999;
     }
 
-    /* ── hero ── */
-    .hero {
-      min-height: 100vh;
+    /* ── header ── */
+    header {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 80px 48px;
-      border-bottom: 1px solid var(--border);
-      position: relative;
+      align-items: baseline;
+      justify-content: space-between;
+      border-bottom: 1px solid #1a1a1a;
+      padding-bottom: 12px;
     }
 
-    .hero-label {
-      font-size: 0.75rem;
-      color: var(--dim);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-
-    .hero h1 {
-      font-size: clamp(3rem, 10vw, 8rem);
+    header h1 {
+      font-size: 1.3rem;
       font-weight: normal;
-      line-height: 1;
-      letter-spacing: -0.02em;
-      margin-bottom: 32px;
+      letter-spacing: 0.05em;
     }
 
-    .hero h1 span {
-      display: inline-block;
-      border-right: 3px solid #fff;
+    header h1 span {
+      border-right: 2px solid #fff;
       animation: blink 1s step-end infinite;
     }
 
     @keyframes blink { 50% { border-color: transparent; } }
 
-    .hero-sub {
-      color: var(--mid);
-      font-size: 0.9rem;
-      margin-bottom: 48px;
-      max-width: 500px;
-    }
-
-    .hero-tags {
+    header nav {
       display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
+      gap: 20px;
+      font-size: 0.72rem;
+      color: #444;
     }
 
-    .tag {
-      border: 1px solid var(--border);
-      padding: 3px 12px;
-      font-size: 0.75rem;
-      color: var(--mid);
-      letter-spacing: 0.05em;
-      transition: all 0.15s;
-    }
-    .tag:hover { border-color: #fff; color: #fff; }
+    header nav a { color: #444; text-decoration: none; }
+    header nav a:hover { color: #fff; }
 
-    .hero-corner {
-      position: absolute;
-      bottom: 32px;
-      right: 48px;
-      color: var(--dim);
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
+    /* ── main grid ── */
+    main {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr auto;
+      gap: 8px;
+      min-height: 0;
     }
 
-    /* ── section ── */
-    section {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 80px 48px;
-    }
-
-    .section-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--dim);
-      margin-bottom: 40px;
-    }
-
-    /* ── screenshots ── */
-    .screenshots {
+    /* screenshots — top row, span all 3 cols */
+    .shots {
+      grid-column: 1 / -1;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-      margin-bottom: 8px;
+      gap: 8px;
+      min-height: 0;
     }
-
-    @media (max-width: 700px) { .screenshots { grid-template-columns: 1fr; } }
 
     .shot {
       overflow: hidden;
       position: relative;
-      aspect-ratio: 16/9;
-      background: #0a0a0a;
+      min-height: 0;
     }
 
     .shot img {
@@ -149,168 +95,115 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      filter: grayscale(20%);
-      transition: transform 0.4s ease, filter 0.4s ease;
+      filter: grayscale(15%);
+      transition: filter 0.3s, transform 0.3s;
     }
 
-    .shot:hover img { transform: scale(1.04); filter: grayscale(0%); }
+    .shot:hover img { filter: grayscale(0%); transform: scale(1.03); }
 
     .shot-label {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 20px 14px 10px;
-      background: linear-gradient(transparent, rgba(0,0,0,0.85));
-      font-size: 0.72rem;
-      color: var(--mid);
-      letter-spacing: 0.1em;
+      bottom: 0; left: 0; right: 0;
+      padding: 16px 10px 6px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      font-size: 0.68rem;
+      color: #888;
+      letter-spacing: 0.08em;
       opacity: 0;
       transition: opacity 0.2s;
     }
 
     .shot:hover .shot-label { opacity: 1; }
 
-    /* ── two col ── */
-    .two-col {
+    /* bottom row — linux | windows */
+    .col {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
+      grid-template-rows: auto 1fr;
+      gap: 8px;
+      min-height: 0;
+      grid-column: span 1;
     }
-    @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; gap: 48px; } }
+
+    /* third col spans nothing — just filler, hide it */
+    .col:last-child { display: none; }
+
+    /* make linux + windows each span 1.5 cols effectively */
+    .col { grid-column: span 1; }
 
     /* ── terminal block ── */
     .term {
-      border: 1px solid var(--border);
-      margin: 20px 0;
+      border: 1px solid #1a1a1a;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
     }
 
     .term-bar {
-      background: var(--border);
-      padding: 7px 14px;
+      background: #111;
+      padding: 5px 10px;
       display: flex;
       align-items: center;
-      gap: 7px;
+      gap: 6px;
+      flex-shrink: 0;
     }
 
-    .term-dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: #333;
-    }
-
-    .term-bar span {
-      font-size: 0.7rem;
-      color: var(--dim);
-      margin-left: 6px;
-      letter-spacing: 0.05em;
-    }
+    .term-dot { width: 8px; height: 8px; border-radius: 50%; background: #222; }
+    .term-bar span { font-size: 0.65rem; color: #333; margin-left: 4px; }
 
     .term pre {
-      padding: 18px;
-      overflow-x: auto;
-      font-size: 0.82rem;
-      line-height: 1.65;
-      color: #ccc;
+      padding: 12px 14px;
+      overflow: hidden;
+      font-size: 0.75rem;
+      line-height: 1.7;
+      color: #888;
+      flex: 1;
     }
 
-    .term pre .prompt { color: var(--dim); user-select: none; }
-    .term pre .cmd    { color: #fff; }
-    .term pre .comment{ color: #444; }
+    .term pre .prompt { color: #333; user-select: none; }
+    .term pre .cmd    { color: #ccc; }
+    .term pre .comment{ color: #2a2a2a; }
 
     /* ── table ── */
-    h2 {
-      font-size: 0.85rem;
-      font-weight: normal;
-      letter-spacing: 0.1em;
+    .col-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--mid);
-      margin-bottom: 20px;
+      color: #333;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #111;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.82rem;
-    }
-
-    thead tr { border-bottom: 1px solid var(--border); }
-    th { text-align: left; padding: 8px 16px 8px 0; color: var(--dim); font-weight: normal; letter-spacing: 0.08em; font-size: 0.7rem; text-transform: uppercase; }
-    td { padding: 9px 16px 9px 0; border-bottom: 1px solid #0d0d0d; color: var(--mid); transition: color 0.1s; }
-    tr:hover td { color: var(--fg); }
-    td:first-child { color: var(--fg); }
-
-    /* ── divider ── */
-    .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
-
-    /* ── keybinds ── */
-    .kb-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 2px;
-    }
-
-    .kb {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 14px;
-      border: 1px solid transparent;
-      transition: border-color 0.15s;
-    }
-    .kb:hover { border-color: var(--border); }
-
-    .kb-key {
-      font-size: 0.75rem;
-      color: var(--fg);
-      background: #0d0d0d;
-      border: 1px solid #1a1a1a;
-      padding: 2px 8px;
-      white-space: nowrap;
-    }
-
-    .kb-action { font-size: 0.78rem; color: var(--dim); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.72rem; }
+    td { padding: 4px 10px 4px 0; border-bottom: 1px solid #0a0a0a; color: #555; transition: color 0.1s; }
+    tr:hover td { color: #ccc; }
+    td:first-child { color: #999; }
 
     /* ── footer ── */
     footer {
-      border-top: 1px solid var(--border);
-      padding: 32px 48px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      font-size: 0.75rem;
-      color: var(--dim);
+      font-size: 0.68rem;
+      color: #333;
+      border-top: 1px solid #1a1a1a;
+      padding-top: 10px;
     }
 
-    footer a { color: var(--dim); text-decoration: none; }
-    footer a:hover { color: var(--fg); }
+    footer a { color: #333; text-decoration: none; }
+    footer a:hover { color: #fff; }
   </style>
 </head>
 <body>
 
-  <!-- hero -->
-  <div class="hero">
-    <p class="hero-label">jeebuscrossaint / .dotfiles</p>
-    <h1>dot<span>files</span></h1>
-    <p class="hero-sub">personal system configs for arch linux, openbsd, and windows 11 — tiling wms, custom shells, unified tooling.</p>
-    <div class="hero-tags">
-      <span class="tag">sway</span>
-      <span class="tag">glazewm</span>
-      <span class="tag">fish</span>
-      <span class="tag">powershell</span>
-      <span class="tag">helix</span>
-      <span class="tag">waybar</span>
-      <span class="tag">coat</span>
-      <span class="tag">uutils</span>
-      <span class="tag">btop</span>
-    </div>
-    <p class="hero-corner">arch · openbsd · windows</p>
-  </div>
+  <header>
+    <h1>.<span>dotfiles</span></h1>
+    <nav>
+      <a href="https://github.com/jeebuscrossaint/.dotfiles">github</a>
+      <span>arch · openbsd · windows</span>
+    </nav>
+  </header>
 
-  <!-- screenshots -->
-  <section>
-    <p class="section-label">previews</p>
-    <div class="screenshots">
+  <main>
+    <div class="shots">
       <div class="shot">
         <img src="https://raw.githubusercontent.com/jeebuscrossaint/.dotfiles/main/misc/preview_arch.png" alt="arch" />
         <div class="shot-label">arch linux · sway · waybar</div>
@@ -324,126 +217,58 @@
         <div class="shot-label">windows 11 · glazewm</div>
       </div>
     </div>
-  </section>
 
-  <hr class="divider" />
-
-  <!-- install -->
-  <section>
-    <p class="section-label">install</p>
-    <div class="two-col">
-      <div>
-        <h2>Linux</h2>
-        <div class="term">
-          <div class="term-bar">
-            <div class="term-dot"></div><div class="term-dot"></div><div class="term-dot"></div>
-            <span>sh</span>
-          </div>
-          <pre><span class="comment"># clone and stow</span>
+    <!-- linux -->
+    <div class="col" style="grid-column: 1 / 2;">
+      <div class="col-label">linux — arch / openbsd</div>
+      <div class="term">
+        <div class="term-bar">
+          <div class="term-dot"></div><div class="term-dot"></div><div class="term-dot"></div>
+          <span>sh</span>
+        </div>
+        <pre><span class="comment"># requires gnu stow + coat</span>
 <span class="prompt">$ </span><span class="cmd">git clone https://github.com/jeebuscrossaint/.dotfiles ~/.dotfiles</span>
 <span class="prompt">$ </span><span class="cmd">cd ~/.dotfiles && stow linux</span>
-<span class="prompt">$ </span><span class="cmd">coat apply</span>
-
-<span class="comment"># canvas module (optional)</span>
-<span class="prompt">$ </span><span class="cmd">echo "YOUR_URL" > ~/.config/canvas/ical-url</span>
-
-<span class="comment"># nerd fonts on openbsd</span>
-<span class="prompt">$ </span><span class="cmd">./install-nerdfonts.sh</span></pre>
-        </div>
-        <p style="font-size:0.78rem;color:#444;">requires <a href="https://www.gnu.org/software/stow/" style="color:#666;">gnu stow</a> and <a href="https://github.com/jeebuscrossaint/coat" style="color:#666;">coat</a></p>
+<span class="prompt">$ </span><span class="cmd">coat apply</span></pre>
       </div>
-      <div>
-        <h2>Windows</h2>
-        <div class="term">
-          <div class="term-bar">
-            <div class="term-dot"></div><div class="term-dot"></div><div class="term-dot"></div>
-            <span>powershell</span>
-          </div>
-          <pre><span class="comment"># install scoop</span>
-<span class="prompt">PS> </span><span class="cmd">irm get.scoop.sh | iex</span>
+    </div>
+
+    <!-- windows -->
+    <div class="col" style="grid-column: 2 / 3;">
+      <div class="col-label">windows 11</div>
+      <div class="term">
+        <div class="term-bar">
+          <div class="term-dot"></div><div class="term-dot"></div><div class="term-dot"></div>
+          <span>powershell</span>
+        </div>
+        <pre><span class="comment"># install scoop, then:</span>
 <span class="prompt">PS> </span><span class="cmd">scoop bucket add extras</span>
-
-<span class="comment"># install packages</span>
-<span class="prompt">PS> </span><span class="cmd">scoop install glazewm pwsh lf btop `
-      uutils-coreutils helix fastfetch</span>
-
-<span class="comment"># install dotfiles</span>
+<span class="prompt">PS> </span><span class="cmd">scoop install glazewm pwsh lf btop uutils-coreutils helix fastfetch</span>
 <span class="prompt">PS> </span><span class="cmd">git clone https://github.com/jeebuscrossaint/.dotfiles</span>
 <span class="prompt">PS> </span><span class="cmd">cd .dotfiles && .\install.ps1</span></pre>
-        </div>
       </div>
     </div>
-  </section>
 
-  <hr class="divider" />
-
-  <!-- stack -->
-  <section>
-    <p class="section-label">stack</p>
-    <div class="two-col">
-      <div>
-        <h2>Linux</h2>
-        <table>
-          <thead><tr><th>role</th><th>tool</th></tr></thead>
-          <tbody>
-            <tr><td>window manager</td><td>sway / labwc</td></tr>
-            <tr><td>status bar</td><td>waybar</td></tr>
-            <tr><td>terminal</td><td>foot</td></tr>
-            <tr><td>shell</td><td>fish</td></tr>
-            <tr><td>editor</td><td>helix</td></tr>
-            <tr><td>launcher</td><td>fuzzel</td></tr>
-            <tr><td>file manager</td><td>ranger</td></tr>
-            <tr><td>theming</td><td>coat</td></tr>
-            <tr><td>notifications</td><td>dunst</td></tr>
-            <tr><td>system monitor</td><td>btop</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div>
-        <h2>Windows</h2>
-        <table>
-          <thead><tr><th>role</th><th>tool</th></tr></thead>
-          <tbody>
-            <tr><td>window manager</td><td>glazewm</td></tr>
-            <tr><td>terminal</td><td>windows terminal</td></tr>
-            <tr><td>shell</td><td>powershell 7</td></tr>
-            <tr><td>launcher</td><td>powertoys run</td></tr>
-            <tr><td>file manager</td><td>lf</td></tr>
-            <tr><td>system monitor</td><td>btop</td></tr>
-            <tr><td>unix tools</td><td>uutils-coreutils</td></tr>
-            <tr><td>editor</td><td>helix</td></tr>
-          </tbody>
-        </table>
-      </div>
+    <!-- stack -->
+    <div class="col" style="grid-column: 3 / 4;">
+      <div class="col-label">stack</div>
+      <table>
+        <tr><td>wm</td><td>sway · glazewm</td></tr>
+        <tr><td>bar</td><td>waybar</td></tr>
+        <tr><td>terminal</td><td>foot · windows terminal</td></tr>
+        <tr><td>shell</td><td>fish · powershell 7</td></tr>
+        <tr><td>editor</td><td>helix</td></tr>
+        <tr><td>launcher</td><td>fuzzel · powertoys run</td></tr>
+        <tr><td>files</td><td>ranger · lf</td></tr>
+        <tr><td>monitor</td><td>btop</td></tr>
+        <tr><td>theming</td><td>coat (linux only)</td></tr>
+      </table>
     </div>
-  </section>
-
-  <hr class="divider" />
-
-  <!-- keybinds -->
-  <section>
-    <p class="section-label">keybindings — glazewm / sway</p>
-    <div class="kb-grid">
-      <div class="kb"><span class="kb-key">mod + q</span><span class="kb-action">open terminal</span></div>
-      <div class="kb"><span class="kb-key">mod + c</span><span class="kb-action">close window</span></div>
-      <div class="kb"><span class="kb-key">mod + f</span><span class="kb-action">fullscreen</span></div>
-      <div class="kb"><span class="kb-key">mod + d</span><span class="kb-action">launcher</span></div>
-      <div class="kb"><span class="kb-key">mod + shift + v</span><span class="kb-action">toggle float</span></div>
-      <div class="kb"><span class="kb-key">mod + arrows</span><span class="kb-action">focus direction</span></div>
-      <div class="kb"><span class="kb-key">mod + shift + arrows</span><span class="kb-action">move window</span></div>
-      <div class="kb"><span class="kb-key">mod + 1–9</span><span class="kb-action">switch workspace</span></div>
-      <div class="kb"><span class="kb-key">mod + shift + 1–9</span><span class="kb-action">move to workspace</span></div>
-      <div class="kb"><span class="kb-key">mod + r</span><span class="kb-action">resize mode</span></div>
-      <div class="kb"><span class="kb-key">mod + t</span><span class="kb-action">toggle tiling dir</span></div>
-      <div class="kb"><span class="kb-key">mod + shift + s</span><span class="kb-action">screenshot</span></div>
-    </div>
-  </section>
+  </main>
 
   <footer>
-    <span>jeebuscrossaint · mit</span>
-    <span>
-      <a href="https://github.com/jeebuscrossaint/.dotfiles">github</a>
-    </span>
+    <span>jeebuscrossaint · mit license</span>
+    <span><a href="https://github.com/jeebuscrossaint/coat">coat</a> · <a href="https://github.com/jeebuscrossaint/.dotfiles">source</a></span>
   </footer>
 
 </body>
