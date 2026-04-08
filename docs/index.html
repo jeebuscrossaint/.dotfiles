@@ -14,12 +14,12 @@
       color: #fff;
       font-family: 'Share Tech Mono', 'Courier New', monospace;
       font-size: 13px;
-      height: 100vh;
+      height: 100dvh;
       overflow: hidden;
       display: grid;
-      grid-template-rows: auto 1fr auto;
-      padding: 20px 28px;
-      gap: 16px;
+      grid-template-rows: 36px 1fr 28px;
+      padding: 16px 24px;
+      gap: 12px;
     }
 
     body::before {
@@ -37,16 +37,14 @@
     /* ── header ── */
     header {
       display: flex;
-      align-items: baseline;
+      align-items: center;
       justify-content: space-between;
       border-bottom: 1px solid #1a1a1a;
-      padding-bottom: 12px;
     }
 
     header h1 {
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       font-weight: normal;
-      letter-spacing: 0.05em;
     }
 
     header h1 span {
@@ -56,28 +54,23 @@
 
     @keyframes blink { 50% { border-color: transparent; } }
 
-    header nav {
-      display: flex;
-      gap: 20px;
-      font-size: 0.72rem;
-      color: #444;
-    }
-
-    header nav a { color: #444; text-decoration: none; }
+    header nav { font-size: 0.7rem; color: #333; display: flex; gap: 18px; }
+    header nav a { color: #333; text-decoration: none; }
     header nav a:hover { color: #fff; }
 
-    /* ── main grid ── */
+    /* ── main: 3 columns, 2 rows ── */
     main {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: 1fr auto;
+      grid-template-rows: 58% 42%;
       gap: 8px;
       min-height: 0;
     }
 
-    /* screenshots — top row, span all 3 cols */
+    /* screenshots span all 3 cols, first row */
     .shots {
       grid-column: 1 / -1;
+      grid-row: 1;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
@@ -95,19 +88,19 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      filter: grayscale(15%);
-      transition: filter 0.3s, transform 0.3s;
+      filter: grayscale(20%);
+      transition: filter 0.3s, transform 0.35s;
     }
 
-    .shot:hover img { filter: grayscale(0%); transform: scale(1.03); }
+    .shot:hover img { filter: grayscale(0%); transform: scale(1.04); }
 
     .shot-label {
       position: absolute;
       bottom: 0; left: 0; right: 0;
-      padding: 16px 10px 6px;
-      background: linear-gradient(transparent, rgba(0,0,0,0.8));
-      font-size: 0.68rem;
-      color: #888;
+      padding: 20px 10px 7px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.82));
+      font-size: 0.67rem;
+      color: #777;
       letter-spacing: 0.08em;
       opacity: 0;
       transition: opacity 0.2s;
@@ -115,80 +108,74 @@
 
     .shot:hover .shot-label { opacity: 1; }
 
-    /* bottom row — linux | windows */
+    /* bottom 3 cols, second row */
     .col {
-      display: grid;
-      grid-template-rows: auto 1fr;
-      gap: 8px;
-      min-height: 0;
-      grid-column: span 1;
-    }
-
-    /* third col spans nothing — just filler, hide it */
-    .col:last-child { display: none; }
-
-    /* make linux + windows each span 1.5 cols effectively */
-    .col { grid-column: span 1; }
-
-    /* ── terminal block ── */
-    .term {
-      border: 1px solid #1a1a1a;
+      grid-row: 2;
       display: flex;
       flex-direction: column;
+      gap: 6px;
       min-height: 0;
     }
 
-    .term-bar {
-      background: #111;
-      padding: 5px 10px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+    .col-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #2d2d2d;
       flex-shrink: 0;
     }
 
-    .term-dot { width: 8px; height: 8px; border-radius: 50%; background: #222; }
-    .term-bar span { font-size: 0.65rem; color: #333; margin-left: 4px; }
+    /* ── terminal ── */
+    .term {
+      border: 1px solid #151515;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .term-bar {
+      background: #0d0d0d;
+      padding: 4px 10px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-shrink: 0;
+    }
+
+    .term-dot { width: 7px; height: 7px; border-radius: 50%; background: #1e1e1e; }
+    .term-bar span { font-size: 0.6rem; color: #2a2a2a; margin-left: 4px; }
 
     .term pre {
-      padding: 12px 14px;
+      padding: 10px 12px;
+      font-size: 0.72rem;
+      line-height: 1.75;
+      color: #666;
       overflow: hidden;
-      font-size: 0.75rem;
-      line-height: 1.7;
-      color: #888;
-      flex: 1;
     }
 
-    .term pre .prompt { color: #333; user-select: none; }
-    .term pre .cmd    { color: #ccc; }
-    .term pre .comment{ color: #2a2a2a; }
+    .term pre .prompt  { color: #2a2a2a; user-select: none; }
+    .term pre .cmd     { color: #bbb; }
+    .term pre .comment { color: #222; }
 
-    /* ── table ── */
-    .col-label {
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #333;
-      padding-bottom: 6px;
-      border-bottom: 1px solid #111;
-    }
-
-    table { width: 100%; border-collapse: collapse; font-size: 0.72rem; }
-    td { padding: 4px 10px 4px 0; border-bottom: 1px solid #0a0a0a; color: #555; transition: color 0.1s; }
-    tr:hover td { color: #ccc; }
-    td:first-child { color: #999; }
+    /* ── stack table ── */
+    table { width: 100%; border-collapse: collapse; font-size: 0.7rem; }
+    td { padding: 3px 8px 3px 0; border-bottom: 1px solid #080808; color: #444; transition: color 0.1s; }
+    tr:hover td { color: #bbb; }
+    td:first-child { color: #777; width: 72px; }
 
     /* ── footer ── */
     footer {
       display: flex;
       justify-content: space-between;
-      font-size: 0.68rem;
-      color: #333;
-      border-top: 1px solid #1a1a1a;
-      padding-top: 10px;
+      align-items: center;
+      font-size: 0.65rem;
+      color: #2a2a2a;
+      border-top: 1px solid #111;
     }
 
-    footer a { color: #333; text-decoration: none; }
+    footer a { color: #2a2a2a; text-decoration: none; }
     footer a:hover { color: #fff; }
   </style>
 </head>
@@ -197,8 +184,8 @@
   <header>
     <h1>.<span>dotfiles</span></h1>
     <nav>
-      <a href="https://github.com/jeebuscrossaint/.dotfiles">github</a>
       <span>arch · openbsd · windows</span>
+      <a href="https://github.com/jeebuscrossaint/.dotfiles">github</a>
     </nav>
   </header>
 
@@ -218,8 +205,7 @@
       </div>
     </div>
 
-    <!-- linux -->
-    <div class="col" style="grid-column: 1 / 2;">
+    <div class="col">
       <div class="col-label">linux — arch / openbsd</div>
       <div class="term">
         <div class="term-bar">
@@ -233,15 +219,14 @@
       </div>
     </div>
 
-    <!-- windows -->
-    <div class="col" style="grid-column: 2 / 3;">
+    <div class="col">
       <div class="col-label">windows 11</div>
       <div class="term">
         <div class="term-bar">
           <div class="term-dot"></div><div class="term-dot"></div><div class="term-dot"></div>
           <span>powershell</span>
         </div>
-        <pre><span class="comment"># install scoop, then:</span>
+        <pre><span class="comment"># install scoop first</span>
 <span class="prompt">PS> </span><span class="cmd">scoop bucket add extras</span>
 <span class="prompt">PS> </span><span class="cmd">scoop install glazewm pwsh lf btop uutils-coreutils helix fastfetch</span>
 <span class="prompt">PS> </span><span class="cmd">git clone https://github.com/jeebuscrossaint/.dotfiles</span>
@@ -249,8 +234,7 @@
       </div>
     </div>
 
-    <!-- stack -->
-    <div class="col" style="grid-column: 3 / 4;">
+    <div class="col">
       <div class="col-label">stack</div>
       <table>
         <tr><td>wm</td><td>sway · glazewm</td></tr>
@@ -267,7 +251,7 @@
   </main>
 
   <footer>
-    <span>jeebuscrossaint · mit license</span>
+    <span>jeebuscrossaint · mit</span>
     <span><a href="https://github.com/jeebuscrossaint/coat">coat</a> · <a href="https://github.com/jeebuscrossaint/.dotfiles">source</a></span>
   </footer>
 
