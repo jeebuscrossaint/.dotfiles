@@ -84,12 +84,24 @@ function prompt {
         $batteryStr = " $icon$pct%"
     }
 
-    # Git
+    # Git — read .git/HEAD directly, no external process
     $gitStr = ""
-    $branch = git branch --show-current 2>$null
-    if ($branch) {
-        $dirty  = if (git status --porcelain 2>$null) { "*" } else { "" }
-        $gitStr = " on $P $branch$dirty$r"
+    $dir2 = $PWD.Path
+    while ($dir2) {
+        $head = Join-Path $dir2 ".git/HEAD"
+        if (Test-Path $head -ErrorAction SilentlyContinue) {
+            $headContent = Get-Content $head -Raw -ErrorAction SilentlyContinue
+            if ($headContent -match 'ref: refs/heads/(.+)') {
+                $branch = $Matches[1].Trim()
+                $dirty = if ((Get-ChildItem (Join-Path $dir2 ".git/index") -ErrorAction SilentlyContinue) -and
+                             (git status --porcelain 2>$null)) { "*" } else { "" }
+                $gitStr = " on $P $branch$dirty$r"
+            }
+            break
+        }
+        $parent = Split-Path $dir2 -Parent
+        if ($parent -eq $dir2) { break }
+        $dir2 = $parent
     }
 
     # Build lines
@@ -103,8 +115,9 @@ function prompt {
     $char      = if ($hasError) { "$R>$r" } else { "$bG>$r" }
     $line2     = "$bG╰─$r $statusStr$char"
 
-    # Restore exit code so it doesn't get clobbered
+    # Restore state so PSReadLine doesn't pick up stale exit codes
     $global:LASTEXITCODE = $lastExitCode
+    $null = $null  # resets $? to $true
 
     "$line1`n$line2 "
 }
