@@ -34,7 +34,7 @@
     {
         "defaults": 
         {
-            "colorScheme": "Color Scheme 14",
+            "colorScheme": "Vintage",
             "font": 
             {
                 "face": "Hasklug Nerd Font Mono"
@@ -217,27 +217,27 @@
     "schemes": 
     [
         {
-            "name": "Color Scheme 14",
             "background": "#000000",
-            "foreground": "#ffffff",
-            "cursorColor": "#ffffff",
-            "selectionBackground": "#333333",
             "black": "#000000",
-            "red": "#ff0000",
-            "green": "#ffffff",
-            "yellow": "#ffffff",
-            "blue": "#ffffff",
-            "purple": "#ffffff",
-            "cyan": "#ffffff",
-            "white": "#ffffff",
+            "blue": "#FFFFFF",
             "brightBlack": "#555555",
-            "brightRed": "#ff0000",
-            "brightGreen": "#ffffff",
-            "brightYellow": "#ffffff",
-            "brightBlue": "#ffffff",
-            "brightPurple": "#ffffff",
-            "brightCyan": "#ffffff",
-            "brightWhite": "#ffffff"
+            "brightBlue": "#FFFFFF",
+            "brightCyan": "#FFFFFF",
+            "brightGreen": "#FFFFFF",
+            "brightPurple": "#FFFFFF",
+            "brightRed": "#FF0000",
+            "brightWhite": "#FFFFFF",
+            "brightYellow": "#FFFFFF",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#FFFFFF",
+            "foreground": "#FFFFFF",
+            "green": "#FFFFFF",
+            "name": "Color Scheme 14",
+            "purple": "#FFFFFF",
+            "red": "#FF0000",
+            "selectionBackground": "#333333",
+            "white": "#FFFFFF",
+            "yellow": "#FFFFFF"
         }
     ],
     "themes": []

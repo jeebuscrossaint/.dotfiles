@@ -1,19 +1,3 @@
-Set-PSReadLineOption -Colors @{
-    Command            = '#ffffff'
-    Parameter          = '#ffffff'
-    String             = '#ffffff'
-    Variable           = '#ffffff'
-    Operator           = '#ffffff'
-    Keyword            = '#ffffff'
-    Number             = '#ffffff'
-    Type               = '#ffffff'
-    Member             = '#ffffff'
-    Default            = '#ffffff'
-    Comment            = '#555555'
-    InlinePrediction   = '#444444'
-    Error              = '#ff0000'
-}
-
 fastfetch
 Set-Alias -Name jit -Value git
 Set-Alias -Name cl -Value clear
