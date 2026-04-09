@@ -39,4 +39,18 @@ Link-Config `
     (Join-Path $WINDOWS_DIR "windows-terminal\settings.json") `
     (Join-Path $env:LOCALAPPDATA "Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json")
 
+# GlazeWM autostart
+$glazewmPath = (Get-Command glazewm -ErrorAction SilentlyContinue)?.Source
+if ($glazewmPath) {
+    $startupDir = "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup"
+    $shortcut = "$startupDir\GlazeWM.lnk"
+    $wsh = New-Object -ComObject WScript.Shell
+    $lnk = $wsh.CreateShortcut($shortcut)
+    $lnk.TargetPath = $glazewmPath
+    $lnk.Save()
+    Write-Host "[OK] GlazeWM autostart registered" -ForegroundColor Green
+} else {
+    Write-Host "[SKIP] glazewm not found on PATH, skipping autostart" -ForegroundColor Yellow
+}
+
 Write-Host "[INFO] Done!" -ForegroundColor Blue
