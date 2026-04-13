@@ -29,3 +29,14 @@ install nerd fonts on openbsd (or anywhere without packages):
 ---
 
 **extensions:** uBlock Origin · SponsorBlock · BetterCanvas · Return YouTube Dislike · Proton Pass · Dark Reader
+
+**wallpapers**
+
+- https://github.com/rann01/IRIX-tiles
+- https://github.com/dharmx/walls
+- https://github.com/wallace-aph/tiles-and-such
+- https://github.com/tile-anon/tiles
+- https://github.com/peteroupc/classic-wallpaper
+- https://github.com/makccr/wallpapers
+- https://github.com/whoisYoges/lwalpapers
+- https://github.com/Axenide/Wallpapers
