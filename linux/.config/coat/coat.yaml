@@ -2,7 +2,6 @@
 
 # The 'enabled' key triggers STATE_ENABLED and expects a sequence (list)
 enabled:
-  - hyprland
   - fish
   - foot
   - helix
@@ -21,12 +20,11 @@ enabled:
   - swaylock
   
 # The 'scheme' key is a top-level scalar
-scheme: paul-millr
+scheme: blue-matrix
 prefer_base24: false
-# material_you: true
 
 opacity:
-  terminal: 0.7
+  terminal: 1.0
   applications: 1.0
   desktop: 1.0
   popups: 1.0
@@ -38,6 +36,6 @@ font:
   sansserif: "0xProto Nerd Font"
   serif: "0xProto Nerd Font"
   sizes:
-    terminal: 8
+    terminal: 9
     desktop: 8
     popups: 7

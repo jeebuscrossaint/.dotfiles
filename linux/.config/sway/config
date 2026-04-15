@@ -9,13 +9,14 @@ set $term footclient
 xwayland enable
 
 # Window appearance
-default_border pixel 2
-titlebar_border_thickness 0
+#default_border pixel 2
+default_border normal 2
+titlebar_border_thickness 2
 hide_edge_borders smart
 
 # Gaps
-gaps inner 15
-gaps outer 5
+gaps inner 0
+gaps outer 0
 smart_gaps on
 smart_borders on
 
