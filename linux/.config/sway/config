@@ -2,6 +2,9 @@
 
 include ~/.config/sway/coat-theme
 
+# Override: dark titlebar bg matching terminal, blue text
+client.focused $base0D $base00 $base0D $base0D $base0C
+
 set $mod Mod4
 set $menu fuzzel
 set $term footclient

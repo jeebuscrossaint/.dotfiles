@@ -20,7 +20,7 @@ enabled:
   - swaylock
   
 # The 'scheme' key is a top-level scalar
-scheme: blue-matrix
+scheme: twilight
 prefer_base24: false
 
 opacity:
@@ -32,10 +32,10 @@ opacity:
 # The 'font' key triggers in_font_section and expects a mapping (dictionary)
 font:
   emoji: "Noto Color Emoji"
-  monospace: "0xProto Nerd Font Mono"
-  sansserif: "0xProto Nerd Font"
-  serif: "0xProto Nerd Font"
+  monospace: "BigBlueTermPlus Nerd Font Mono"
+  sansserif: "BigBlueTermPlus Nerd Font"
+  serif: "BigBlueTermPlus Nerd Font"
   sizes:
-    terminal: 9
-    desktop: 8
-    popups: 7
+    terminal: 11
+    desktop: 11
+    popups: 11
